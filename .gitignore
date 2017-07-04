@@ -1,4 +1,3 @@
 .vscode
 *.pyc
-uploads
-ftp.py
+ignore
