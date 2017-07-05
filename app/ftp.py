@@ -8,8 +8,8 @@ from ftplib import FTP
 
 #predefined ftp credentials
 _ip = "localhost"    #put ip address
-_user = "local"      #put username
-_passwd = "j"        #put password
+_user = "temp"      #put username
+_passwd = "temp"        #put password
 
 ##  @brief  getFile gets a file from FTP
 #   @detail looks into FTP given by the user for a file
