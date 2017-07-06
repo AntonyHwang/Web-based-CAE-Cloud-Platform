@@ -1,0 +1,19 @@
+html,body {
+    font-family: sans-serif;
+}
+
+form {
+    color: purple;
+}
+
+.sideBar {
+    background-color: blue;
+}
+
+.jumbotron {
+    background-color: gray;
+}
+
+[hidden] {
+  display: none !important;
+}
