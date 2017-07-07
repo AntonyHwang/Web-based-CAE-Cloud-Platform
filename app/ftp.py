@@ -19,17 +19,19 @@ passwd = "j"        #put password
 #   @param  user        user account of ftp
 #   @param  passwd      password of ftp user
 def getFile(filename):
+    x3d_file = "%s.x3d" % filename
+    png_file = "%s.png" % filename
     #connect to ftp
     ftp = FTP(ip, user, passwd)
 
-    ###section for checking if file exists
+    #download .x3d and .png files from ftp
+    ftp.retrbinary('RETR %s' % x3d_file, open(x3d_file, 'wb').write)
+    ftp.retrbinary('RETR %s' % png_file, open(png_file, 'wb').write)
 
-    ###
-
-    localfile = open(filename, 'w+b')
-    ftp.retrbinary('RETR ' + os.path.basename(filename), localfile.write)
-    ftp.quit()
-    localfile.close()
+    #localfile = open(filename, 'w+b')
+    #ftp.retrbinary('RETR ' + os.path.basename(filename), localfile.write)
+    #ftp.quit()
+    #localfile.close()
 
 ##  @brief  storeFile saves a file in ftp
 #   @detail stores a file into FTP given by the user

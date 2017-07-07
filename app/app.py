@@ -6,6 +6,7 @@
 from flask import Flask, render_template, request
 import ftp
 import database
+import file_conversion
 
 app = Flask(__name__)
 
@@ -19,6 +20,11 @@ def send():
     if request.method == 'POST':
         file = request.form['fileToUpload']
         job_id = database.writeToDB(file)
+        #local copy of .stp in web server
+        stp_file = open('%s.stp' % job_id, 'w')
+        stp_file.write(file)
+        file_conversion.stpTox3d(stp_file)
+        stp_file.close()
         ftp.storeFile(file, job_id)
         return render_template('fileupload.html', file=file)
     return render_template('index.html')
