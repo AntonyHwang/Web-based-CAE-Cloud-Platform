@@ -42,6 +42,6 @@ def getFile(filename):
 #   @param  passwd     password of ftp user
 def storeFile(file, job_id):
     ftp = FTP(ip, user, passwd)
-    ftp.storbinary('STOR '+ job_id, open(file, "rb"))
+    ftp.storbinary('STOR '+ str(job_id), open(file, "rb"))
     ftp.quit()
     

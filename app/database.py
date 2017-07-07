@@ -17,7 +17,7 @@ def retrieveFromDB(cursor = cursor):
 # inserting data into db
 def writeToDB(filename):
     try:
-        cursor.execute("INSERT INTO job (stp_filename) VALUE (%s)", (filename))
+        cursor.execute("INSERT INTO job (stp_filename, finished) VALUE ('%s', 0)" % (filename))
     except mariadb.Error as error:
         print("Error: {}".format(error))
 
