@@ -18,8 +18,8 @@ app = Flask(__name__)
 def send():
     if request.method == 'POST':
         file = request.form['fileToUpload']
-        ftp.storeFile(file)
-        database.writeToDB(file)
+        job_id = database.writeToDB(file)
+        ftp.storeFile(file, job_id)
         return render_template('fileupload.html', file=file)
     return render_template('index.html')
 

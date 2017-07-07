@@ -7,9 +7,9 @@ import os
 from ftplib import FTP
 
 #predefined ftp credentials
-_ip = "localhost"    #put ip address
-_user = "local"      #put username
-_passwd = "j"        #put password
+ip = "localhost"    #put ip address
+user = "local"      #put username
+passwd = "j"        #put password
 
 ##  @brief  getFile gets a file from FTP
 #   @detail looks into FTP given by the user for a file
@@ -18,7 +18,7 @@ _passwd = "j"        #put password
 #   @param  ip          ip address of ftp
 #   @param  user        user account of ftp
 #   @param  passwd      password of ftp user
-def getFile(filename, ip = _ip, user = _user, passwd = _passwd):
+def getFile(filename):
     #connect to ftp
     ftp = FTP(ip, user, passwd)
 
@@ -38,8 +38,8 @@ def getFile(filename, ip = _ip, user = _user, passwd = _passwd):
 #   @param  ip         ip address of ftp
 #   @param  user       user account of ftp
 #   @param  passwd     password of ftp user
-def storeFile(filename, ip = _ip, user = _user, passwd = _passwd):
+def storeFile(file, job_id):
     ftp = FTP(ip, user, passwd)
-    ftp.storbinary('STOR '+ filename, open(filename, "rb"))
+    ftp.storbinary('STOR '+ job_id, open(file, "rb"))
     ftp.quit()
     
