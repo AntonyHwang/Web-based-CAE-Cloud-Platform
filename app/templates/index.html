@@ -21,16 +21,16 @@
 {%endblock%} {% block content %}
 
 
-<div class="row">
+
 
 	<form action="/send" method="post">
-		<div class="col-xs-6">
+		
 			<h1>Input</h1>
 			<div class="input-group">
 				<label class="input-group-btn">
-					<button class="btn">
-    				Browse&hellip; <input type="file" style="display: none;" multiple>
-					</button>
+					<span class="btn btn-secondary">
+    				Browse&hellip; <input type="file" name="fileToUpload" style="display: none;" multiple>
+					</span>
 				</label>
 				<input type="text" class="form-control" readonly placeholder="Input File">
 			</div>
@@ -44,12 +44,12 @@
 
 			<br>
 			
-			<button class="btn">
+			<label class="btn btn-secondary">
 				Upload<input type="submit" name="submit" style="display: none;">
-			</button>
-		</div>
+			</label>
+		
 	</form>
-</div>
+
 
 <div class="row">
 	<div class="jumbletron">

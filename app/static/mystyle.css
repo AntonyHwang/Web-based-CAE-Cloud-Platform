@@ -1,19 +1,64 @@
-html,body {
-    font-family: sans-serif;
+/*Button*/
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+  color: #333;
+  text-shadow: none; /* Prevent inheritance from `body` */
+  background-color: #fff;
+  border: .05rem solid #fff;
+}
+/*Base*/
+html,
+body {
+  height: 100%;
+  background-color: #333;
+}
+body {
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 .05rem .1rem rgba(0,0,0,.5);
 }
 
-form {
-    color: purple;
+/*table like markup and centering */
+
+.site-wrapper {
+  display: table;
+  width: 100%;
+  height: 100%; /* For at least Firefox */
+  min-height: 100%;
+  -webkit-box-shadow: inset 0 0 5rem rgba(0,0,0,.5);
+          box-shadow: inset 0 0 5rem rgba(0,0,0,.5);
 }
 
-.sideBar {
-    background-color: blue;
+.site-wrapper-inner {
+  display: table-cell;
+  vertical-align: top;
+}
+.cover-container {
+    margin-left: auto;
+    margin-right: auto;
+}
+/* Cover */
+.cover {
+  padding: 0 1.5rem;
+}
+.cover .btn-lg {
+  padding: .75rem 1.25rem;
+  font-weight: bold;
 }
 
-.jumbotron {
-    background-color: gray;
+@media (min-width: 40em) {
+  .site-wrapper-inner {
+    vertical-align: middle;
+  }
+  .cover-container {
+    width: 100%; /* Must be percentage or pixels for horizontal alignment */
+  }
 }
 
-[hidden] {
-  display: none !important;
+
+@media (min-width: 62em) {
+    .cover-container {
+        width: 42rem;
+    }
 }
