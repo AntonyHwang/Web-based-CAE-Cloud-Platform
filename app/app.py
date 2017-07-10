@@ -1,4 +1,4 @@
-## @brief   app.oy
+## @file    app.py
 #  @title   app     
 #  @author  
 #  @date    7/5/2017
@@ -20,11 +20,12 @@ def send():
     if request.method == 'POST':
         file = request.form['fileToUpload']
         job_id = database.writeToDB(file)
+        #job_id = "temp"
         #local copy of .stp in web server
-        stp_file = open('%s.stp' % job_id, 'w')
-        stp_file.write(file)
-        file_conversion.stpTox3d(stp_file)
-        stp_file.close()
+        #stp_file = open('%s.stp' % job_id, 'w')
+        #stp_file.write(file)
+        #file_conversion.stpTox3d(stp_file)
+        #stp_file.close()
         ftp.storeFile(file, job_id)
         return render_template('fileupload.html', file=file)
     return render_template('index.html')
