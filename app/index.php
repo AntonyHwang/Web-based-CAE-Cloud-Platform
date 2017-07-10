@@ -23,7 +23,7 @@
     }
     // Allow certain file formats
     if($imageFileType != "stp" || $imageFileType != "step") {
-        echo "Sorry, only STP files are allowed.";
+        echo "Sorry, only STP or STEP files are allowed.";
         $uploadOk = 0;
     }
     // Check if $uploadOk is set to 0 by an error
