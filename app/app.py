@@ -56,7 +56,7 @@ def send():
         ftp.storeFile('stp_uploads/%s.stp' % job_id)
         ftp.storeFile('x3d_output/%s.x3d' % job_id)
 
-        return render_template('fileupload.html', file=filename, displayFile=filename)
+        return render_template('index.html')
 
         #return redirect(url_for('viewer', filename = filename))
 
