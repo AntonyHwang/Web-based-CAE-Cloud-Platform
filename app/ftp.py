@@ -3,7 +3,7 @@
 #   @author 
 #   @date   7/5/2017
 
-import os
+import os, sys
 from ftplib import FTP
 
 #predefined ftp credentials
@@ -23,13 +23,17 @@ def getFile(filename, ip = _ip, user = _user, passwd = _passwd):
     ftp = FTP(ip, user, passwd)
 
     ###section for checking if file exists
-
+    if( not filename in ftp.nlst()):
+        print "%s not exist" % filename
+        sys.stdout.flush()
+        ftp.quit()
+        return 1
     ###
 
-    localfile = open(filename, 'w+b')
+    localfile = open(filename, 'wb')
     ftp.retrbinary('RETR ' + os.path.basename(filename), localfile.write)
     ftp.quit()
-    localfile.close()
+    return 0
 
 ##  @brief  storeFile saves a file in ftp
 #   @detail stores a file into FTP given by the user
@@ -38,8 +42,8 @@ def getFile(filename, ip = _ip, user = _user, passwd = _passwd):
 #   @param  ip         ip address of ftp
 #   @param  user       user account of ftp
 #   @param  passwd     password of ftp user
-def storeFile(filename, ip = _ip, user = _user, passwd = _passwd):
+def storeFile(_file, ip = _ip, user = _user, passwd = _passwd):
     ftp = FTP(ip, user, passwd)
-    ftp.storbinary('STOR '+ filename, open(filename, "rb"))
+    ftp.storbinary('STOR '+ _file.filename, _file)
     ftp.quit()
     

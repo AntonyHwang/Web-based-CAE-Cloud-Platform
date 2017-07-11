@@ -3,26 +3,52 @@
 #  @author  
 #  @date    7/5/2017
 
-from flask import Flask, render_template, request
-import ftp
+from flask import Flask, render_template, request, url_for, redirect
+from werkzeug import secure_filename
+import ftp, os
 #import database
 
 app = Flask(__name__)
+
+#Upload folder path
+APP_ROOT = os.path.dirname(os.path.realpath(__file__))
+UPLOAD_FOLDER = os.path.join(APP_ROOT, "uploads/")
+
+#setting the upload folder
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+#setting the accepted extensions
+app.config['ALLOWED_EXTENSIONS'] = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'STEP'])
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1] in app.config['ALLOWED_EXTENSIONS']
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 ##  @brief  routes get and post requests on /send
 #           to the correct html page
 #   @detail gets file to be opened from html and
 #           calls storeFile to store it on ftp server
 #   @return html templates to be rendered
-@app.route('/send', methods=['GET', 'POST'])
+@app.route('/upload', methods=['POST'])
 def send():
-    if request.method == 'POST':
-        file = request.form.get('fileToUpload')
-        ftp.storeFile(file)
-        #database.writeToDB(file)
-        return render_template('fileupload.html', file=file)
-    return render_template('index.html')
+    _file = request.files['fileToUpload']
+    
+    if _file and allowed_file(_file.filename):
+        filename = secure_filename(_file.filename)
 
+        _file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+        ftp.storeFile(_file)
+        #database.writeToDB(file)
+        return redirect(url_for('uploaded_file', filename=filename))
+
+    return redirect(url_for('index'))
+
+@app.route('/upload/<filename>')
+def uploaded_file(filename):
+    return str(ftp.getFile(filename))
 
 if __name__ == "__main__":
     app.run()
