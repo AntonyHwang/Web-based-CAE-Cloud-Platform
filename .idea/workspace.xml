@@ -2,16 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32b087d7-129c-4de8-9aa3-26cc907dfa56" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/app.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/core_topology_traverse.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/database.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/file_conversion.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/ftp.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/templates/base.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/templates/fileupload.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/templates/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/unitTest.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/stp_uploads/56.stp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/x3d_output/56.x3d" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index.php" afterPath="$PROJECT_DIR$/app/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/py/app.py" afterPath="$PROJECT_DIR$/app/py/app.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/py/ftp.py" afterPath="$PROJECT_DIR$/app/py/ftp.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,11 +19,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/py/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="31" column="1" lean-forward="true" selection-start-line="31" selection-start-column="1" selection-end-line="31" selection-end-column="1" />
+            <state relative-caret-position="307">
+              <caret line="25" column="33" lean-forward="true" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
               <folding>
                 <element signature="e#75#124#0" expanded="true" />
               </folding>
@@ -38,30 +34,18 @@
       <file leaf-file-name="database.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/py/database.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="570">
+              <caret line="30" column="30" lean-forward="true" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="file_conversion.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="file_conversion.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/py/file_conversion.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="49" column="19" lean-forward="true" selection-start-line="49" selection-start-column="19" selection-end-line="49" selection-end-column="19" />
-              <folding>
-                <element signature="e#745#782#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Visualization.py" pinned="false" current-in-tab="false">
-        <entry file="file://C:/ProgramData/Miniconda2/Lib/site-packages/OCC/Visualization.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="535">
-              <caret line="116" column="8" lean-forward="false" selection-start-line="116" selection-start-column="8" selection-end-line="116" selection-end-column="8" />
+            <state relative-caret-position="41">
+              <caret line="22" column="45" lean-forward="false" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -70,8 +54,8 @@
       <file leaf-file-name="ftp.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/py/ftp.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="402">
-              <caret line="40" column="26" lean-forward="true" selection-start-line="40" selection-start-column="26" selection-end-line="40" selection-end-column="26" />
+            <state relative-caret-position="440">
+              <caret line="42" column="58" lean-forward="true" selection-start-line="42" selection-start-column="58" selection-end-line="42" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -102,6 +86,7 @@
         <option value="C:/ProgramData/Miniconda2/Lib/site-packages/OCC/Visualization.py" />
         <option value="$PROJECT_DIR$/app/py/file_conversion.py" />
         <option value="$PROJECT_DIR$/app/py/ftp.py" />
+        <option value="$PROJECT_DIR$/app/py/database.py" />
         <option value="$PROJECT_DIR$/app/py/app.py" />
       </list>
     </option>
@@ -354,7 +339,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -439,46 +426,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/py/database.py">
+    <entry file="file://$PROJECT_DIR$/app/py/ftp.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="440">
+          <caret line="42" column="58" lean-forward="true" selection-start-line="42" selection-start-column="58" selection-end-line="42" selection-end-column="58" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/py/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="31" column="1" lean-forward="true" selection-start-line="31" selection-start-column="1" selection-end-line="31" selection-end-column="1" />
-          <folding>
-            <element signature="e#75#124#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://C:/ProgramData/Miniconda2/Lib/site-packages/OCC/Visualization.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="535">
+        <state relative-caret-position="1162">
           <caret line="116" column="8" lean-forward="false" selection-start-line="116" selection-start-column="8" selection-end-line="116" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/py/ftp.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="40" column="26" lean-forward="true" selection-start-line="40" selection-start-column="26" selection-end-line="40" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/py/file_conversion.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="49" column="19" lean-forward="true" selection-start-line="49" selection-start-column="19" selection-end-line="49" selection-end-column="19" />
+        <state relative-caret-position="41">
+          <caret line="22" column="45" lean-forward="false" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/py/database.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="30" column="30" lean-forward="true" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/py/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="25" column="33" lean-forward="true" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
           <folding>
-            <element signature="e#745#782#0" expanded="true" />
+            <element signature="e#75#124#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -12,6 +12,17 @@
 </html>
 
 <?php
+    $HOST = "127.0.0.1";
+    $USERNAME = "root";
+    $PASSWORD = "root";
+    $DB ="test_db";
+    $link = mysql_connect($HOST, $USERNAME, $PASSWORD);
+    //if connection is not successful you will see text error
+    if (!$link) {
+        die('Could not connect: ' . mysql_error());
+    }
+    mysql_select_db($DB);
+
     $target_dir = "stp_uploads/";
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $uploadOk = 1;
@@ -33,6 +44,9 @@
     } else {
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
             $filename = basename( $_FILES["fileToUpload"]["name"]);
+            $insert_q = mysql_query("INSERT INTO job (stp_filename, finished) VALUE ('"$filename"', 0)");
+            $get_id_q = mysql_query("SELECT LAST_INSERT_ID();");
+            $job_id = mysql_result($get_id_q, 0);
             $result = exec("python py/app.py $filename");
             echo "The file ".$filename. " has been uploaded.";
             echo $result;
@@ -40,4 +54,6 @@
             echo "Sorry, there was an error uploading your file.";
         }
     }
+
+    mysql_close($link);
 ?>

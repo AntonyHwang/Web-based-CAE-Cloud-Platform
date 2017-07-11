@@ -9,6 +9,7 @@ import os
 import ftp
 import database
 import file_conversion
+import codecs
 
 ##  @brief  routes get and post requests on /send
 #           to the correct html page
@@ -18,7 +19,7 @@ import file_conversion
 #@app.route('/send', methods=['GET', 'POST'])
 # def send():
 filename = sys.argv[1]
-job_id = str(database.writeToDB(filename))
+#job_id = str(database.writeToDB(filename))
 os.rename('stp_uploads/' + filename, 'stp_uploads/%s.stp' % job_id)
 #os.remove("tmp_uploads/" + filename)
 #job_id = "temp"
@@ -26,8 +27,8 @@ os.rename('stp_uploads/' + filename, 'stp_uploads/%s.stp' % job_id)
 #stp_file = open('stp_uploads/%s.stp' % job_id, 'r+')
 #file_conversion.stpTox3d(stp_file, job_id)
 file_conversion.stpTox3d(job_id)
-ftp.storeFile( 'stp_uploads/%s.stp' % job_id, 'stp_uploads/' + job_id + '.stp')
-ftp.storeFile( 'x3d_output/%s.x3d' % job_id, 'x3d_output/' + job_id + '.x3d')
+ftp.storeFile( 'stp_uploads/%s.stp' % job_id)
+ftp.storeFile( 'x3d_output/%s.x3d' % job_id)
 #     return render_template('index.php')
 #
 # if __name__ == "__main__":
