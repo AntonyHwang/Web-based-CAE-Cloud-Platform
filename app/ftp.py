@@ -38,7 +38,7 @@ def getFile(filename):
 #   @param  ip         ip address of ftp
 #   @param  user       user account of ftp
 #   @param  passwd     password of ftp user
-def storeFile(file, job_id):
+def storeFile(file_path):
     ftp = FTP(ip, user, passwd)
-    ftp.storbinary('STOR '+ job_id, open(file, "rb"))
+    ftp.storbinary('STOR '+ file_path, open(file_path, "rb"))
     ftp.quit()
