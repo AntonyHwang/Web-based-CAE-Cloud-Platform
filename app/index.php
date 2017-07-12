@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+
+<?php
+	require ("includes/config.php");
+?>
+
 <html>
 <body>
 
@@ -32,9 +37,11 @@
         } else {
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
                 $filename = basename( $_FILES["fileToUpload"]["name"]);
-                $result = exec("python py/app.py $filename");
+                $sql_insert = "INSERT INTO job (stp_filename, finished) VALUE ('".$filename."', 0);";
+                $sql_get_id = "SELECT SCOPE_IDENTITY();";
+                rename("stp_uploads/$filename", "stp_uploads/1.stp");
+                $result = shell_exec('python py/app.py '.$job_id);
                 echo "The file ".$filename. " has been uploaded.";
-                echo $result;
             } else {
                 echo "Sorry, there was an error uploading your file.";
             }

@@ -2,23 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32b087d7-129c-4de8-9aa3-26cc907dfa56" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/py/ftp.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/stp_uploads/59.stp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/stp_uploads/60.stp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/stp_uploads/61.stp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/stp_uploads/62.stp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/stp_uploads/63.stp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/stp_uploads/64.stp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/x3d_output/59.x3d" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/x3d_output/60.x3d" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/x3d_output/61.x3d" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/x3d_output/62.x3d" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/x3d_output/63.x3d" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/x3d_output/64.x3d" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index.php" afterPath="$PROJECT_DIR$/app/index.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/py/app.py" afterPath="$PROJECT_DIR$/app/py/app.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/py/database.py" afterPath="$PROJECT_DIR$/app/py/database.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -34,7 +19,7 @@
         <entry file="file://$PROJECT_DIR$/app/py/app.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="190">
-              <caret line="10" column="22" lean-forward="false" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+              <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
               <folding>
                 <element signature="e#75#85#0" expanded="true" />
               </folding>
@@ -45,8 +30,8 @@
       <file leaf-file-name="database.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/py/database.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="428">
-              <caret line="23" column="30" lean-forward="true" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
+            <state relative-caret-position="323">
+              <caret line="17" column="94" lean-forward="true" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="94" />
               <folding />
             </state>
           </provider>
@@ -137,7 +122,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -181,6 +165,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -316,7 +301,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -414,8 +400,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/py/database.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="23" column="30" lean-forward="true" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
+        <state relative-caret-position="323">
+          <caret line="17" column="94" lean-forward="true" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="94" />
           <folding />
         </state>
       </provider>
@@ -423,7 +409,7 @@
     <entry file="file://$PROJECT_DIR$/app/py/app.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
-          <caret line="10" column="22" lean-forward="false" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding>
             <element signature="e#75#85#0" expanded="true" />
           </folding>
