@@ -1,16 +1,14 @@
 <?php
-    $host = "localhost";
-    $user = "root";
-    $pwd = "root";
-    $db = "test_db";
-    try {
-        $connection = new PDO("mysql:host=$server;dbname=$db", $user, $pwd);
-        // PDO can throw exceptions rather than Fatal errors, so let's change the error mode to exception
-        $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        echo "connection successful"; 
-        }
-    catch(PDOException $e)
-        {
-        echo "Connection failed: " . $e->getMessage();
-        }
+    $dbhost = 'localhost';
+    $dbuser = 'root';
+    $dbpass = 'root';
+    $dbname = 'test_db';
+    $conn = mysql_connect($dbhost, $dbuser, $dbpass);
+
+    if(! $conn ) {
+    die('Could not connect: ' . mysql_error());
+    }
+
+    echo 'Connected successfully';
+    mysql_select_db($dbname);
 ?>

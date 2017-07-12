@@ -38,7 +38,8 @@
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
                 $filename = basename( $_FILES["fileToUpload"]["name"]);
                 $sql_insert = "INSERT INTO job (stp_filename, finished) VALUE ('".$filename."', 0);";
-                $sql_get_id = "SELECT SCOPE_IDENTITY();";
+                $retval = mysql_query( $sql_insert, $conn );
+                //$sql_get_id = "SELECT SCOPE_IDENTITY();";
                 rename("stp_uploads/$filename", "stp_uploads/1.stp");
                 $result = shell_exec('python py/app.py '.$job_id);
                 echo "The file ".$filename. " has been uploaded.";
@@ -47,4 +48,5 @@
             }
         }
     }
+    mysql_close($conn);
 ?>
