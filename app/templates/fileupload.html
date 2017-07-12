@@ -1,9 +1,13 @@
-<!DOCTYPE html>
-<html>
-	<head>
-	</head>
+{%- extends "base.html" %} {% block title %}submit{% endblock %} {% block head %}
 
-	<body>
-		<h1>The file you have uploaded is {{ file }}</h1>
-	</body>
-</html>
+<title>My first X3DOM page</title>
+<script type='text/javascript' src='http://www.x3dom.org/download/x3dom.js'></script>
+<link rel='stylesheet' type='text/css' href='http://www.x3dom.org/download/x3dom.css'></link>
+
+{% endblock %} {% block content %}
+<x3d width='500px' height='400px' showStat="true" PrimitiveQuality="low">
+	<scene>
+		<inline url="Deer.x3d"> </inline>
+	</scene>
+</x3d>
+{% endblock %}

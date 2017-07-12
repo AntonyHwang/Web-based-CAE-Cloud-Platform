@@ -3,7 +3,7 @@
 #  @author  
 #  @date    7/5/2017
 
-from flask import Flask, render_template, request, url_for, redirect
+from flask import Flask, render_template, request, url_for, redirect, send_from_directory
 from werkzeug import secure_filename
 import ftp, os
 #import database
@@ -40,7 +40,7 @@ def send():
 
         _file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-        ftp.storeFile(_file)
+        #ftp.storeFile(_file)
         #database.writeToDB(file)
         return redirect(url_for('uploaded_file', filename=filename))
 
@@ -48,7 +48,7 @@ def send():
 
 @app.route('/upload/<filename>')
 def uploaded_file(filename):
-    return str(ftp.getFile(filename))
+    return render_template("fileupload.html")
 
 if __name__ == "__main__":
     app.run()
