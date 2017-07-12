@@ -16,39 +16,39 @@
 		});
 	});
 
+
+
 </script>
 
 {%endblock%} {% block content %}
 
+<form action="upload" method="post" enctype="multipart/form-data">
 
+	<h1>Input</h1>
+	<div class="input-group">
+		<label class="input-group-btn">
+			<span class="btn btn-secondary">
+    			Browse&hellip; <input type="file" name="fileToUpload" style="display: none;" multiple>
+			</span>
+		</label>
+		<input type="text" class="form-control" readonly placeholder="Input File">
+	</div>
 
+	<br>
 
-	<form action="upload" method="post" enctype="multipart/form-data">
-		
-			<h1>Input</h1>
-			<div class="input-group">
-				<label class="input-group-btn">
-					<span class="btn btn-secondary">
-    				Browse&hellip; <input type="file" name="fileToUpload" style="display: none;" multiple>
-					</span>
-				</label>
-				<input type="text" class="form-control" readonly placeholder="Input File">
-			</div>
+	<div class="input-group">
+		<input type="text" class="form-control" placeholder="Density" maxlength="50">
+		<!-- add name="Density"-->
+		<span class="input-group-addon">kg/m<sup>3</sup></span>
+	</div>
 
-			<br>
-			
-			<div class="input-group">
-				<input type="text" class="form-control" placeholder="Density" maxlength="50"> <!-- add name="Density"-->
-				<span class="input-group-addon">kg/m<sup>3</sup></span>
-			</div>
+	<br>
 
-			<br>
-			
-			<label class="btn btn-secondary">
+	<label class="btn btn-secondary">
 				Upload<input type="submit" name="submit" style="display: none;">
 			</label>
-		
-	</form>
+
+</form>
 
 
 <div class="row">
