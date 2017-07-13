@@ -1,14 +1,8 @@
 <?php
-    $dbhost = 'localhost';
-    $dbuser = 'root';
-    $dbpass = 'root';
-    $dbname = 'test_db';
-    $conn = mysql_connect($dbhost, $dbuser, $dbpass);
+    $host = '127.0.0.1';
+    $user = 'root';
+    $pass = 'root';
+    $db_name = 'test';
 
-    if(! $conn ) {
-    die('Could not connect: ' . mysql_error());
-    }
-
-    echo 'Connected successfully';
-    mysql_select_db($dbname);
+    $dbh = new PDO('mysql:host='.$host.';dbname='.$db_name, $user, $pass);
 ?>
