@@ -24,7 +24,7 @@ def allowed_file(filename):
 
 @app.route('/')
 def index():
-    return render_template('fileupload.html')
+    return render_template('index.html')
 
 ##  @brief  routes get and post requests on /send
 #           to the correct html page
@@ -32,20 +32,20 @@ def index():
 #           calls storeFile to store it on ftp server
 #   @return html templates to be rendered
 
-# @app.route('/upload', methods=['POST'])
-# def send():
-#     _file = request.files['fileToUpload']
+@app.route('/upload', methods=['POST'])
+def send():
+    _file = request.files['fileToUpload']
     
-#     if _file and allowed_file(_file.filename):
-#         filename = secure_filename(_file.filename)
+    if _file and allowed_file(_file.filename):
+        filename = secure_filename(_file.filename)
 
-#         _file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        _file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-#         #ftp.storeFile(_file)
-#         #database.writeToDB(file)
-#         return redirect(url_for('uploaded_file', filename=filename))
+        #ftp.storeFile(_file)
+        #database.writeToDB(file)
+        return redirect(url_for('uploaded_file', filename=filename))
 
-#     return redirect(url_for('index'))
+    return redirect(url_for('index'))
 
 @app.route('/upload/_surface_clicks')
 def surface_clicks():
