@@ -42,8 +42,12 @@
                 $sth = null;
                 $job_id = $dbh->lastInsertId();
                 rename("stp_uploads/$filename", "stp_uploads/$job_id.stp");
-                $result = shell_exec('python py/app.py '.$job_id);
+                // $result = exec('python py/app.py 2>&1'.$job_id);
+
+                $call_python = "C:/Users/MD580/Miniconda2/python.exe py/app.py 2>&1".$job_id;
+                $result = shell_exec($call_python);
                 echo "The file ".$filename. " has been uploaded.";
+                echo $result;
             } else {
                 echo "Sorry, there was an error uploading your file.";
             }
