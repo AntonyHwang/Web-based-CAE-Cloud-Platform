@@ -3,11 +3,21 @@
 <title>My first X3DOM page</title>
 <script src='http://www.x3dom.org/download/x3dom.js'></script>
 <link rel='stylesheet' type='text/css' href='http://www.x3dom.org/download/x3dom.css'></link>
-
+<style>
+	x3d {
+		border: 2px solid darkorange;
+	}
+</style>
 {% endblock %} {% block content %}
 <x3d width='500px' height='400px' showStat="true" PrimitiveQuality="low">
 	<scene>
-		<inline url="Deer.x3d"> </inline>
+		<shape>
+			<appearance>
+				<material diffuseColor='1 0 0'></material>
+			</appearance>
+			<box onclick="handleGroupClick(event)"></box>
+		</shape>
 	</scene>
 </x3d>
+<script src="static/calls.js"></script>
 {% endblock %}
