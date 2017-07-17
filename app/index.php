@@ -46,7 +46,7 @@
 
                 $call_python = "C:/Users/MD580/Miniconda2/python.exe py/app.py 2>&1".$job_id;
                 $result = shell_exec($call_python);
-                header("Location: x3d_viewer.php?job_id=".$job_id);
+                header("Location: x3d_viewer.php?job_id=".$job_id."&step_file=".$filename);
                 echo "The file ".$filename. " has been uploaded.";
                 echo $result;
             } else {
