@@ -4,7 +4,12 @@
 #  @date    7/5/2017
 
 import sys
+import os
 import file_conversion
 
-job_id = sys.argv[1]
-file_conversion.stpTox3d(job_id)
+if __name__ == "__main__":
+    job_id = sys.argv[1]
+    file_conversion.stpTox3d(job_id)
+    os.system('C:\\Users\\MD580\\Desktop\\Web-based-CAE-Cloud-Platform\\app\\scripts\\to_gmsh.bat stp_uploads\\{} gmsh_output\\{}'.format(job_id, job_id))
+
+

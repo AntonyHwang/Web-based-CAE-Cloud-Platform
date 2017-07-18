@@ -26,7 +26,7 @@ from OCC.Visualization import Tesselator
 from core_topology_traverse import Topo
 
 def stpTox3d(filename):
-    shape = read_step_file('stp_uploads/%s.stp' % filename)
+    shape = read_step_file('stp_uploads/%s.step' % filename)
     tess = Tesselator(shape)
     tess.Compute()
     tess.ExportShapeToX3D('x3d_output/%s.x3d' % filename)

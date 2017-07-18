@@ -41,7 +41,7 @@
                 $sth = $dbh->query($sql_insert);
                 $sth = null;
                 $job_id = $dbh->lastInsertId();
-                rename("stp_uploads/$filename", "stp_uploads/$job_id.stp");
+                rename("stp_uploads/$filename", "stp_uploads/$job_id.step");
                 // $result = exec('python py/app.py 2>&1'.$job_id);
 
                 $call_python = "C:/Users/MD580/Miniconda2/python.exe py/app.py 2>&1".$job_id;
