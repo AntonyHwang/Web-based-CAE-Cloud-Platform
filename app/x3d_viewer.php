@@ -12,23 +12,39 @@
 		  	{
 		  		var coordinates = event.hitPnt;
 		  		
+		  		//alert("Clicked!");
+		  		alert(Object.keys(event.target._x3domNode._cf));
+		  		// alert(event.target.requestFieldRef);
+		  		alert(event.target._x3domNode._cf);
+
+
+
+
+		  		//alert(Object.keys(event.hitObject);
+		  		// alert($(event).attr('id'));
+
+		  		document.getElementById('Object__Shape_Mat').setAttribute('diffuseColor', '1 0 1');
+		  		document.getElementById('Object__Shape_Mat').highlight("red");
+
+		  		//document.getElementById("temp").setAtribute('diffuseColor', '0 0 1');
+		  		
 		  		if (event.button == 1) {
 		  			$('#marker').attr('translation', event.hitPnt);
 		  			// $('#a_coordX').html(coordinates[0]);
 			   	// 	$('#a_coordY').html(coordinates[1]);
 			   	// 	$('#a_coordZ').html(coordinates[2]);
-			   		document.getElementById('a_x').value = coordinates[0]
-			   		document.getElementById('a_y').value = coordinates[1]
-			   		document.getElementById('a_z').value = coordinates[2]
+			   		document.getElementById('a_x').value = coordinates[0];
+			   		document.getElementById('a_y').value = coordinates[1];
+			   		document.getElementById('a_z').value = coordinates[2];
 
 		  		} else if (event.button == 2) {
 		  			$('#marker2').attr('translation', event.hitPnt);
 		  			// $('#p_coordX').html(coordinates[0]);
 			   	// 	$('#p_coordY').html(coordinates[1]);
 			   	// 	$('#p_coordZ').html(coordinates[2]);
-			   		document.getElementById('p_x').value = coordinates[0]
-			   		document.getElementById('p_y').value = coordinates[1]
-			   		document.getElementById('p_z').value = coordinates[2]
+			   		document.getElementById('p_x').value = coordinates[0];
+			   		document.getElementById('p_y').value = coordinates[1];
+			   		document.getElementById('p_z').value = coordinates[2];
 		  		}
 
 		  	}
@@ -66,7 +82,8 @@
 
         <x3d width='500px' height='400px'> 
             <scene>
-            	<inline url="x3d_output/<?php echo $_GET["job_id"];?>.x3d" onclick="displayCoordinates(event)"></inline> 
+            	<!-- <inline nameSpaceName="Object" mapDEFToID="true" url="x3d_output/<?php echo $_GET["job_id"];?>.x3d" onclick="displayCoordinates(event)"></inline>  -->
+            	<inline nameSpaceName="Object" mapDEFToID="true" url="x3d_output/part.x3d" onclick="displayCoordinates(event)"></inline> 
             	<Transform id="marker" scale="2.5 2.5 2.5" translation="0 0 0">
 			        <Shape>
 			            <Appearance>
