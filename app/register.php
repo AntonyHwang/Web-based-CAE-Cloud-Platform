@@ -1,16 +1,14 @@
 <?php 
-    require 'includes/config.php'; 
+    require "includes/config.php"; 
 ?>
 <html>
-    <head>
-        <link rel="stylesheet" type="css" href="./css/register.css">
-    </head>
+    <head></head>
     <body>
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <!-- logo -->
                 <div class="navbar-header">
-                    <a href="#" class="navbar-brand">CAE Cloud PLatform</a>
+                    <a href="#" class="navbar-brand">CAE Cloud Platform</a>
                 </div>
                 <!-- menu items -->
                 <div>
@@ -52,7 +50,7 @@
                             <br>
                             <button class="btn btn-default" type="reset" style="vertical-align:left; float: center">
                                 <span aria-hidden="true" class="glyphicon glyphicon-log-in"></span>
-                                Reset
+                                Clear
                             </button>
                         </div><br>
                     </fieldset>
@@ -65,63 +63,58 @@
 <?php
     
     if(!empty($_POST)) {
-        try {
-            // Retrieve data
-            $first_name = strtolower($_POST['first_name']);
-            $surname = strtolower($_POST['surname']);
-            $email = strtolower($_POST['email']);
-           
-            $password = $_POST['password'];
-            $password_confirm = $_POST['confirmation'];
-            $sql_select = "SELECT * FROM user WHERE email = '".$email."'";
-            $sth = $dbh->query($sql_select);
-            $registrants = $sth->fetchAll();
+        // Retrieve data
+        $first_name = strtolower($_POST['first_name']);
+        $surname = strtolower($_POST['surname']);
+        $email = strtolower($_POST['email']);
+       
+        $password = $_POST['password'];
+        $password_confirm = $_POST['confirmation'];
+        $sql_select = "SELECT * FROM user WHERE email = '".$email."'";
+        $registrants = $dbh->query($sql_select);
 
-            //  Data Validation
-            if(!test_input($first_name)) {
-                echo "<script>alert('You must enter your first name');</script>";
-            }
-            else if (!preg_match("/^[a-zA-Z ]*$/",$first_name)) {
-                echo "<script>alert('First name incorrect format');</script>";
-            }
-            else if(!test_input($surname)) {
-                echo "<script>alert('You must enter your surname');</script>";
-            }
-            else if (!preg_match("/^[a-zA-Z ]*$/",$surname)) {
-                echo "<script>alert('Surname incorrect format');</script>";
-            }
-            else if(!test_input($email)) {
-                echo "<script>alert('You must enter your email');</script>";
-            }
-            else if(!test_input($password)) {
-                echo "<script>alert('You must enter a valid password');</script>";
-            }
-            else if($password != $password_confirm) {
-                echo "<script>alert('Password does not match');</script>";
-            }
-            else if(count($registrants) != 0) {
-                echo "<script>alert('Email already registered');</script>";
-            } 
-             else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                echo "<script>alert('Invalid email format');</script>";
-            }
-         
-         //Insert registration info
-            else {
-                $sql_insert = "INSERT INTO user (first_name, surname, email, password)VALUES ('".$first_name."','".$surname."','".$email."');";
-                $sql_get_id = "SELECT accountID FROM user WHERE email = '".$email."';";
-                $stmt = $conn->prepare($sql_insert);
-                $stmt->execute();
-                $stmt = $conn->prepare($sql_get_id);
-                $stmt->execute();
-                $rows = $stmt->fetch();
-                $_SESSION["id"] = $rows["id_user"];
-                $_SESSION["logged_in"] = "YES";
-                header('Location:file_upload.php');
-            }
+        //  Data Validation
+        if(!test_input($first_name)) {
+            echo "<script>alert('You must enter your first name');</script>";
         }
-        catch(Exception $e) {
-            die(var_dump($e));
+        else if (!preg_match("/^[a-zA-Z ]*$/",$first_name)) {
+            echo "<script>alert('First name incorrect format');</script>";
+        }
+        else if(!test_input($surname)) {
+            echo "<script>alert('You must enter your surname');</script>";
+        }
+        else if (!preg_match("/^[a-zA-Z ]*$/",$surname)) {
+            echo "<script>alert('Surname incorrect format');</script>";
+        }
+        else if(!test_input($email)) {
+            echo "<script>alert('You must enter your email');</script>";
+        }
+        else if(!test_input($password)) {
+            echo "<script>alert('You must enter a valid password');</script>";
+        }
+        else if($password != $password_confirm) {
+            echo "<script>alert('Password does not match');</script>";
+        }
+        else if(count($registrants) != 0) {
+            echo "<script>alert('Email already registered');</script>";
+        } 
+         else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo "<script>alert('Invalid email format');</script>";
+        }
+     
+     //Insert registration info
+        else {
+            $sql_insert = "INSERT INTO user (first_name, surname, email, password) VALUES ('".$first_name."','".$surname."','".$email."','".shal($password)."');";
+            echo "<script>alert('".$sql_insert."');</script>";
+            $sql_get_id = "SELECT accountID FROM user WHERE email = '".$email."';";
+            // $stmt = $dbh->query($sql_insert);
+            // $sth = null;
+            // $stmt = $dbh->query($sql_get_id);
+            // $rows = $stmt->fetch();
+            // $_SESSION["id"] = $rows["id_user"];
+            // $_SESSION["logged_in"] = "YES";
+            // echo $sql_insert;
+            //header('Location:file_upload.php');
         }
     }
 

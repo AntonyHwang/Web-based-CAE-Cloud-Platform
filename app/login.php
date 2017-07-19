@@ -2,9 +2,7 @@
     require 'includes/config.php'; 
 ?>
  <html>
-    <head>
-        <link rel="stylesheet" type="css" href="./css/register.css">
-    </head>
+    <head></head>
     <body>
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">

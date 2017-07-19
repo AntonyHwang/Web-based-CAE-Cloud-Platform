@@ -7,7 +7,7 @@
 <html>
 <body>
 
-<form action="index.php" method="post" enctype="multipart/form-data">
+<form action="file_upload.php" method="post" enctype="multipart/form-data">
     Select STP File:
     <input type="file" name="fileToUpload" id="fileToUpload">
     <input type="submit" value="Upload STP" name="submit">
