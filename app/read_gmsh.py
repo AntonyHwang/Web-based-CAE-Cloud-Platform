@@ -1,5 +1,5 @@
 import math
-import test
+import face_identifier
 
 _nodes = []
 _elements = []
@@ -22,11 +22,8 @@ class Point(object):
     def distFrom(self, p):
         return math.sqrt((self.x - p.getx()) ** 2 + (self.y - p.gety()) ** 2 + (self.z - p.getz()) ** 2)
 
-    #def distFrom(self, x, y, z):
-    #    return math.sqrt((self.x - x) ** 2 + (self.y - y) ** 2 + (self.z - z) ** 2)
-
 class Triangle(object):
-    def __init__(self, p1, p2, p3, face):
+    def __init__(self, p1, p2, p3):
         self.p1, self.p2, self.p3 = p1, p2, p3
 
     def printPoints(self):
@@ -80,5 +77,5 @@ def readFile():
 
 if __name__ == "__main__":
     readFile()
-    val = test.min3(_nodes, Point(-0.319345442688558,-36.56151783839255,9.980903766262486))
+    val = face_identifier.min3(_nodes, Point(-0.319345442688558,-36.56151783839255,9.980903766262486))
     print(_nodes[val[1][0]].getSurface())
