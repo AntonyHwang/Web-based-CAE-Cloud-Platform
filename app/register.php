@@ -73,11 +73,9 @@
            
             $password = $_POST['password'];
             $password_confirm = $_POST['confirmation'];
-            $gender = $_POST['gender'];
-            $dob = $_POST['birthday'];
             $sql_select = "SELECT * FROM user WHERE email = '".$email."'";
-            $stmt = $conn->query($sql_select);
-            $registrants = $stmt->fetchAll();
+            $sth = $dbh->query($sql_select);
+            $registrants = $sth->fetchAll();
 
             //  Data Validation
             if(!test_input($first_name)) {
@@ -110,21 +108,16 @@
          
          //Insert registration info
             else {
-                $sql_insert = "INSERT INTO user (first_name, surname, email, password, gender, dob, privacy_setting)VALUES ('".$first_name."','".$surname."','".$email."','".sha1($password)."','".$gender."','".$dob."', 0);";
-                $sql_get_id = "SELECT id_user FROM user WHERE email = '".$email."';";
+                $sql_insert = "INSERT INTO user (first_name, surname, email, password)VALUES ('".$first_name."','".$surname."','".$email."');";
+                $sql_get_id = "SELECT accountID FROM user WHERE email = '".$email."';";
                 $stmt = $conn->prepare($sql_insert);
                 $stmt->execute();
                 $stmt = $conn->prepare($sql_get_id);
                 $stmt->execute();
                 $rows = $stmt->fetch();
-                mkdir(getcwd()."/uploads/".$rows["id_user"]);
-                $default_profile_pic = getcwd().'/uploads/default-profile.jpg';
-                $user_profile_pic = getcwd().'/uploads/'.$rows["id_user"].'/profile.jpg';
-                copy($default_profile_pic, $user_profile_pic);
                 $_SESSION["id"] = $rows["id_user"];
                 $_SESSION["logged_in"] = "YES";
-                $_SESSION["user_type"] = "USER";
-                header('Location:myProfilePage.php');
+                header('Location:file_upload.php');
             }
         }
         catch(Exception $e) {
