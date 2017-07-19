@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html>
-<body>
 
-<form action="index.php" method="post" enctype="multipart/form-data">
-    Select STP File:
-    <input type="file" name="fileToUpload" id="fileToUpload">
-    <input type="submit" value="Upload STP" name="submit">
-</form>
+    <body>
 
-</body>
+        <form action="index.php" method="post" enctype="multipart/form-data">
+            Select STP File:
+            <input type="file" name="fileToUpload" id="fileToUpload">
+            <input type="submit" value="Upload STP" name="submit">
+        </form>
+
+    </body>
 </html>
 
 <?php
+    include_once("header.php");
+    
     if (!empty($_POST)) {
         $target_dir = "stp_uploads/";
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
