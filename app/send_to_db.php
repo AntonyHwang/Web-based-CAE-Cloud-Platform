@@ -40,13 +40,9 @@
     //$sql_update = "UPDATE job SET (density, youngs_mod, poissons_ratio, element_size, material_name) VALUE ('".$_POST["density"]."', '".$_POST["youngs_mod"]."','".$_POST["poissons"]."','".$_POST["element_size"]."','".$_POST["material"]."') WHERE job_id = $_POST["id"]";
 
 
-    $sql_update = "UPDATE job SET density = '$density', element_size = '$element_size', youngs_mod = '$youngs_mod', poissons_ratio = '$poissons', material_name = '$material', anchor_x = '%a_x', anchor_y = '%a_y', anchor_z = '%a_z', pressure_x = '%p_x', pressure_y = '%p_y', pressure_z = '%p_z' WHERE job_id = '$id'";
+    $sql_update = "UPDATE job SET density = '$density', element_size = '$element_size', youngs_mod = '$youngs_mod', poissons_ratio = '$poissons', material_name = '$material', anchor_x = '$a_x', anchor_y = '$a_y', anchor_z = '$a_z', pressure_x = '$p_x', pressure_y = '$p_y', pressure_z = '$p_z' WHERE job_id = '$id'";
     $sth = $dbh->query($sql_update);
     $sth = null; 
-
-    if () {
-        
-    }
 
     
 ?>

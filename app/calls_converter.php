@@ -7,7 +7,9 @@
 <html>
 	<head>
 		<h1>This is Sample Text to Display!</h1>
-
+		<?php
+			echo $py_path;
+		?>
 
 	</head>
 </html>
@@ -37,20 +39,11 @@
     $material =  $_POST["material"];
 
 
-	$call_python = "C:/Users/MD580/Miniconda2/python.exe py/read_gmsh.py 2>&1".$anchorX." ".$anchorY." ".$anchorZ." ".$id;
+	$call_python = $py_path." py/read_gmsh.py ".$anchorX." ".$anchorY." ".$anchorZ." ".$id;
 	$a_face = exec($call_python, $output, $code);
-	//echo $a_face;
-	// echo $output;
-	// echo $code;
 
-	$call_python = "C:/Users/MD580/Miniconda2/python.exe py/read_gmsh.py ".$pressureX." ".$pressureY." ".$pressureZ." ".$id;
+	$call_python = $py_path." py/read_gmsh.py ".$pressureX." ".$pressureY." ".$pressureZ." ".$id;
 	$p_face = exec($call_python);
-	//echo $p_face;
-
-
-
-	
-
 
     $sql_update = "UPDATE job SET density = '$density', element_size = '$element_size', youngs_mod = '$youngs_mod', poissons_ratio = '$poissons', material_name = '$material', pressure_face = '$p_face', anchor_face = '$a_face' WHERE job_id = '$id'";
     $sth = $dbh->query($sql_update);

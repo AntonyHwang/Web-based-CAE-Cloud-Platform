@@ -48,7 +48,7 @@ def readFile(msh_file):
 if __name__ == "__main__":
     # trying to get path doesn't seem to work on web server
     #path = os.path.dirname(os.getcwd()) + "\\gmsh_output\\" + sys.argv[4] + ".msh";
-    path = "C:\\Users\\MD580\\Desktop\\Web-based-CAE-Cloud-Platform\\app\\gmsh_output\\" + sys.argv[4] + ".msh"
+    path = "C:\\Users\\MD580\\Desktop\\Project\\Web-based-CAE-Cloud-Platform\\app\\gmsh_output\\" + sys.argv[4] + ".msh"
 
     readFile(path);
     #val = face_identifier.min3(_nodes, classes.Point(-0.319345442688558,-36.56151783839255,9.980903766262486))
