@@ -78,11 +78,14 @@ if __name__ == "__main__":
     # else:
     #     test.close()
 
+
     file = open(sys.argv[4] + ".txt", "a+")
-    if int(sys.argv[5]) == 1:
-        file.write("Point: " +  str(_centroids[val[1][0]].getPoints()) + ", Anchor Surface: " + str(_centroids[val[1][0]].getSurface()) + "\n")
-    elif int(sys.argv[5]) == 2:
-        file.write("Point: " +  str(_centroids[val[1][0]].getPoints()) + ", Pressure Surface: " + str(_centroids[val[1][0]].getSurface()) + "\n")
+   # if int(sys.argv[5]) == 1:
+    file.write("Point: " +  str(_centroids[val[1][0]].getPoints()) + ", Anchor Surface: " + str(_centroids[val[1][0]].getSurface()) + "\n")
+    #elif int(sys.argv[5]) == 2:
+    #    file.write("Point: " +  str(_centroids[val[1][0]].getPoints()) + ", Pressure Surface: " + str(_centroids[val[1][0]].getSurface()) + "\n")
     file.close()
+
+    print(_centroids[val[1][0]].getSurface())
 
 

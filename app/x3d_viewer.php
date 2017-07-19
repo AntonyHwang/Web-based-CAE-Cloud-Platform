@@ -31,26 +31,29 @@
 			   		document.getElementById('p_z').value = coordinates[2]
 		  		}
 
-		   		var element = document.getElementById('jobid').textContent;
-		   		var extracted_id = element.replace("Job Id: ", "");
-		   		//console.log(extracted_id);
+		  	}
 
-		   		$.ajax({
+		  	function calculateFace(event)
+		  	{
+		  		var element = document.getElementById('jobid').textContent;
+		   		var extracted_id = element.replace("Job Id: ", "");
+
+		  		$.ajax({
 		   			type: "POST",
 		   			url: 'calls_converter.php',
 		   			data: { 
-		   				pointX: coordinates[0],
-		   				pointY: coordinates[1],
-		   				pointZ: coordinates[2],
-		   				job_id: extracted_id,
-		   				click: event.button
+		   				anchorX: 21.4,
+		   				anchorY: document.getElementById('a_y').value,
+		   				anchorZ: document.getElementById('a_z').value,
+		   				pressureX: document.getElementById('p_x').value,
+		   				pressureY: document.getElementById('p_y').value,
+		   				pressureZ: document.getElementById('p_z').value,
+		   				job_id: extracted_id
 		   			},
 		   			success: function(data) {
 		   				console.log(data);
 		   			}
 		   		});
-
-		   		
 		  	}
 
 		  </script>
@@ -101,7 +104,7 @@
 
 		<br><br><br> -->
 
-		<form method="post" action="send_to_db.php">
+		<form method="post" action="calls_converter.php">
 			Density:
 			<input type="text" name="density"><br>
 			Young's Modulus:
@@ -113,13 +116,13 @@
 			Material:
 			<input type="text" name="material"><br><br>
 			Anchor Coordinates:<br>
-			X: <input type="text" id="a_x" name="a_x" readonly="readonly"><br>
-			Y: <input type="text" id="a_y" name="a_y" readonly="readonly"><br>
-			Z: <input type="text" id="a_z" name="a_z" readonly="readonly"><br><br>
+			X: <input type="text" id="a_x" name="a_x"><br>
+			Y: <input type="text" id="a_y" name="a_y"><br>
+			Z: <input type="text" id="a_z" name="a_z"><br><br>
 			Pressure Applied Coordinates:<br>
-			X: <input type="text" id="p_x" name="p_x" readonly="readonly"><br>
-			Y: <input type="text" id="p_y" name="p_y" readonly="readonly"><br>
-			Z: <input type="text" id="p_z" name="p_z" readonly="readonly"><br><br>
+			X: <input type="text" id="p_x" name="p_x"><br>
+			Y: <input type="text" id="p_y" name="p_y"><br>
+			Z: <input type="text" id="p_z" name="p_z"><br><br>
 			Job Id:
 			<input type="text" readonly="readonly" name="id" value=<?php echo $_GET["job_id"];?>><br>
 			<input type="submit" value="Submit">
