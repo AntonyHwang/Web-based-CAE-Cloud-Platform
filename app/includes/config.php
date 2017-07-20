@@ -1,11 +1,13 @@
 <?php
+    ob_start();
+    if (!isset($_SESSION)) { session_start(); }
     $host = '127.0.0.1';
     $user = 'root';
     $pass = 'root';
     $db_name = 'test_db';
 
     $dbh = new PDO('mysql:host='.$host.';dbname='.$db_name, $user, $pass);
-    $py_path = "C:/Users/MD580/Miniconda2/python.exe";
+    $py_path = "C:/ProgramData/Miniconda2/python.exe";
 ?>
 
 <html>

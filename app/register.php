@@ -71,7 +71,8 @@
         $password = $_POST['password'];
         $password_confirm = $_POST['confirmation'];
         $sql_select = "SELECT * FROM user WHERE email = '".$email."'";
-        $registrants = $dbh->query($sql_select);
+        $get_record = $dbh->query($sql_select);
+        $registrants = $get_record->fetchAll();
 
         //  Data Validation
         if(!test_input($first_name)) {
@@ -104,17 +105,14 @@
      
      //Insert registration info
         else {
-            $sql_insert = "INSERT INTO user (first_name, surname, email, password) VALUES ('".$first_name."','".$surname."','".$email."','".shal($password)."');";
-            echo "<script>alert('".$sql_insert."');</script>";
+            $sql_insert = "INSERT INTO user (first_name, surname, email, password) VALUES ('".$first_name."','".$surname."','".$email."','".sha1($password)."');";
             $sql_get_id = "SELECT accountID FROM user WHERE email = '".$email."';";
-            // $stmt = $dbh->query($sql_insert);
-            // $sth = null;
-            // $stmt = $dbh->query($sql_get_id);
-            // $rows = $stmt->fetch();
-            // $_SESSION["id"] = $rows["id_user"];
-            // $_SESSION["logged_in"] = "YES";
-            // echo $sql_insert;
-            //header('Location:file_upload.php');
+            $insert_new_account = $dbh->query($sql_insert);
+            //$get_id = $dbh->query($sql_get_id);
+            //$rows = $get_id->fetch();
+            //$_SESSION["id"] = $rows["id_user"];
+            //$_SESSION["logged_in"] = "YES";
+            header('Location:file_upload.php');
         }
     }
 
