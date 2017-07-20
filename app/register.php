@@ -1,6 +1,9 @@
 <?php 
     require "includes/config.php"; 
     include_once "includes/header.php";
+    if ($_SESSION["logged_in"] == "YES") {
+        header('Location:file_upload.php');
+    }
 ?>
 <html>
     <head></head>

@@ -102,7 +102,7 @@
         <x3d width='500px' height='400px'> 
             <scene>
             	<!-- <inline nameSpaceName="Object" mapDEFToID="true" url="x3d_output/<?php echo $_GET["job_id"];?>.x3d" onclick="displayCoordinates(event)"></inline>  -->
-            	<inline nameSpaceName="Object" mapDEFToID="true" url="x3d_output/part.x3d" onclick="displayCoordinates(event)"></inline> 
+            	<inline nameSpaceName="Object" mapDEFToID="true" url="x3d_output/"<?php $_GET["job_id"]?> onclick="displayCoordinates(event)"></inline> 
             	<Transform id="marker" scale="2.5 2.5 2.5" translation="0 0 0">
 			        <Shape>
 			            <Appearance>
