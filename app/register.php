@@ -1,23 +1,10 @@
 <?php 
     require "includes/config.php"; 
+    include_once "includes/header.php";
 ?>
 <html>
     <head></head>
     <body>
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <!-- logo -->
-                <div class="navbar-header">
-                    <a href="#" class="navbar-brand">CAE Cloud Platform</a>
-                </div>
-                <!-- menu items -->
-                <div>
-                    <ul class="nav navbar-nav">
-                        <li><a href="login.php">Login</a></li>
-                        <li class="active"><a href="register.php">Register</a></li>
-                    </ul>
-                </div>
-        </nav>
     </body>
     <form action="register.php" method="post" align="center">
         <div class="container-fluid">

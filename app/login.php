@@ -1,23 +1,12 @@
 <?php      
     require 'includes/config.php'; 
+    $_SESSION["logged_in"]="NO";
+    $_SESSION["id"] = "";
+    include_once "includes/header.php";
 ?>
  <html>
     <head></head>
     <body>
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <!-- logo -->
-                <div class="navbar-header">
-                    <a href="#" class="navbar-brand">CAE Cloud Platform</a>
-                </div>
-                <!-- menu items -->
-                <div>
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="login.php">Login</a></li>
-                        <li><a href="register.php">Register</a></li>
-                    </ul>
-                </div>
-        </nav>
         <form action="login.php" method="post" align="center">
             <div class="container-fluid">
                 <div class="row">
@@ -47,8 +36,6 @@
     </body>
 
     <?php
-        $_SESSION["logged_in"]="NO";
-        $_SESSION["id"] = "";
         //Insert registration info
         if(!empty($_POST)) {
             try {
