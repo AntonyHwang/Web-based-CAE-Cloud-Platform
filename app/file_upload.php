@@ -37,7 +37,7 @@
         } else {
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
                 $filename = basename( $_FILES["fileToUpload"]["name"]);
-                $sql_insert = "INSERT INTO job (stp_filename, finished) VALUE ('".$filename."', 0)";
+                $sql_insert = "INSERT INTO job (id_user, stp_filename, finished) VALUE ('".$_SESSION["id"]."','".$filename."', 0)";
                 $sth = $dbh->query($sql_insert);
                 $sth = null;
                 $job_id = $dbh->lastInsertId();

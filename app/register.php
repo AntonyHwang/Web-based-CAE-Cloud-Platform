@@ -108,10 +108,10 @@
             $sql_insert = "INSERT INTO user (first_name, surname, email, password) VALUES ('".$first_name."','".$surname."','".$email."','".sha1($password)."');";
             $sql_get_id = "SELECT accountID FROM user WHERE email = '".$email."';";
             $insert_new_account = $dbh->query($sql_insert);
-            //$get_id = $dbh->query($sql_get_id);
-            //$rows = $get_id->fetch();
-            //$_SESSION["id"] = $rows["id_user"];
-            //$_SESSION["logged_in"] = "YES";
+            $get_id = $dbh->query($sql_get_id);
+            $rows = $get_id->fetch();
+            $_SESSION["id"] = $rows["id_user"];
+            $_SESSION["logged_in"] = "YES";
             header('Location:file_upload.php');
         }
     }
