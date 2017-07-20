@@ -46,8 +46,7 @@ def readFile(msh_file):
 
 
 if __name__ == "__main__":
-    # trying to get path doesn't seem to work on web server
-    #path = os.path.dirname(os.getcwd()) + "\\gmsh_output\\" + sys.argv[4] + ".msh";
+
     path = dirname(dirname(abspath(__file__))) + "\\gmsh_output\\" + sys.argv[4] + ".msh"
 
     readFile(path);
