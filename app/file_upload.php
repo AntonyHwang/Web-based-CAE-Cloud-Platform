@@ -8,11 +8,13 @@
 <html>
 <body>
 
-<form action="file_upload.php" method="post" enctype="multipart/form-data">
-    Select STP File:
-    <input type="file" name="fileToUpload" id="fileToUpload">
-    <input type="submit" value="Upload STP" name="submit">
-</form>
+    <div class ="login">
+        <form action="file_upload.php" method="post" enctype="multipart/form-data"> 
+            <h1>File Upload</h1>
+            <input type="file" name="fileToUpload" id="fileToUpload">
+            <button type="submit" class="btn btn-primary btn-block btn-large">Upload STP</button>
+        </form>
+    </div>
 
 </body>
 </html>
