@@ -1,7 +1,7 @@
 <?php
     ob_start();
     if (!isset($_SESSION)) { session_start(); }
-    echo $_SESSION["id"];
+    echo "Session ID: ".$_SESSION["id"];
     $host = '127.0.0.1';
     $user = 'root';
     $pass = 'root';

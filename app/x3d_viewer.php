@@ -12,41 +12,60 @@
 		  	{
 		  		var coordinates = event.hitPnt;
 		  		
-		  		//alert("Clicked!");
-		  		alert(Object.keys(event.target._x3domNode._cf));
-		  		// alert(event.target.requestFieldRef);
-		  		alert(event.target._x3domNode._cf);
-
-
-
-
+		  		//alert(Object.keys(event.target._x3domNode._objectID));
+		  		//alert(event.target._x3domNode._objectID);
 		  		//alert(Object.keys(event.hitObject);
 		  		// alert($(event).attr('id'));
 
-		  		document.getElementById('Object__Shape_Mat').setAttribute('diffuseColor', '1 0 1');
-		  		document.getElementById('Object__Shape_Mat').highlight("red");
-
 		  		//document.getElementById("temp").setAtribute('diffuseColor', '0 0 1');
-		  		
+
+
+		  		val = parseInt(event.target._x3domNode._objectID);
+		  		anchorColor = '0 0.75 0.75';
+		  		pressureColor = '0.5 1 0.5';
+		  		defaultColor = '0.65 0.65 0.65';
+
 		  		if (event.button == 1) {
 		  			$('#marker').attr('translation', event.hitPnt);
-		  			// $('#a_coordX').html(coordinates[0]);
-			   	// 	$('#a_coordY').html(coordinates[1]);
-			   	// 	$('#a_coordZ').html(coordinates[2]);
+		  			
+		  			if (isSelected(anchorColor, val)) {
+		  				setFaceColor(defaultColor, val);
+		  			} else {
+		  				setFaceColor(anchorColor, val);
+		  			}
+
 			   		document.getElementById('a_x').value = coordinates[0];
 			   		document.getElementById('a_y').value = coordinates[1];
 			   		document.getElementById('a_z').value = coordinates[2];
 
 		  		} else if (event.button == 2) {
 		  			$('#marker2').attr('translation', event.hitPnt);
-		  			// $('#p_coordX').html(coordinates[0]);
-			   	// 	$('#p_coordY').html(coordinates[1]);
-			   	// 	$('#p_coordZ').html(coordinates[2]);
+
+				   	if (isSelected(pressureColor, val)) {
+		  				setFaceColor(defaultColor, val);
+		  			} else {
+		  				setFaceColor(pressureColor, val);
+		  			}
+
 			   		document.getElementById('p_x').value = coordinates[0];
 			   		document.getElementById('p_y').value = coordinates[1];
 			   		document.getElementById('p_z').value = coordinates[2];
 		  		}
 
+		  	}
+
+		  	function setFaceColor(color, value)
+		  	{
+		  		document.getElementById('Object__Shape_Mat_'.concat(String(value - 2))).setAttribute('diffuseColor', color);
+		  	}
+
+		  	function isSelected(color, value)
+		  	{
+		  		if (document.getElementById('Object__Shape_Mat_'.concat(String(value - 2))).getAttribute('diffuseColor') == color) {
+		  			return true;
+		  		} else {
+		  			return false;
+		  		}
 		  	}
 
 		  	function calculateFace(event)
@@ -105,21 +124,8 @@
             </scene> 
         </x3d> 
 
-        <!-- <h3>Anchor Coordinates:</h3>
-		<table style="font-size:1em;">
-			<tr><td>X: </td><td id="a_coordX">-</td></tr>
-			<tr><td>Y: </td><td id="a_coordY">-</td></tr>
-			<tr><td>Z: </td><td id="a_coordZ">-</td></tr>
-		</table> 
-
-		<h3>Pressure Applied Coordinates:</h3>
-		<table style="font-size:1em;">
-			<tr><td>X: </td><td id="p_coordX">-</td></tr>
-			<tr><td>Y: </td><td id="p_coordY">-</td></tr>
-			<tr><td>Z: </td><td id="p_coordZ">-</td></tr>
-		</table> 
-
-		<br><br><br> -->
+        <h5 style="color: #FF6666">Left Click for Anchor Selection</h5>
+        <h5 style="color: #66FFAA">Right Click for Pressure Selection</h5>
 
 		<form method="post" action="calls_converter.php">
 			Density:
