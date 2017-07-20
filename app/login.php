@@ -8,29 +8,14 @@
     <head></head>
     <body>
         <form action="login.php" method="post" align="center">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-5">
-                    </div>
-                    <div class="col-md-2">
-                        <fieldset>
-                            <div class="form-group">
-                                <input autocomplete="off" autofocus class="form-control" name="email" placeholder="Email" type="text"/>
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control" name="password" placeholder="Password" type="password"/>
-                            </div>
-                            <div class="form-group">
-                                <button class="btn btn-default" type="submit">
-                                    <span aria-hidden="true" class="glyphicon glyphicon-log-in"></span>
-                                    Log In
-                                </button>
-                            </div>
-                        </fieldset>
-                    </div>
-                    <div class="col-md-5">
-                    </div>
-                </div>
+            <div class="login">
+                <h1>Login</h1>
+                <form method="post">
+                    <input type="text" name="email" placeholder="Email" required="required" />
+                    <input type="password" name="password" placeholder="Password" required="required" />
+                    <button type="submit" class="btn btn-primary btn-block btn-large">Log In</button>
+                </form>
+                <br>
             </div>
         </form>
     </body>

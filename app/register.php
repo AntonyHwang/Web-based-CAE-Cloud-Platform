@@ -7,44 +7,18 @@
     <body>
     </body>
     <form action="register.php" method="post" align="center">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-5">
-                </div>
-                <div class="col-md-2">
-                    <fieldset>
-                        <div class="form-group">
-                            <input autofocus class="form-control" name="first_name" id="first_name" placeholder="First Name" type="text" size="30"/>
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" name="surname" id="surname" placeholder="Surname" type="text" size="30"/>
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" name="email" id="email" placeholder="Email" type="text" size="30"/>
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" name="password" id="password" placeholder="Password" type="password" size="30"/>
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" name="confirmation" id="confirmation" placeholder="Confirm Password" type="password" size="30"/>
-                        </div><br>
-                        <div class="form-group">
-                            <button class="btn btn-default" type="submit" style="vertical-align:left; float: center">
-                                <span aria-hidden="true" class="glyphicon glyphicon-log-in"></span>
-                                Register
-                            </button>
-                            <br>
-                            <br>
-                            <button class="btn btn-default" type="reset" style="vertical-align:left; float: center">
-                                <span aria-hidden="true" class="glyphicon glyphicon-log-in"></span>
-                                Clear
-                            </button>
-                        </div><br>
-                    </fieldset>
-                </div>
-                <div class="col-md-5">
-                </div>
-            </div>
+        <div class="login">
+            <h1>Register</h1>
+            <form method="post">
+                <input type="text" name="first_name" id="first_name" placeholder="First Name" required="required" />
+                <input type="text"  name="surname" id="surname" placeholder="Surname" required="required" />
+                <input type="text" name="email" id="email" placeholder="Email" required="required" />
+                <input type="password" name="password" id="password" placeholder="Password" required="required" />
+                <input type="password" name="confirmation" id="confirmation" placeholder="Confirm Password" required="required" />
+                <button type="submit" class="btn btn-primary btn-block btn-large">Register</button>
+                <button type="reset" class="btn btn-primary btn-block btn-large">Clear</button>
+            </form>
+            <br>
         </div>
     </form>
 <?php
@@ -93,7 +67,7 @@
      //Insert registration info
         else {
             $sql_insert = "INSERT INTO user (first_name, surname, email, password) VALUES ('".$first_name."','".$surname."','".$email."','".sha1($password)."');";
-            $sql_get_id = "SELECT accountID FROM user WHERE email = '".$email."';";
+            $sql_get_id = "SELECT id_user FROM user WHERE email = '".$email."';";
             $insert_new_account = $dbh->query($sql_insert);
             $get_id = $dbh->query($sql_get_id);
             $rows = $get_id->fetch();
