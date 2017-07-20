@@ -6,7 +6,7 @@
 
 <html>
 	<head>
-		<h1>This is Sample Text to Display!</h1>
+		<h1 style="color: white">This is Sample Text to Display!</h1>
 		<?php
 			echo $py_path;
 		?>

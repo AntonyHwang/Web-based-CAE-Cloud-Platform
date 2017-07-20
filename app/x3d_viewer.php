@@ -99,10 +99,10 @@
     <h1>3D Display of Uploaded File (<?php echo $_GET["step_file"];?>)</h1>
     <h2 id=jobid>Job Id: <?php echo $_GET["job_id"];?> </h2>
 
-        <x3d width='500px' height='400px'> 
+        <x3d width='1000px' height='800px'> 
             <scene>
             	<!-- <inline nameSpaceName="Object" mapDEFToID="true" url="x3d_output/<?php echo $_GET["job_id"];?>.x3d" onclick="displayCoordinates(event)"></inline>  -->
-            	<inline nameSpaceName="Object" mapDEFToID="true" url="x3d_output/"<?php $_GET["job_id"]?> onclick="displayCoordinates(event)"></inline> 
+            	<inline nameSpaceName="Object" mapDEFToID="true" url="x3d_output/part.x3d" onclick="displayCoordinates(event)"></inline> 
             	<Transform id="marker" scale="2.5 2.5 2.5" translation="0 0 0">
 			        <Shape>
 			            <Appearance>

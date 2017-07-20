@@ -21,20 +21,6 @@ class Point(object):
     #def distFrom(self, x, y, z):
     #    return math.sqrt((self.x - x) ** 2 + (self.y - y) ** 2 + (self.z - z) ** 2)
 
-    def __len__(self):
-        return 3
-
-    def __getitem__(self, i):
-        if i == 0:
-            return self.x
-        elif i == 1:
-            return self.y
-        elif i == 2:
-            return self.z
-
-    def __repr__(self):
-        return 'Point({}, {}, {}) on surface {}'.format(self.x, self.y, self.z, self.s)
-
 class Triangle(object):
     def __init__(self, p1, p2, p3, face):
         self.p1, self.p2, self.p3 = p1, p2, p3
