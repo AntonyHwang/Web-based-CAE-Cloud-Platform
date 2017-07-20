@@ -2,6 +2,7 @@ import face_identifier
 import sys
 from os.path import exists
 import classes
+import kdtree
 
 _nodes = []
 _elements = []
@@ -52,7 +53,7 @@ if __name__ == "__main__":
 
     readFile(path);
     #val = face_identifier.min3(_nodes, classes.Point(-0.319345442688558,-36.56151783839255,9.980903766262486))
-    val = face_identifier.min3(_centroids, classes.Point(sys.argv[1], sys.argv[2], sys.argv[3]))
+    # val = face_identifier.min3(_centroids, classes.Point(sys.argv[1], sys.argv[2], sys.argv[3]))
     #print(_nodes[val[1][0]].getSurface())
     #test = open(sys.argv[4] + ".txt", "r+")
 
@@ -78,14 +79,18 @@ if __name__ == "__main__":
     # else:
     #     test.close()
 
+    tree = kdtree.create(_centroids)
+    nearest = tree.search_nn(classes.Point(sys.argv[1], sys.argv[2], sys.argv[3]))
 
     file = open(sys.argv[4] + ".txt", "a+")
    # if int(sys.argv[5]) == 1:
-    file.write("Point: " +  str(_centroids[val[1][0]].getPoints()) + ", Anchor Surface: " + str(_centroids[val[1][0]].getSurface()) + "\n")
+    file.write(
+        "Point: " + str(nearest[0].data.getPoints()) + ", Anchor Surface: " + str(nearest[0].data.getSurface()) + "\n")
     #elif int(sys.argv[5]) == 2:
     #    file.write("Point: " +  str(_centroids[val[1][0]].getPoints()) + ", Pressure Surface: " + str(_centroids[val[1][0]].getSurface()) + "\n")
+    # file.write("Point: " + str(nearest[0].data.getPoints()) + ", Pressure Surface: " + str(nearest[0].data.getSurface()) + "\n")
     file.close()
 
-    print(_centroids[val[1][0]].getSurface())
+    # print(_centroids[val[1][0]].getSurface())
 
 
