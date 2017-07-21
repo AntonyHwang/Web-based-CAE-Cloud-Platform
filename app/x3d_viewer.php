@@ -13,7 +13,7 @@
 		  		var coordinates = event.hitPnt;
 		  		
 		  		//alert(Object.keys(event.target._x3domNode._objectID));
-		  		//alert(event.target._x3domNode._objectID);
+		  		// alert(event.target._x3domNode._objectID);
 		  		//alert(Object.keys(event.hitObject);
 		  		// alert($(event).attr('id'));
 
@@ -101,8 +101,8 @@
 
         <x3d width='1000px' height='800px'> 
             <scene>
-            	<!-- <inline nameSpaceName="Object" mapDEFToID="true" url="x3d_output/<?php echo $_GET["job_id"];?>.x3d" onclick="displayCoordinates(event)"></inline>  -->
-            	<inline nameSpaceName="Object" mapDEFToID="true" url="x3d_output/part.x3d" onclick="displayCoordinates(event)"></inline> 
+            	<inline nameSpaceName="Object" mapDEFToID="true" url="x3d_output/<?php echo $_GET["job_id"];?>.x3d" onclick="displayCoordinates(event)"></inline> 
+            	<!-- <inline nameSpaceName="Object" mapDEFToID="true" url="x3d_output/37.x3d" onclick="displayCoordinates(event)"></inline>  -->
             	<Transform id="marker" scale="2.5 2.5 2.5" translation="0 0 0">
 			        <Shape>
 			            <Appearance>
