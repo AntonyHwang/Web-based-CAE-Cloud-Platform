@@ -5,10 +5,13 @@
 
 import sys
 import os
-import database
+from os.path import dirname, abspath
 import file_conversion
 
-filename = sys.argv[1]
-job_id = str(database.writeToDB(filename))
-os.rename('stp_uploads/' + filename, 'stp_uploads/%s.stp' % job_id)
-file_conversion.stpTox3d(job_id)
+if __name__ == "__main__":
+    job_id = sys.argv[1]
+    file_conversion.stpTox3d(job_id)
+    #os.system('C:\\Users\\MD580\\Desktop\\Web-based-CAE-Cloud-Platform\\app\\scripts\\to_gmsh.bat stp_uploads\\{} gmsh_output\\{}'.format(job_id, job_id))
+    val =  dirname(dirname(abspath(__file__))) + "\\scripts"
+    os.system(val + '\\to_gmsh.bat stp_uploads\\{} gmsh_output\\{}'.format(job_id, job_id))
+
