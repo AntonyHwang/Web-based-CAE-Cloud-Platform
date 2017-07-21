@@ -7,7 +7,7 @@
     $db_name = 'test_db';
 
     $dbh = new PDO('mysql:host='.$host.';dbname='.$db_name, $user, $pass);
-    $py_path = "C:/Users/MD580/Miniconda2/python.exe";
+    $py_path = "C:/ProgramData/Miniconda2/python.exe";
 ?>
 
 <html>
