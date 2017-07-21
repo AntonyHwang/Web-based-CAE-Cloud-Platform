@@ -19,3 +19,4 @@ def minimum_distance(n,ps,p):
     return (mins[:n],inds[:n])
 
 min3 = partial(minimum_distance,3)
+min7 = partial(minimum_distance,7)

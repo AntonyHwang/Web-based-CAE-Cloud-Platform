@@ -64,6 +64,7 @@ def stpTox3d(filename):
         counter += 1
     f.write("</Scene></X3D>\n")
     f.close()
+    return counter - 1
 
 
 def read_step_file(filename):

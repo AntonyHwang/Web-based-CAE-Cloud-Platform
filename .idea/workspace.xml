@@ -3,7 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="32b087d7-129c-4de8-9aa3-26cc907dfa56" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/file_upload.php" afterPath="$PROJECT_DIR$/app/file_upload.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/py/app.py" afterPath="$PROJECT_DIR$/app/py/app.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/py/face_identifier.py" afterPath="$PROJECT_DIR$/app/py/face_identifier.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/py/file_conversion.py" afterPath="$PROJECT_DIR$/app/py/file_conversion.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/py/read_gmsh.py" afterPath="$PROJECT_DIR$/app/py/read_gmsh.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/x3d_viewer.php" afterPath="$PROJECT_DIR$/app/x3d_viewer.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,11 +20,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/py/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+            <state relative-caret-position="323">
+              <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding>
                 <element signature="e#75#85#0" expanded="true" />
               </folding>
@@ -27,21 +32,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="database.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/py/database.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="17" column="95" lean-forward="true" selection-start-line="17" selection-start-column="95" selection-end-line="17" selection-end-column="95" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="face_identifier.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/py/face_identifier.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+            <state relative-caret-position="380">
+              <caret line="20" column="34" lean-forward="false" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -49,11 +44,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="read_gmsh.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="read_gmsh.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/py/read_gmsh.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="466">
-              <caret line="80" column="0" lean-forward="true" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+            <state relative-caret-position="1349">
+              <caret line="74" column="32" lean-forward="false" selection-start-line="74" selection-start-column="32" selection-end-line="74" selection-end-column="32" />
               <folding>
                 <element signature="e#0#22#0" expanded="true" />
               </folding>
@@ -74,9 +69,11 @@
       <file leaf-file-name="file_conversion.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/py/file_conversion.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="21" column="6" lean-forward="false" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
-              <folding />
+            <state relative-caret-position="475">
+              <caret line="35" column="14" lean-forward="false" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
+              <folding>
+                <element signature="e#745#782#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -94,6 +91,7 @@
     <findStrings>
       <find>e</find>
       <find>test</find>
+      <find>Coordi</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -114,9 +112,10 @@
         <option value="$PROJECT_DIR$/app/py/database.py" />
         <option value="$USER_HOME$/Lattice-Structure-Computation-Program/app.py" />
         <option value="$PROJECT_DIR$/app/includes/config.php" />
-        <option value="$PROJECT_DIR$/app/py/file_conversion.py" />
         <option value="$PROJECT_DIR$/app/index.php" />
         <option value="$PROJECT_DIR$/app/py/classes.py" />
+        <option value="$PROJECT_DIR$/../read_gmsh.py" />
+        <option value="$PROJECT_DIR$/app/py/file_conversion.py" />
         <option value="$PROJECT_DIR$/app/py/app.py" />
         <option value="$PROJECT_DIR$/app/py/face_identifier.py" />
         <option value="$PROJECT_DIR$/app/py/read_gmsh.py" />
@@ -124,8 +123,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="12" />
-    <option name="width" value="1932" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -165,8 +165,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -231,6 +229,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -391,10 +391,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="12" y="0" width="1932" height="1056" extended-state="1" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.098643005" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0984375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10993657" sideWeight="0.16805845" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33900106" sideWeight="0.83194155" order="2" side_tool="false" content_ui="tabs" />
@@ -424,7 +424,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/ftp.py" />
     <entry file="file://$USER_HOME$/test.py" />
     <entry file="file://$PROJECT_DIR$/app/file_conversion.py" />
     <entry file="file://$PROJECT_DIR$/app/core_topology_traverse.py" />
@@ -472,6 +471,10 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/Downloads/app.py" />
+    <entry file="file://$PROJECT_DIR$/app/includes/config.php" />
+    <entry file="file://$PROJECT_DIR$/app/index.php" />
+    <entry file="file://$PROJECT_DIR$/../read_gmsh.py" />
     <entry file="file://$PROJECT_DIR$/app/py/classes.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
@@ -482,49 +485,47 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/py/file_conversion.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="21" column="6" lean-forward="false" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Downloads/app.py" />
-    <entry file="file://$PROJECT_DIR$/app/py/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        <state relative-caret-position="475">
+          <caret line="35" column="14" lean-forward="false" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
           <folding>
-            <element signature="e#75#85#0" expanded="true" />
+            <element signature="e#745#782#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/includes/config.php" />
-    <entry file="file://$PROJECT_DIR$/app/index.php" />
     <entry file="file://$PROJECT_DIR$/app/py/database.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="17" column="95" lean-forward="true" selection-start-line="17" selection-start-column="95" selection-end-line="17" selection-end-column="95" />
-          <folding />
+        <state relative-caret-position="76">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/py/read_gmsh.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1349">
+          <caret line="74" column="32" lean-forward="false" selection-start-line="74" selection-start-column="32" selection-end-line="74" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/py/face_identifier.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        <state relative-caret-position="380">
+          <caret line="20" column="34" lean-forward="false" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/py/read_gmsh.py">
+    <entry file="file://$PROJECT_DIR$/app/py/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="466">
-          <caret line="80" column="0" lean-forward="true" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+        <state relative-caret-position="323">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding>
-            <element signature="e#0#22#0" expanded="true" />
+            <element signature="e#75#85#0" expanded="true" />
           </folding>
         </state>
       </provider>
