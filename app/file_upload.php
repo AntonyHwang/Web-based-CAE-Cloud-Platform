@@ -7,14 +7,14 @@
 
 <html>
 <body>
-
-    <div class ="login">
+      <div class ="login">  
         <form action="file_upload.php" method="post" enctype="multipart/form-data"> 
             <h1>File Upload</h1>
-            <input type="file" name="fileToUpload" id="fileToUpload">
-            <button type="submit" class="btn btn-primary btn-block btn-large">Upload STP</button>
+            <input type="file" name="fileToUpload" id="fileToUpload"> 
+            <input type="submit" class="btn btn-primary btn-block btn-large" value="Upload STP" name="submit">
+
         </form>
-    </div>
+      </div>  
 
 </body>
 </html>
