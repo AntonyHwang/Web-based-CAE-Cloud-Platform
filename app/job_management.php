@@ -5,10 +5,9 @@
 <html>
     <head></head>
     <body>
-        <table class="table table-striped">                     
-            <div class="table responsive">
-                <thead>
-                    <tr>
+        <table class="table">                     
+            <thead>
+                <tr>
                     <th>#</th>
                     <th>Job ID</th>
                     <th>File</th>
@@ -20,9 +19,10 @@
                     <th>Status</th>
                     <th>Date</th>
                     <th>Del</th>
-                    </tr>
-                </thead>
-                <tbody>
+                </tr>
+            </thead>
+            <tbody>
+
         <?php 
             $select_jobs_sql = "SELECT * FROM job WHERE id_user = ".$_SESSION["id"];
             $get_jobs = $dbh->query($select_jobs_sql); 
@@ -31,7 +31,7 @@
             while($row = $get_jobs->fetch()) {
                 $count++;
                 echo '<tr>
-                        <td scope="row">'.$count.'</td>
+                        <td\>'.$count.'</td>
                         <td>' . $row["job_id"] .'</td>
                         <td>' . $row["stp_filename"] .'</td>
                         <td> '.$row["material_name"] .'</td>
@@ -47,11 +47,10 @@
                                 Cancel
                             </button>
                         </td>
-                        </tr>';
+                    </tr>';
             } 
         ?>
             </tbody>
-            </div>
         </table>
     </body>
 </html>

@@ -2,12 +2,8 @@
 <html lang="en">
 
 <head>
-
-</head>
-
-<body>
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
             <!-- logo -->
             <div class="navbar-header">
                 <a href="#" class="navbar-brand">CAE Cloud Platform</a>
@@ -16,7 +12,7 @@
             <div>
                 <ul class="nav navbar-nav">
                     <?php
-                        if ($_SESSION["logged_in"] == "NO"){
+                        if ($_SESSION["logged_in"] == "NO" || $_SESSION["id"] == ""){
                     ?>
                         <li><a href="login.php">Login</a></li>
                         <li><a href="register.php">Register</a></li>
@@ -33,4 +29,7 @@
                 </ul>
             </div>
     </nav>
+</head>
+
+<body>
 </body>

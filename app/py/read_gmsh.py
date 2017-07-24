@@ -51,7 +51,7 @@ if __name__ == "__main__":
 
     readFile(path);
     #val = face_identifier.min3(_nodes, classes.Point(-0.319345442688558,-36.56151783839255,9.980903766262486))
-    val = face_identifier.min3(_centroids, classes.Point(sys.argv[1], sys.argv[2], sys.argv[3]))
+    val = face_identifier.min7(_centroids, classes.Point(sys.argv[1], sys.argv[2], sys.argv[3]))
     #print(_nodes[val[1][0]].getSurface())
     #test = open(sys.argv[4] + ".txt", "r+")
 
@@ -81,6 +81,7 @@ if __name__ == "__main__":
     file = open(sys.argv[4] + ".txt", "a+")
    # if int(sys.argv[5]) == 1:
     file.write("Point: " +  str(_centroids[val[1][0]].getPoints()) + ", Anchor Surface: " + str(_centroids[val[1][0]].getSurface()) + "\n")
+    file.write("S1: " + str(_centroids[val[1][0]].getSurface()) + ", S2 " + str(_centroids[val[1][1]].getSurface()) + "S3: " + str(_centroids[val[1][2]].getSurface()) + ", S4 " + str(_centroids[val[1][3]].getSurface()) + "S5: " + str(_centroids[val[1][4]].getSurface()) + ", S6 " + str(_centroids[val[1][5]].getSurface()) + "S7: " + str(_centroids[val[1][6]].getSurface()))
     #elif int(sys.argv[5]) == 2:
     #    file.write("Point: " +  str(_centroids[val[1][0]].getPoints()) + ", Pressure Surface: " + str(_centroids[val[1][0]].getSurface()) + "\n")
     file.close()
