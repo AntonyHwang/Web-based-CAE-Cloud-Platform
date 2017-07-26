@@ -13,9 +13,9 @@ set poissons = %5
 set material = %6
 
 ::run scripts that create job_id.fdb, job_id.geo and solve.inp
-call create_geo.bat %job_id% %supp% %load%
-call create_fbd.bat %job_id%
-call create_inp.bat %youngs_mod% %poissons% %material%
+call /scripts/create_geo.bat %job_id% %supp% %load%
+call /scripts/create_fbd.bat %job_id%
+call /scripts/create_inp.bat %youngs_mod% %poissons% %material%
 
 ::path
 ::set absolute path of cgx

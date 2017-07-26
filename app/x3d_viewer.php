@@ -2,6 +2,27 @@
 <?php
 	require ("includes/config.php");
     include_once "includes/header.php";
+
+	// if( $_POST )
+	// {
+
+	// 	$stmt = $dbh->prepare("INSERT INTO test_db (density, youngs_module, poissons ratio, element size, material) VALUES (:d, :y, :p, :e, :m)");
+		
+	// 	$stmt->bind_param(':d', $density);
+	// 	$stmt->bind_param(':y', $youngs_mod);
+	// 	$stmt->bind_param(':p', $poissons);
+	// 	$stmt->bind_param(':e', $element_size);
+	// 	$stmt->bind_param(':m', $material);
+
+	// 	$density = $_POST['density'];
+	// 	$youngs_mod = $_POST['youngs_mod'];
+	// 	$poissons = $_POST['poissons'];
+	// 	$element_size = $_POST['element_size'];
+	// 	$material = $_POST['material'];
+	// 	$stmt->execute();
+
+	// }
+
 ?>
 <html>
 	<head>
@@ -15,15 +36,15 @@
 			// $(document).ready(function(){
 			// 	for (i = 1; i <= <?php echo $_GET["max_faces"];?>; i++) {
 
-  	// 				var shape = document.getElementById('Object__Shape_Mat_'.concat(String(i)))
-  	// 				alert(shape);
-  	// 				// shape.addEventListener('mouseover', function(event){
-  	// 				// 	setFaceColor('1 1 1', i);
-  	// 				// });
+  			// 		var shape = document.getElementById('Object__Shape_Mat_'.concat(String(i)))
+  			// 		alert(shape);
+  			// 		// shape.addEventListener('mouseover', function(event){
+  			// 		// 	setFaceColor('1 1 1', i);
+  			// 		// });
 
-	  // 			// var shape = document.getElementById('Object__Shape_Mat_'.concat(String(value - 2)))
+	  		// 	// var shape = document.getElementById('Object__Shape_Mat_'.concat(String(value - 2)))
 	  					
-	  // 			}
+	  		// 	}
 			// });
 
 
@@ -184,13 +205,13 @@
 			
 					<input type="text" placeholder="Material" name="material"><br>
 					<h5>Anchor Coordinates:</h5>
-					<input type="text" placeholder="X" id="a_x" name="a_x">
-					<input type="text" placeholder="Y" id="a_y" name="a_y">
-					<input type="text" placeholder="Z" id="a_z" name="a_z"><br>
+					<input type="text" placeholder="X" id="a_x" name="a_x" disabled>
+					<input type="text" placeholder="Y" id="a_y" name="a_y" disabled>
+					<input type="text" placeholder="Z" id="a_z" name="a_z" disabled><br>
 					<h5>Pressure Applied Coordinates:</h5>
-					<input type="text" placeholder="X" id="p_x" name="p_x">
-					<input type="text" placeholder="Y" id="p_y" name="p_y">
-					<input type="text" placeholder="Z" id="p_z" name="p_z"><br>
+					<input type="text" placeholder="X" id="p_x" name="p_x" disabled>
+					<input type="text" placeholder="Y" id="p_y" name="p_y" disabled>
+					<input type="text" placeholder="Z" id="p_z" name="p_z" disabled><br>
 					<input type="submit" value="Submit">
 				</form>
 				</div>
