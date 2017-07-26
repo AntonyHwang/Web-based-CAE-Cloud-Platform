@@ -36,11 +36,11 @@
                         <h5>Element File:</h5>
                         <input type="file" name="fileToUpload" id="element_fileToUpload"> 
                         <h5>Dimension:</h5>
-                        <input type="x" name="x" placeholder="x" required="required" />
+                        <input type="number" name="x" placeholder="x" required="required" />
                         <br><br>
-                        <input type="y" name="y" placeholder="y" required="required" />
+                        <input type="number" name="y" placeholder="y" required="required" />
                         <br><br>
-                        <input type="z" name="z" placeholder="z" required="required" />
+                        <input type="number" name="z" placeholder="z" required="required" />
                         <br><br>
                         <input type="submit" class="btn btn-block btn-large" value="Upload MSH" name="msh">
                     </form>
@@ -108,14 +108,15 @@
             if (move_uploaded_file($_FILES["node_fileToUpload"]["tmp_name"], $node_target_file) && move_uploaded_file($_FILES["element_fileToUpload"]["tmp_name"], $node_target_file)) {
                 $node_filename = basename( $_FILES["node_fileToUpload"]["name"]);
                 $element_filename = basename( $_FILES["element_fileToUpload"]["name"]);
-                $sql_insert = "INSERT INTO job (id_user, stp_filename, finished) VALUE ('".$_SESSION["id"]."','".$filename."', 0)";
+                $sql_insert = "INSERT INTO lg_job (id_user, stp_filename) VALUE ('".$_SESSION["id"]."','".$filename."')";
                 $sth = $dbh->query($sql_insert);
                 $sth = null;
                 $job_id = $dbh->lastInsertId();
-                rename("stp_uploads/$filename", "stp_uploads/$job_id.step");
+                rename("lc_uploads/node_uploads/$filename", "lc_uploads/node_uploads/$job_id.txt");
+                rename("lc_uploads/element_uploads/$filename", "lc_uploads/element_uploads/$job_id.txt");                
                 // $result = exec('python py/app.py 2>&1'.$job_id);
 
-                $call_python = $py_path." py/app.py 2>&1".$job_id;
+                $call_python = $py_path." py/lg_app.py 2>&1".$job_id;
                 $result = shell_exec($call_python);
                 header("Location: x3d_viewer.php?job_id=".$job_id."&step_file=".$filename);
                 echo "The file ".$filename. " has been uploaded.";
