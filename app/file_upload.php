@@ -42,7 +42,7 @@
                         <br><br>
                         <input type="number" name="z" placeholder="z" required="required" />
                         <br><br>
-                        <input type="submit" class="btn btn-block btn-large" value="Upload MSH" name="msh">
+                        <input type="submit" class="btn btn-block btn-large" value="Upload Shape" name="msh">
                     </form>
                 </div>
             </div>
@@ -51,7 +51,7 @@
 </html>
 
 <?php
-    if ($_POST["stp"]) {
+    if ($_POST['stp']) {
         $target_dir = "stp_uploads/";
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
         $uploadOk = 1;
@@ -88,7 +88,7 @@
             }
         }
     }
-        if ($_POST["msh"]) {
+    if ($_POST['msh']) {
         $x = $_POST['x'];
         $y = $_POST['y'];
         $z = $_POST['z'];
