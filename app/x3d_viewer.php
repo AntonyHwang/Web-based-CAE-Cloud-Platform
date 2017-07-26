@@ -139,7 +139,7 @@
 						<viewpoint id = "angle4" position='-300 0 0' orientation="0 1 0 -1.57079632679" description = "Cam Angle 4"></viewpoint>
 						<viewpoint id = "angle5" position='0 300 0' orientation="1 0 0 -1.57079632679" description = "Cam Angle 5"></viewpoint>
 						<viewpoint id = "angle6" position='0 -300 0' orientation="1 0 0 1.57079632679" description = "Cam Angle 6"></viewpoint>
-						<viewpoint id = "angle7" position='-200 0 200' orientation="0 -1 0 0.7" description = "Cam Angle 6"></viewpoint>
+						<viewpoint id = "angle7" position='-50 -100 200' orientation="1 -1 1 0.7" description = "Cam Angle 6"></viewpoint>
 
 							<inline nameSpaceName="Object" mapDEFToID="true" url="x3d_output/<?php echo $_GET["job_id"];?>.x3d" onclick="displayCoordinates(event)"></inline> 
 							<!-- <inline nameSpaceName="Object" mapDEFToID="true" url="x3d_output/37.x3d" onclick="displayCoordinates(event)"></inline>  -->

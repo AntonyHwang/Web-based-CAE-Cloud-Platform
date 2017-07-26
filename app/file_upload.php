@@ -6,21 +6,52 @@
 ?>
 
 <html>
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
 <body>
       <div class ="login">  
-        <form action="file_upload.php" method="post" enctype="multipart/form-data"> 
             <h1>File Upload</h1>
-            <input type="file" name="fileToUpload" id="fileToUpload"> 
-            <input type="submit" class="btn btn-primary btn-block btn-large" value="Upload STP" name="submit">
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#STP">STP</a></li>
+                <li><a data-toggle="tab" href="#MSH">Lattice Generator</a></li>
+            </ul>
 
-        </form>
+            <div class="tab-content">
+                <div id="STP" class="tab-pane fade in active">
+                    <form action="file_upload.php" method="post" enctype="multipart/form-data"> 
+                        <br>
+                        <input type="file" name="fileToUpload" id="fileToUpload"> 
+                        <br>
+                        <input type="submit" class="btn btn-block btn-large" value="Upload STP" name="stp">
+                    </form>
+                </div>
+                <div id="MSH" class="tab-pane fade"> 
+                    <form action="file_upload.php" method="post" enctype="multipart/form-data"> 
+                        <h5>Node File:</h5>
+                        <input type="file" name="fileToUpload" id="node_fileToUpload"> 
+                        <h5>Element File:</h5>
+                        <input type="file" name="fileToUpload" id="element_fileToUpload"> 
+                        <h5>Dimension:</h5>
+                        <input type="x" name="x" placeholder="x" required="required" />
+                        <br><br>
+                        <input type="y" name="y" placeholder="y" required="required" />
+                        <br><br>
+                        <input type="z" name="z" placeholder="z" required="required" />
+                        <br><br>
+                        <input type="submit" class="btn btn-block btn-large" value="Upload MSH" name="msh">
+                    </form>
+                </div>
+            </div>
       </div>  
-
 </body>
 </html>
 
 <?php
-    if (!empty($_POST)) {
+    if ($_POST["stp"]) {
         $target_dir = "stp_uploads/";
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
         $uploadOk = 1;
@@ -30,7 +61,7 @@
             $uploadOk = 0;
         }
         // Allow certain file formats
-        if($fileType != "stp" && $fileType != "step" && $fileType != "STEP" ) {
+        if($fileType != "stp" && $fileType != "step" && $fileType != "STEP") {
             $uploadOk = 0;
         }
         // Check if $uploadOk is set to 0 by an error
@@ -40,6 +71,43 @@
         } else {
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
                 $filename = basename( $_FILES["fileToUpload"]["name"]);
+                $sql_insert = "INSERT INTO job (id_user, stp_filename, finished) VALUE ('".$_SESSION["id"]."','".$filename."', 0)";
+                $sth = $dbh->query($sql_insert);
+                $sth = null;
+                $job_id = $dbh->lastInsertId();
+                rename("stp_uploads/$filename", "stp_uploads/$job_id.step");
+                // $result = exec('python py/app.py 2>&1'.$job_id);
+
+                $call_python = $py_path." py/app.py 2>&1".$job_id;
+                $result = shell_exec($call_python);
+                header("Location: x3d_viewer.php?job_id=".$job_id."&step_file=".$filename);
+                echo "The file ".$filename. " has been uploaded.";
+                echo $result;
+            } else {
+                echo "Sorry, there was an error uploading your file.";
+            }
+        }
+    }
+        if ($_POST["msh"]) {
+        $node_target_dir = "lc_uploads/node_uploads/";
+        $element_target_dir = "lc_uploads/element_uploads/";
+        $node_target_file = $node_target_dir . basename($_FILES["node_fileToUpload"]["name"]);
+        $element_target_file = $element_target_dir . basename($_FILES["element_fileToUpload"]["name"]);
+        $uploadOk = 1;
+        $node_fileType = pathinfo($node_target_file,PATHINFO_EXTENSION);
+        $element_fileType = pathinfo($element_target_file,PATHINFO_EXTENSION);
+        // Allow certain file formats
+        if($node_fileType != "txt" && $node_fileType != "TXT" && $element_fileType != "txt" && $element_fileType != "TXT") {
+            $uploadOk = 0;
+        }
+        // Check if $uploadOk is set to 0 by an error
+        if ($uploadOk == 0) {
+            echo "Sorry, your file was not uploaded.";
+        // if everything is ok, try to upload file
+        } else {
+            if (move_uploaded_file($_FILES["node_fileToUpload"]["tmp_name"], $node_target_file) && move_uploaded_file($_FILES["element_fileToUpload"]["tmp_name"], $node_target_file)) {
+                $node_filename = basename( $_FILES["node_fileToUpload"]["name"]);
+                $element_filename = basename( $_FILES["element_fileToUpload"]["name"]);
                 $sql_insert = "INSERT INTO job (id_user, stp_filename, finished) VALUE ('".$_SESSION["id"]."','".$filename."', 0)";
                 $sth = $dbh->query($sql_insert);
                 $sth = null;
