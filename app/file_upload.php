@@ -89,6 +89,9 @@
         }
     }
         if ($_POST["msh"]) {
+        $x = $_POST['x'];
+        $y = $_POST['y'];
+        $z = $_POST['z'];
         $node_target_dir = "lc_uploads/node_uploads/";
         $element_target_dir = "lc_uploads/element_uploads/";
         $node_target_file = $node_target_dir . basename($_FILES["node_fileToUpload"]["name"]);
@@ -116,7 +119,7 @@
                 rename("lc_uploads/element_uploads/$filename", "lc_uploads/element_uploads/$job_id.txt");                
                 // $result = exec('python py/app.py 2>&1'.$job_id);
 
-                $call_python = $py_path." py/lg_app.py 2>&1".$job_id;
+                $call_python = $py_path." py/lg_app.py 2>&1".$job_id." ".$x." ".$y." ".$z;
                 $result = shell_exec($call_python);
                 header("Location: x3d_viewer.php?job_id=".$job_id."&step_file=".$filename);
                 echo "The file ".$filename. " has been uploaded.";
