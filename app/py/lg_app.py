@@ -4,6 +4,7 @@ from os.path import dirname, abspath
 import file_conversion
 import msh_to_x3d
 
+val =  dirname(dirname(abspath(__file__)))
 
 class Lattice(object):
     def __init__(self, elements, nodes):
@@ -40,7 +41,7 @@ def is_number(s):
         return False
 
 def read_nodes(job_id, nodes):
-    with open("../lg_uploads/node_uploads/" + str(job_id) + ".txt") as node_file:
+    with open(val + "/lg_uploads/node_uploads/" + str(job_id) + ".txt") as node_file:
         for line in node_file:
             if not line.strip():
                 continue
@@ -54,7 +55,7 @@ def read_nodes(job_id, nodes):
 def read_elements(job_id, elements):
     global ELEMENT_ATTRIBUTES
     flag = False
-    with open("../lg_uploads/element_uploads/" + str(job_id) + ".txt") as element_file:
+    with open(val + "/lg_uploads/element_uploads/" + str(job_id) + ".txt") as element_file:
         for line in element_file:
             if not line.strip():
                 continue
@@ -81,7 +82,7 @@ def direction_delta(nodes):
 def generate_lattice(job_id, nodes, elements, total_nodes, displacement_factor, x, y, z):
     model = Lattice(elements, nodes)
 
-    output = open("../lg_output/" + str(job_id) + ".msh","w")
+    output = open(val + "/lg_output/" + str(job_id) + ".msh","w")
     output.write("$MeshFormat\n")
     # MESH FORMAT
     output.write("2.2 0 8\n")
@@ -127,9 +128,9 @@ def generate_lattice(job_id, nodes, elements, total_nodes, displacement_factor, 
 
 if __name__ == "__main__":
     job_id = sys.argv[1]
-    x = sys.argv[2]
-    y = sys.argv[3]
-    z = sys.argv[4]
+    x = int(sys.argv[2])
+    y = int(sys.argv[3])
+    z = int(sys.argv[4])
     # job_id = 4
     # x = 2
     # y = 2
@@ -139,4 +140,4 @@ if __name__ == "__main__":
     elements = read_elements(job_id, [])
     displacement_factor = direction_delta(nodes)
     generate_lattice(job_id, nodes, elements, total_nodes, displacement_factor, x, y, z)
-    msh_to_x3d.mshTox3d("../lg_output/" + str(job_id) + ".msh")
+    msh_to_x3d.mshTox3d(val + "/lg_output/" + str(job_id) + ".msh")

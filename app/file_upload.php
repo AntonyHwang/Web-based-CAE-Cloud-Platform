@@ -119,8 +119,9 @@
                 rename("lg_uploads/element_uploads/$element_filename", "lg_uploads/element_uploads/$job_id.txt");                
                 // $result = exec('python py/app.py 2>&1'.$job_id);
 
-                $call_python = $py_path." py/lg_app.py 2>&4".$job_id." ".$x." ".$y." ".$z;
+                $call_python = $py_path." py/lg_app.py 2>&1".$job_id." ".$x." ".$y." ".$z;
                 echo $call_python;
+                sleep(2);
                 $result = shell_exec($call_python);
                 //header("Location: x3d_viewer.php?job_id=".$job_id."&step_file=".$filename);
                 echo "The file ".$filename. " has been uploaded.";
