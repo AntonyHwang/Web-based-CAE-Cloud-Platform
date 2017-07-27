@@ -113,7 +113,9 @@
 				countA = 0;
 				$('#pressureT').on('click', '.addBtn', function() {
 					if ($.trim($('#pface').val()) === "" || $.trim($('#pvalue').val()) === "") {	return false; }
-					$('#pressureT tbody').append('<tr><td><input type="hidden" name="pface'+ countP +'"value=' +$('#pface').val()+'><input type="hidden" name="pvalue'+ countP++ +'"value=' +$('#pvalue').val()+'><h5> Face:'+$('#pface').val()+', Pressure:'+$('#pvalue').val()+'</h5></td><td><button type="button" class="btn delBtn"> X </button></td></tr>');
+					$('#pressureT tbody').append('<tr><td><input type="hidden" name="pface'+ countP +'"value=' +$('#pface').val()+'><input type="hidden" name="pvalue'+ countP +'"value=' +$('#pvalue').val()+'><h5> Face:'+$('#pface').val()+', Pressure:'+$('#pvalue').val()+'</h5></td><td><button type="button" class="btn delBtn"> X </button></td></tr>');
+
+					$('#pressureTotal').val(countP++);
 
 					unselectable.push(parseInt($('#pface').val()));
 					$('#pface').val('');
@@ -124,6 +126,9 @@
 				$('#anchorT').on('click', '.addBtn', function() {
 					if ($.trim($('#aface').val()) === "") { return false; }
 					$('#anchorT tbody').append('<tr><td><input type="hidden" name="aface'+ countA +'"value=' +$('#aface').val()+'><h5> Face:'+$('#aface').val()+'</h5></input></td><td><button type="button" class="btn delBtn"> X </button></td></tr>');
+
+					$('#anchorTotal').val(countA++);
+
 					unselectable.push(parseInt($('#aface').val()));
 					$('#aface').val('');
 					return false; 
@@ -131,7 +136,17 @@
 
 				$("table").on('click', '.delBtn', function() {
 					face = $(this).parent().parent().find('input[type=hidden]').val();
+					var temp = $(this).parent().parent().find('input[type=hidden]').attr('name').substr(5);
+					var type = $(this).parent().parent().find('input[type=hidden]').attr('name').substr(0, 1);
+
 					$(this).parent().parent().remove();
+
+					if (type == 'a') {
+						$('#removedAnchor').val($('#removedAnchor').val() + temp + ",");
+
+					} else {
+						$('#removedPressure').val($('#removedPressure').val() + temp + ",");
+					}
 					
 
 					setFaceColor('0.65 0.65 0.65', parseInt(face)+2);
@@ -217,6 +232,8 @@
 								<tr>
 									<th><input type="text" placeholder="Anchor Face" id="aface" name="aface"><br></th>
 									<th><button type="button" class="btn addBtn">add</button></th>
+									<th><input type="hidden" id="anchorTotal" name="anchorTotal" value="0"></input></th>
+									<th><input type="hidden" id="removedAnchor" name="removedAnchor"></input></th>
 								</tr>
 							</thead>
 							<tbody></tbody>
@@ -232,6 +249,8 @@
 										<input type="text" placeholder="Pressure value" id="pvalue" name="pvalue"><br>
 									</th>
 									<th><button type="button" class="btn addBtn">add</button></th>
+									<th><input type="hidden" id ="pressureTotal" name="pressureTotal" value="0"></input></th>
+									<th><input type="hidden" id="removedPressure" name="removedPressure"></input></th>
 								</tr>
 							</thead>
 							<tbody></tbody>
