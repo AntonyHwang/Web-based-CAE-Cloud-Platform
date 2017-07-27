@@ -1,7 +1,5 @@
 import sys
-import os
 from os.path import dirname, abspath
-import file_conversion
 import msh_to_x3d
 
 val =  dirname(dirname(abspath(__file__)))
@@ -82,7 +80,7 @@ def direction_delta(nodes):
 def generate_lattice(job_id, nodes, elements, total_nodes, displacement_factor, x, y, z):
     model = Lattice(elements, nodes)
 
-    output = open(val + "/lg_output/" + str(job_id) + ".msh","w")
+    output = open(val + "/lg_output/msh/" + str(job_id) + ".msh","w")
     output.write("$MeshFormat\n")
     # MESH FORMAT
     output.write("2.2 0 8\n")
@@ -140,4 +138,5 @@ if __name__ == "__main__":
     elements = read_elements(job_id, [])
     displacement_factor = direction_delta(nodes)
     generate_lattice(job_id, nodes, elements, total_nodes, displacement_factor, x, y, z)
-    msh_to_x3d.mshTox3d(val + "/lg_output/" + str(job_id) + ".msh")
+    msh_to_x3d.mshTox3d(job_id)
+    print("finished")

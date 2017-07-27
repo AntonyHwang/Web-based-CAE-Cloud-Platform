@@ -1,9 +1,11 @@
 import sys
-from os.path import exists
+from os.path import dirname, abspath
 
 _nodes = []
 _triangles = []
 _lines = set()
+
+val =  dirname(dirname(abspath(__file__)))
 
 # requires consecutive node numbers
 def readFile(msh_file):
@@ -48,10 +50,10 @@ def readFile(msh_file):
         line = frozenset((triangle[0], triangle[2]))
         _lines.add(line)
 
-def mshTox3d(filename):
-    readFile(filename)
+def mshTox3d(job_id):
+    readFile(val + "/lg_output/msh/" + str(job_id) + ".msh")
     # read stuff into file
-    f = open('C:\hello.x3d', 'w')
+    f = open(val + "/lg_output/x3d/" + str(job_id) + ".x3d", 'w')
     # write header (taken from PythonOCC's Visualization/Tesselator.cpp)
     f.write("<?xml version='1.0' encoding='UTF-8'?>")
     f.write("<!DOCTYPE X3D PUBLIC 'ISO//Web3D//DTD X3D 3.1//EN' 'http://www.web3d.org/specifications/x3d-3.1.dtd'>")
@@ -74,8 +76,4 @@ def mshTox3d(filename):
     f.write("</Shape>\n")
     f.write("</Scene></X3D>\n")
     f.close()
-
-
-if __name__ == "__main__":
-   mshTox3d('C:/Users/MD580/Downloads/lattice.msh')
 

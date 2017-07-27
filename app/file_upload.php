@@ -120,12 +120,11 @@
                 // $result = exec('python py/app.py 2>&1'.$job_id);
 
                 $call_python = $py_path." py/lg_app.py 2>&1".$job_id." ".$x." ".$y." ".$z;
-                echo $call_python;
-                sleep(2);
                 $result = shell_exec($call_python);
-                //header("Location: x3d_viewer.php?job_id=".$job_id."&step_file=".$filename);
-                echo "The file ".$filename. " has been uploaded.";
-                echo $result;
+                // while($result != "finished") {
+                //     usleep(10);
+                // }
+                header("Location: lattice_viewer.php?job_id=".$job_id."&lattice_file=".$filename);
             } else {
                 echo "Sorry, there was an error uploading your file.";
             }
