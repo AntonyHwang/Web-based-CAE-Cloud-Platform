@@ -112,17 +112,18 @@
 				countP = 0;
 				countA = 0;
 				$('#pressureT').on('click', '.addBtn', function() {
-					if ($.trim($('#pface').val()) === "") {	return false; }
-					$('#pressureT tbody').append('<tr><td><input type="hidden" name="aface'+ countP++ +'"value=' +$('#pface').val()+'><h5>'+$('#pface').val()+'</h5></input></td><td><button type="button" class="btn delBtn"> X </button></td></tr>');
+					if ($.trim($('#pface').val()) === "" || $.trim($('#pvalue').val()) === "") {	return false; }
+					$('#pressureT tbody').append('<tr><td><input type="hidden" name="pface'+ countP +'"value=' +$('#pface').val()+'><input type="hidden" name="pvalue'+ countP++ +'"value=' +$('#pvalue').val()+'><h5> Face:'+$('#pface').val()+', Pressure:'+$('#pvalue').val()+'</h5></td><td><button type="button" class="btn delBtn"> X </button></td></tr>');
 
 					unselectable.push(parseInt($('#pface').val()));
 					$('#pface').val('');
+					$('#pvalue').val('');
 					return false; 
 				});
 
 				$('#anchorT').on('click', '.addBtn', function() {
-					if ($.trim($('#aface').val()) === "") { return false;}
-					$('#anchorT tbody').append('<tr><td><input type="hidden" name="aface'+ countA +'"value=' +$('#aface').val()+'><h5>'+$('#aface').val()+'</h5></input></td><td><button type="button" class="btn delBtn"> X </button></td></tr>');
+					if ($.trim($('#aface').val()) === "") { return false; }
+					$('#anchorT tbody').append('<tr><td><input type="hidden" name="aface'+ countA +'"value=' +$('#aface').val()+'><h5> Face:'+$('#aface').val()+'</h5></input></td><td><button type="button" class="btn delBtn"> X </button></td></tr>');
 					unselectable.push(parseInt($('#aface').val()));
 					$('#aface').val('');
 					return false; 
@@ -184,13 +185,13 @@
 
 						</scene> 
 					</x3d>   
-				</div>
-				<div class="col-md-3">
-					<button type="button" onclick="changeCameraAngle(event)">Change Camera Angle</button>
-					<button type="button" onclick="center(event)">Center</button>
-					<h5><?php echo $_GET["max_faces"];?></h5>
-					<h5 style="color: #FF6666">Left Click for Anchor Selection</h5>
-					<h5 style="color: #66FFAA">Right Click for Pressure Selection</h5>
+					
+						<button type="button" onclick="changeCameraAngle(event)" class="btn btn-secondary">Change Camera Angle</button>
+						<button type="button" onclick="center(event)" class="btn btn-secondary">Center</button>
+						<h5><?php echo $_GET["max_faces"];?></h5>
+						<h5 style="color: #FF6666">Left Click for Anchor Selection</h5>
+						<h5 style="color: #66FFAA">Right Click for Pressure Selection</h5>
+					
 				</div>
 				<div class="col-md-3" id="stuff">
 					<h1>Properties</h1>
@@ -210,9 +211,6 @@
 						<input type="text" placeholder="Material" name="material"><br>
 						
 						<font color = "white"><h3>Anchor</h3></font>
-						
-
-						<h3>Anchor</h3>
 						<h5>Face Number:</h5>
 						<table class="table" id="anchorT">
 							<thead>
@@ -224,12 +222,15 @@
 							<tbody></tbody>
 						</table>
 
-						<h3>Pressure</h3>
+						<font color = "white"><h3>Pressure</h3></font>
 						<h5>Face Number:</h5>
 						<table class="table" id="pressureT">
 							<thead>
 								<tr>
-									<th><input type="text" placeholder="Pressure Face" id="pface" name="pface"><br></th>
+									<th>
+										<input type="text" placeholder="Pressure Face" id="pface" name="pface">
+										<input type="text" placeholder="Pressure value" id="pvalue" name="pvalue"><br>
+									</th>
 									<th><button type="button" class="btn addBtn">add</button></th>
 								</tr>
 							</thead>
