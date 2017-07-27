@@ -1,6 +1,6 @@
 <?php
     ob_start();
-    if (!isset($_SESSION)) { session_start(); }
+    if (!isset($_SESSION) && $_SESSION['logged_in'] != "NO") { session_start(); }
     $host = '127.0.0.1';
     $user = 'root';
     $pass = 'root';

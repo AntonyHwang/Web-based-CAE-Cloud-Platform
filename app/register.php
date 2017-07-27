@@ -1,12 +1,45 @@
-<?php 
-    require "includes/config.php"; 
-    include_once "includes/header.php";
+<?php
+    ob_start();
+    $host = '127.0.0.1';
+    $user = 'root';
+    $pass = 'root';
+    $db_name = 'test_db';
+
+    $dbh = new PDO('mysql:host='.$host.';dbname='.$db_name, $user, $pass);
+    $py_path = "C:/ProgramData/Miniconda2/python.exe";
+
     if ($_SESSION["logged_in"] == "YES") {
         header('Location:file_upload.php');
     }
 ?>
 <html>
-    <head></head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="css/mystyle.css">
+</html>
+
+<html>
+    <head>
+        <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+                <!-- logo -->
+                <div class="navbar-header">
+                    <a href="#" class="navbar-brand">CAE Cloud Platform</a>
+                </div>
+                <!-- menu items -->
+                <div>
+                    <ul class="nav navbar-nav">
+                        <li><a href="login.php">Login</a></li>
+                        <li><a href="register.php">Register</a></li>
+                    </ul>
+                </div>
+        </nav>
+    </head>
     <body>
     </body>
     <form action="register.php" method="post" align="center">
@@ -18,8 +51,8 @@
                 <input type="text" name="email" id="email" placeholder="Email" required="required" />
                 <input type="password" name="password" id="password" placeholder="Password" required="required" />
                 <input type="password" name="confirmation" id="confirmation" placeholder="Confirm Password" required="required" />
-                <button type="submit" class="btn btn-primary btn-block btn-large">Register</button>
-                <button type="reset" class="btn btn-primary btn-block btn-large">Clear</button>
+                <button type="submit" class="btn btn-block btn-large">Register</button>
+                <button type="reset" class="btn btn-block btn-large">Clear</button>
             </form>
             <br>
         </div>
@@ -74,6 +107,7 @@
             $insert_new_account = $dbh->query($sql_insert);
             $get_id = $dbh->query($sql_get_id);
             $rows = $get_id->fetch();
+            session.start();
             $_SESSION["id"] = $rows["id_user"];
             $_SESSION["logged_in"] = "YES";
             header('Location:file_upload.php');

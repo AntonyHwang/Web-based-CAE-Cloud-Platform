@@ -11,21 +11,9 @@
             <!-- menu items -->
             <div>
                 <ul class="nav navbar-nav">
-                    <?php
-                        if ($_SESSION["logged_in"] == "NO" || $_SESSION["id"] == ""){
-                    ?>
-                        <li><a href="login.php">Login</a></li>
-                        <li><a href="register.php">Register</a></li>
-                    <?php
-                        }
-                        else{
-                    ?>
-                        <li><a href="file_upload.php">File Upload</a></li>
-                        <li><a href="job_management.php">Job Managmanet</a></li>
-                        <li><a href="login.php">Log out</a></li>
-                    <?php
-                        }
-                    ?>
+                    <li><a href="file_upload.php">File Upload</a></li>
+                    <li><a href="job_management.php">Job Managmanet</a></li>
+                    <li><a href="logout.php">Log out</a></li>
                 </ul>
             </div>
     </nav>

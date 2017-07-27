@@ -32,9 +32,9 @@
                 <div id="MSH" class="tab-pane fade"> 
                     <form action="file_upload.php" method="post" enctype="multipart/form-data"> 
                         <h5>Node File:</h5>
-                        <input type="file" name="fileToUpload" id="node_fileToUpload"> 
+                        <input type="file" name="node_fileToUpload" id="node_fileToUpload"> 
                         <h5>Element File:</h5>
-                        <input type="file" name="fileToUpload" id="element_fileToUpload"> 
+                        <input type="file" name="element_fileToUpload" id="element_fileToUpload"> 
                         <h5>Dimension:</h5>
                         <input type="number" name="x" placeholder="x" required="required" />
                         <br><br>
@@ -92,8 +92,8 @@
         $x = $_POST['x'];
         $y = $_POST['y'];
         $z = $_POST['z'];
-        $node_target_dir = "lc_uploads/node_uploads/";
-        $element_target_dir = "lc_uploads/element_uploads/";
+        $node_target_dir = "lg_uploads/node_uploads/";
+        $element_target_dir = "lg_uploads/element_uploads/";
         $node_target_file = $node_target_dir . basename($_FILES["node_fileToUpload"]["name"]);
         $element_target_file = $element_target_dir . basename($_FILES["element_fileToUpload"]["name"]);
         $uploadOk = 1;
@@ -108,20 +108,21 @@
             echo "Sorry, your file was not uploaded.";
         // if everything is ok, try to upload file
         } else {
-            if (move_uploaded_file($_FILES["node_fileToUpload"]["tmp_name"], $node_target_file) && move_uploaded_file($_FILES["element_fileToUpload"]["tmp_name"], $node_target_file)) {
+            if (move_uploaded_file($_FILES["node_fileToUpload"]["tmp_name"], $node_target_file) && move_uploaded_file($_FILES["element_fileToUpload"]["tmp_name"], $element_target_file)) {
                 $node_filename = basename( $_FILES["node_fileToUpload"]["name"]);
                 $element_filename = basename( $_FILES["element_fileToUpload"]["name"]);
-                $sql_insert = "INSERT INTO lg_job (id_user, stp_filename) VALUE ('".$_SESSION["id"]."','".$filename."')";
+                $sql_insert = "INSERT INTO lg_job (id_user) VALUE ('".$_SESSION["id"]."')";
                 $sth = $dbh->query($sql_insert);
                 $sth = null;
                 $job_id = $dbh->lastInsertId();
-                rename("lc_uploads/node_uploads/$filename", "lc_uploads/node_uploads/$job_id.txt");
-                rename("lc_uploads/element_uploads/$filename", "lc_uploads/element_uploads/$job_id.txt");                
+                rename("lg_uploads/node_uploads/$node_filename", "lg_uploads/node_uploads/$job_id.txt");
+                rename("lg_uploads/element_uploads/$element_filename", "lg_uploads/element_uploads/$job_id.txt");                
                 // $result = exec('python py/app.py 2>&1'.$job_id);
 
-                $call_python = $py_path." py/lg_app.py 2>&1".$job_id." ".$x." ".$y." ".$z;
+                $call_python = $py_path." py/lg_app.py 2>&4".$job_id." ".$x." ".$y." ".$z;
+                echo $call_python;
                 $result = shell_exec($call_python);
-                header("Location: x3d_viewer.php?job_id=".$job_id."&step_file=".$filename);
+                //header("Location: x3d_viewer.php?job_id=".$job_id."&step_file=".$filename);
                 echo "The file ".$filename. " has been uploaded.";
                 echo $result;
             } else {

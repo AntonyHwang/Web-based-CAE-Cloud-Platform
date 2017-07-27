@@ -4,8 +4,43 @@ from os.path import dirname, abspath
 import file_conversion
 import msh_to_x3d
 
+
+class Lattice(object):
+    def __init__(self, elements, nodes):
+        self.elements, self.nodes = elements, nodes
+
+
+class Element(object):
+    def __init__(self, n1, n2, n3):
+        self.n1, self.n2, self.n3 = n1, n2, n3
+
+    def toString(self):
+        return "(" + str(self.n1) + "," + str(self.n2) + "," + str(self.n3) + ")"
+
+
+class Node(object):
+    def __init__(self, idx, x, y, z):
+        self.idx, self.x, self.y, self.z = idx, x, y, z
+
+    def __hash__(self):
+        return hash((self.x, self.y, self.z))
+
+    def __eq__(self, other):
+        return self.x == other.x and self.y == other.y and self.z == other.z
+
+    def toString(self):
+        return "(" + str(self.x) + "," + str(self.y) + "," + str(self.z) + ")"
+
+
+def is_number(s):
+    try:
+        float(s)
+        return True
+    except ValueError:
+        return False
+
 def read_nodes(job_id, nodes):
-    with open("lc_uploads/node_uploads/" + job_id + ".txt") as node_file:
+    with open("../lg_uploads/node_uploads/" + str(job_id) + ".txt") as node_file:
         for line in node_file:
             if not line.strip():
                 continue
@@ -19,7 +54,7 @@ def read_nodes(job_id, nodes):
 def read_elements(job_id, elements):
     global ELEMENT_ATTRIBUTES
     flag = False
-    with open("lc_uploads/element_uploads/" + job_id + ".txt") as element_file:
+    with open("../lg_uploads/element_uploads/" + str(job_id) + ".txt") as element_file:
         for line in element_file:
             if not line.strip():
                 continue
@@ -46,7 +81,7 @@ def direction_delta(nodes):
 def generate_lattice(job_id, nodes, elements, total_nodes, displacement_factor, x, y, z):
     model = Lattice(elements, nodes)
 
-    output = open("lc_output/" + job_id + ".msh","w")
+    output = open("../lg_output/" + str(job_id) + ".msh","w")
     output.write("$MeshFormat\n")
     # MESH FORMAT
     output.write("2.2 0 8\n")
@@ -90,17 +125,18 @@ def generate_lattice(job_id, nodes, elements, total_nodes, displacement_factor, 
     output.write("$EndElements\n")
     output.close()
 
-def main(job_id, x, y, z):
-    nodes = read_nodes(job_id, [])
-    total_nodes = nodes[len(nodes) - 1].idx
-    elements = read_elements(job_id, [])
-    displacement_factor = direction_delta(nodes)
-    generate_lattice(job_id, nodes, elements, total_nodes, displacement_factor, x, y, z)
-    msh_to_x3d.mshTox3d("lc_output/" + job_id + ".msh")
-
 if __name__ == "__main__":
     job_id = sys.argv[1]
     x = sys.argv[2]
     y = sys.argv[3]
     z = sys.argv[4]
-    main(job_id, x, y, z)
+    # job_id = 4
+    # x = 2
+    # y = 2
+    # z = 2
+    nodes = read_nodes(job_id, [])
+    total_nodes = nodes[len(nodes) - 1].idx
+    elements = read_elements(job_id, [])
+    displacement_factor = direction_delta(nodes)
+    generate_lattice(job_id, nodes, elements, total_nodes, displacement_factor, x, y, z)
+    msh_to_x3d.mshTox3d("../lg_output/" + str(job_id) + ".msh")
