@@ -14,6 +14,36 @@
 		<script>
 			var unselectable = [];
 
+			function mouse_unhighlight(event){
+				anchorColor = '0 0.75 0.75';
+		  		pressureColor = '0.5 1 0.5';
+		  		defaultColor = '0.65 0.65 0.65';
+
+				val = parseInt(event.target._x3domNode._objectID);
+				var face = val - 2;
+
+				if (unselectable.includes(face) || isSelected(pressureColor, val) || isSelected(anchorColor, val)) 
+		  		{
+		  			return;
+		  		}
+
+		  		setFaceColor(defaultColor, val);
+			}
+
+			function mouse_highlight(event){
+				val = parseInt(event.target._x3domNode._objectID);
+				var face = val - 2;
+
+				if (unselectable.includes(face) || isSelected(pressureColor, val) || isSelected(anchorColor, val)) 
+		  		{
+		  			return;
+		  		}
+
+		  		setFaceColor('0.529412 0.807843 0.980392', val); //light blue
+			}
+
+
+
 		  	function displayCoordinates(event)
 		  	{
 		  		var coordinates = event.hitPnt;
@@ -180,7 +210,7 @@
 						<viewpoint id = "angle6" position='0 -300 0' orientation="1 0 0 1.57079632679" description = "Cam Angle 6"></viewpoint>
 						<viewpoint id = "angle7" position='-200 0 200' orientation="0 -1 0 0.7" description = "Cam Angle 6"></viewpoint>
 
-						<inline nameSpaceName="Object" mapDEFToID="true" url="x3d_output/<?php echo $_GET["job_id"];?>.x3d" onclick="displayCoordinates(event)"></inline> 
+						<inline onload="center()" nameSpaceName="Object" mapDEFToID="true" url="x3d_output/<?php echo $_GET["job_id"];?>.x3d" onmouseover="mouse_highlight(event)" onmouseout="mouse_unhighlight(event)" onclick="displayCoordinates(event)"></inline> 
 						
 						<Transform id="marker" scale="0 0 0" translation="0 0 0">
 							<Shape>
