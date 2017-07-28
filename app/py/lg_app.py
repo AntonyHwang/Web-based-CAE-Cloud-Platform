@@ -1,6 +1,7 @@
 import sys
 from os.path import dirname, abspath
 import msh_to_x3d
+import pymesh
 
 val =  dirname(dirname(abspath(__file__)))
 
@@ -102,7 +103,7 @@ def generate_lattice(job_id, nodes, elements, total_nodes, displacement_factor, 
                                  " " + str(n.y + num2 * displacement_factor.y) +
                                  " " + str(n.z + num3 * displacement_factor.z) + '\n')
                 multiplier += 1
-    
+
     # Elements
     output.write("$EndNodes\n$Elements\n")
 
@@ -116,9 +117,9 @@ def generate_lattice(job_id, nodes, elements, total_nodes, displacement_factor, 
                 for e in model.elements:
                     index += 1
                     count += 1
-                    output.write(str(index) + " " + ELEMENT_ATTRIBUTES + 
-                                       " " + str(e.n1 + multiplier * total_nodes) + 
-                                       " " + str(e.n2 + multiplier * total_nodes) + 
+                    output.write(str(index) + " " + ELEMENT_ATTRIBUTES +
+                                       " " + str(e.n1 + multiplier * total_nodes) +
+                                       " " + str(e.n2 + multiplier * total_nodes) +
                                        " " + str(e.n3 + multiplier * total_nodes) + '\n')
                 multiplier +=1
     output.write("$EndElements\n")
@@ -139,4 +140,7 @@ if __name__ == "__main__":
     displacement_factor = direction_delta(nodes)
     generate_lattice(job_id, nodes, elements, total_nodes, displacement_factor, x, y, z)
     msh_to_x3d.mshTox3d(job_id)
+    mesh = pymesh.load_mesh(val + "/lg_output/msh/" + str(job_id) + ".msh");
+    mesh, info = pymesh.remove_duplicated_vertices(mesh, tol)
+    pymesh.save_mesh("filename.msh", mesh);
     print("finished")
