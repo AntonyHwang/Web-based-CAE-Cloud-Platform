@@ -108,6 +108,8 @@
 		  		document.getElementById('x3d_element').runtime.fitAll();
 		  	}
 
+		  	
+
 		  	$(document).ready(function(){
 				countP = 0;
 				countA = 0;

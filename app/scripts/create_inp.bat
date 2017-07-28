@@ -1,8 +1,9 @@
 @echo off
 
-set youngs_mod = %1
-set poissons = %2
-set material = %3
+set youngs_mod=%1
+set poissons=%2
+set material=%3
+set id=%4
 
 echo *include,input=all.msh > "solve.inp"
 echo *include,input=support.nam >> "solve.inp"

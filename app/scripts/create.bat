@@ -4,44 +4,24 @@
 set job_id=%1
 
 ::support and load parameters for creating job_id.geo
-set anchor_num=%2
-set pressu_num=%3
+set anchors=%2
+set pressures=%3
 
 ::create inp parameter
-set youngs_mod = %4
-set poissons = %5
-set material = %6
+set youngs_mod=%4
+set poissons=%5
+set material=%6
 
-set anchors = ""
-set pressures = ""
-set count = 0
-:getanchors
-set anchors = %anchors%, %7;
-shift
+echo %youngs_mod%
 
-set count = %count%+1
-if %count% = %anchor_num% (
-    set count = 0
-    goto getpressures
-)
-:getPressures
-set pressures = %pressures%, %7;
-shift
+mkdir jobs\%job_id%
 
-set count = %count%+1
-if %count% = %pressu_num% (
-    set count = 0
-    goto endgets
-)
-:endgets
-
-
-for /l %%x in (7, 1, %anchor_num%) do ()
+cd jobs\%job_id%
 
 ::run scripts that create job_id.fdb, job_id.geo and solve.inp
-call /scripts/create_geo.bat %job_id% %anchors% %pressures%
-call /scripts/create_fbd.bat %job_id%
-call /scripts/create_inp.bat %youngs_mod% %poissons% %material%
+call C:\Users\MD580\Desktop\Web-based-CAE-Cloud-Platform\app\scripts\create_geo.bat %job_id% %anchors% %pressures%
+call C:\Users\MD580\Desktop\Web-based-CAE-Cloud-Platform\app\scripts\create_fbd.bat %job_id%
+call C:\Users\MD580\Desktop\Web-based-CAE-Cloud-Platform\app\scripts\create_inp.bat %youngs_mod% %poissons% %material% %job_id%
 
 ::path
 ::set absolute path of cgx

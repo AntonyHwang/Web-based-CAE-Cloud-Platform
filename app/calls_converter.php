@@ -7,10 +7,11 @@
 
 <html>
 	<head>
-		<h1 style="color: white">Mesh Display!</h1>
+		<h1 style="color: white">Loading...</h1>
 	</head>
 
 	<body>
+
 	<?php
 		$id = $_POST["id"];
 		$density =  $_POST["density"];
@@ -65,22 +66,42 @@
 	    $sql_update = "UPDATE job SET density = '$density', element_size = '$element_size', youngs_mod = '$youngs_mod', poissons_ratio = '$poissons', material_name = '$material' WHERE job_id = '".$id."'";
 	    $result = $dbh->query($sql_update);
 
-
-	    echo "TEST TEXT!!!";
-
 	    $sql_select = "SELECT * FROM faces WHERE job_id = '".$id."'";
 	    $result = $dbh->query($sql_select);
+	    $allAnchors = "";
+	    $allPressures = "";
 	    //echo $sql_select;
+	    $counter = 0;
 	     	while ($row = $result->fetch()) {
-	     		echo "id: ". $row["job_id"]. "face number: ". $row["face_number"]. "face_type: ". $row["face_type"]."pressure: ".$row["pressure"]. "<br>";
+
+	     		if ($row["face_type"] == "pressure") {
+	     			$allPressures = $allPressures.$row["face_number"].",";
+	     		} else if ($row["face_type"] == "anchor") {
+	     			$allAnchors = $allAnchors.$row["face_number"].",";
+	     		}
+
+	     		
+	     		
 	     	}
+	     	$allPressures = substr($allPressures, 0, -1);
+	     	$allAnchors = substr($allAnchors, 0, -1);
+
+
+
+		    echo $id." ".$allAnchors." ".$allPressures." ".$youngs_mod." ".$poissons." ".$material;
+	     	$output = exec("C:\Users\MD580\Desktop\Web-based-CAE-Cloud-Platform\app\scripts\create.bat $id $allAnchors $allPressures $youngs_mod $poissons $material");
+	     	// $output = exec("C:\Users\MD580\Desktop\Web-based-CAE-Cloud-Platform\app\scripts\create.bat 160 12 5 120000 0.3 Steel");
+	     	// exec("C:\Users\MD580\Desktop\Web-based-CAE-Cloud-Platform\app\jobs\clean.bat $id");
+
+	     	echo $output;
+	     	header("Location: results.php?job_id=".$id);
+
+
 		?>
 	</body>
 </html>
 
 <?php
-    
-
-    // $ouptut = shell_exec("/scripts/create.bat $id ");
+  
 
 ?>
