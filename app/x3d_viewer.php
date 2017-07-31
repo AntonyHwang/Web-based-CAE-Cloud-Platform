@@ -31,6 +31,10 @@
 			}
 
 			function mouse_highlight(event){
+				anchorColor = '0 0.75 0.75';
+		  		pressureColor = '0.5 1 0.5';
+		  		defaultColor = '0.65 0.65 0.65';
+				
 				val = parseInt(event.target._x3domNode._objectID);
 				var face = val - 2;
 
