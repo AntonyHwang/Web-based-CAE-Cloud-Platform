@@ -17,5 +17,7 @@
 		    <img src="jobs/<?php echo $_GET['job_id'];?>/sets.png" alt="sets" style="width:700px; height:600px;">
 		</div>
 
+		
+
 	</body>
 </html>

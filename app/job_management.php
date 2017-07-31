@@ -3,11 +3,30 @@
     include_once "includes/header.php";
 ?>
 <html>
-    <head></head>
+    <head>
+        <script type="text/javascript">
+            function deleteJob(id) {
+
+                if (confirm("Are you sure you want to delete this job?")) {
+                    $.ajax({
+                        type: 'POST',
+                        url:'delete.php',
+                        data: {job_id: id},
+                        success: function (data){
+                            window.location.reload();
+                        }
+                    });
+                    
+                }
+            }
+
+        </script>
+
+    </head>
     <body>
         <table class="table">                     
             <thead>
-                <tr>
+                <tr style="color:white;">
                     <th>#</th>
                     <th>Job ID</th>
                     <th>File</th>
@@ -30,19 +49,23 @@
             // output data of each row
             while($row = $get_jobs->fetch()) {
                 $count++;
-                echo '<tr>
-                        <td\>'.$count.'</td>
+                echo '<tr style="color:white;">
+                        <td>'.$count.'</td>
                         <td>' . $row["job_id"] .'</td>
-                        <td>' . $row["stp_filename"] .'</td>
+                        <td>
+                            <a href="stp_uploads/'.$row["job_id"].'.step" download>
+                                '. $row["stp_filename"] .'
+                            </a>
+                        </td>
                         <td> '.$row["material_name"] .'</td>
                         <td> '.$row["element_size"] .'</td>
-                        <td> '.$row["young_mod"] .'</td>
+                        <td> '.$row["youngs_mod"] .'</td>
                         <td> '.$row["poissons_ratio"] .'</td>
                         <td> '.$row["density"] .'</td>
                         <td> '.$row["finished"] .'</td>
                         <td> '.$row["date"] .'</td>
                         <td>
-                            <button class="btn btn-default" type="reset" style="vertical-align:left; float: center">
+                            <button class="btn btn-default" type="reset" id="'.$row["job_id"].'" onclick="deleteJob(this.id)" style="vertical-align:left; float: center">
                                 <span aria-hidden="true" class="glyphicon glyphicon-log-in"></span>
                                 Cancel
                             </button>

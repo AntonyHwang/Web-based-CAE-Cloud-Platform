@@ -88,20 +88,19 @@
 
 
 
-		    echo $id." ".$allAnchors." ".$allPressures." ".$youngs_mod." ".$poissons." ".$material;
-	     	$output = exec("C:\Users\MD580\Desktop\Web-based-CAE-Cloud-Platform\app\scripts\create.bat $id $allAnchors $allPressures $youngs_mod $poissons $material");
+		    //echo $id." ".$allAnchors." ".$allPressures." ".$youngs_mod." ".$poissons." ".$material;
+		    $val = "C:\Users\MD580\Desktop\Web-based-CAE-Cloud-Platform\app\scripts\create.bat $id "."\"$allAnchors\" " ."\"$allPressures\" "."$youngs_mod $poissons $material";
+		    $output = exec($val);
+	     	//$output = exec("C:\Users\MD580\Desktop\Web-based-CAE-Cloud-Platform\app\scripts\create.bat $id $allAnchors $allPressures $youngs_mod $poissons $material");
 	     	// $output = exec("C:\Users\MD580\Desktop\Web-based-CAE-Cloud-Platform\app\scripts\create.bat 160 12 5 120000 0.3 Steel");
 	     	// exec("C:\Users\MD580\Desktop\Web-based-CAE-Cloud-Platform\app\jobs\clean.bat $id");
 
 	     	echo $output;
 	     	header("Location: results.php?job_id=".$id);
 
+			$sql_update = "UPDATE job SET finished = '1' WHERE job_id = '".$id."'";
+	    	$result = $dbh->query($sql_update);
 
 		?>
 	</body>
 </html>
-
-<?php
-  
-
-?>

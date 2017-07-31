@@ -85,3 +85,6 @@ def read_step_file(filename):
         print("Error: can't read file.")
         sys.exit(0)
     return aResShape
+
+
+stpTox3d("170")
