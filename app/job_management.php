@@ -37,6 +37,7 @@
                     <th>Density</th>
                     <th>Status</th>
                     <th>Date</th>
+                    <th>sxymn</th>
                     <th>Del</th>
                 </tr>
             </thead>
@@ -64,6 +65,7 @@
                         <td> '.$row["density"] .'</td>
                         <td> '.$row["finished"] .'</td>
                         <td> '.$row["date"] .'</td>
+                        <td> '.$row["sxymn"].'</td>
                         <td>
                             <button class="btn btn-default" type="reset" id="'.$row["job_id"].'" onclick="deleteJob(this.id)" style="vertical-align:left; float: center">
                                 <span aria-hidden="true" class="glyphicon glyphicon-log-in"></span>
