@@ -145,6 +145,12 @@
 		  	
 
 		  	$(document).ready(function(){
+
+		  		$('.dropdown-item').click(function() {
+		  			var input = $(this).closest('.input-group').find('input.element_size');
+    				input.val($(this).text());
+		  		});
+
 				countP = 0;
 				countA = 0;
 				$('#pressureT').on('click', '.addBtn', function() {
@@ -257,7 +263,50 @@
 					
 						<input type="text" placeholder="Poisson's Ratio" name="poissons"><br>
 					
-						<input type="text" placeholder="Element Size" name="element_size"><br>
+						<!-- <input type="text" placeholder="Element Size" name="element_size"><br> -->
+
+
+
+
+						 <b class="input-group">
+						      <b class="input-group-btn">
+						        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						          Select
+						        </button>
+						        <b class="dropdown-menu">
+							        <ul>
+							          	<a class="dropdown-item" href="#">0.2</a>
+	          							<div role="separator" class="dropdown-divider"></div>
+								        <a class="dropdown-item" href="#">0.3</a>
+	          							<div role="separator" class="dropdown-divider"></div>
+								        <a class="dropdown-item" href="#">0.4</a>
+	          							<div role="separator" class="dropdown-divider"></div>
+								        <a class="dropdown-item" href="#">0.5</a>
+	          							<div role="separator" class="dropdown-divider"></div>
+								        <a class="dropdown-item" href="#">0.6</a>
+	          							<div role="separator" class="dropdown-divider"></div>
+								        <a class="dropdown-item" href="#">0.7</a>
+	          							<div role="separator" class="dropdown-divider"></div>
+								       	<a class="dropdown-item" href="#">0.8</a>
+	          							<div role="separator" class="dropdown-divider"></div>
+								        <a class="dropdown-item" href="#">0.9</a>
+	          							<div role="separator" class="dropdown-divider"></div>
+								        <a class="dropdown-item" href="#">1.0</a>
+							        </ul>
+						        </b>
+						      </b>
+						      <input type="text" class="element_size" placeholder="Element Size" name="element_size">
+						    </b>
+						  </b>
+
+
+						
+
+
+
+
+
+
 				
 						<input type="text" placeholder="Material" name="material"><br>
 						

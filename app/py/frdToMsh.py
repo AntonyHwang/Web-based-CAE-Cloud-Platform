@@ -1,4 +1,7 @@
 import math
+import sys
+from os.path import dirname, abspath
+import os
 
 
 def process_disp(line, msh):    # writes displacement values to file
@@ -44,9 +47,12 @@ def process_stress(line, msh):      # calculates von Mises stress and writes to 
     return 1
 
 
-def frdToMsh():
-    frd = open('C:/Users/MD580/Desktop/Web-based-CAE-Cloud-Platform/app/jobs/202/solve.frd', 'rU')
-    msh = open('C:/myfile.msh', 'a')    # change to w for testing
+def frdToMsh(job_id):
+    frd_file = dirname(dirname(abspath(__file__))) + "\\jobs\\" + str(job_id) + "\\solve.frd"
+    msh_file = dirname(dirname(abspath(__file__))) + "\\gmsh_output\\" + str(job_id) + ".msh"
+
+    frd = open(frd_file, 'rU')
+    msh = open(msh_file, 'a')    # change to w for testing
     num_nodes = '-1'
 
     status = 0  # 0 for none, 1 for disp, 2 for stress
@@ -72,4 +78,6 @@ def frdToMsh():
 
 
 if __name__ == '__main__':
-    frdToMsh()
+    frdToMsh(sys.argv[1])
+    #val = dirname(dirname(abspath(__file__))) + "\\scripts"
+    #os.system(val + '\\to_x3d.bat gmsh_output\\{} final_x3d\\{}'.format(sys.argv[1], sys.argv[1]))

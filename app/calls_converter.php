@@ -89,7 +89,7 @@
 
 
 		    //echo $id." ".$allAnchors." ".$allPressures." ".$youngs_mod." ".$poissons." ".$material;
-		    $val = "C:\Users\MD580\Desktop\Web-based-CAE-Cloud-Platform\app\scripts\create.bat $id "."\"$allAnchors\" " ."\"$allPressures\" "."$youngs_mod $poissons $material";
+		    $val = "C:\Users\MD580\Desktop\Web-based-CAE-Cloud-Platform\app\scripts\create.bat $id "."\"$allAnchors\" " ."\"$allPressures\" "."$youngs_mod $poissons $material $element_size";
 		    $output = exec($val);
 	     	//$output = exec("C:\Users\MD580\Desktop\Web-based-CAE-Cloud-Platform\app\scripts\create.bat $id $allAnchors $allPressures $youngs_mod $poissons $material");
 	     	// $output = exec("C:\Users\MD580\Desktop\Web-based-CAE-Cloud-Platform\app\scripts\create.bat 160 12 5 120000 0.3 Steel");
@@ -100,6 +100,9 @@
 
 			$sql_update = "UPDATE job SET finished = '1' WHERE job_id = '".$id."'";
 	    	$result = $dbh->query($sql_update);
+
+	    	$call_python = $py_path." py/frdToMsh.py 2>&1".$id;
+            $result = shell_exec($call_python);
 
 		?>
 	</body>

@@ -50,8 +50,8 @@
                 $call_python = $py_path." py/app.py 2>&1".$job_id;
                 $result = shell_exec($call_python);
                 header("Location: x3d_viewer.php?job_id=".$job_id."&step_file=".$filename);
-                echo "The file ".$filename. " has been uploaded.";
-                echo $result;
+                //echo "The file ".$filename. " has been uploaded.";
+                //echo $result;
             } else {
                 echo "Sorry, there was an error uploading your file.";
             }
