@@ -1,14 +1,4 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
-=======
-<?php
-	require ("includes/config.php");
-    include_once "includes/header.php";
-    if ($_SESSION["logged_in"] != "YES") {
-        header("Location: login.php");
-    }
-?>
->>>>>>> 9a3b12df67e33b0ae06ea1fc3955888c2a02c615
 <html>
 	<head>
 		<script type='text/javascript' src='http://www.x3dom.org/download/x3dom.js'> </script> 
@@ -17,6 +7,9 @@
 		<?php
 			require ("includes/config.php");
 			include_once "includes/header.php";
+			if ($_SESSION["logged_in"] != "YES") {
+				header("Location: login.php");
+			}
 		?>
 
 
@@ -291,12 +284,12 @@
 					
 						<!-- <input type="text" placeholder="Element Size" name="element_size"><br> -->
 
-						<b class="input-group">
-					      	<b class="input-group-btn">
+						<c class="input-group">
+					      	<c class="input-group-btn">
 						        <button type="button" class="btn btn-secondary dropdown-toggle test" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-top: 8.5; padding-bottom: 8.5; margin-bottom: 7px; padding-bottom: 9px; padding-top: 9px;">
 									<span class="caret"></span>
 						        </button>
-						        <b class="dropdown-menu">
+						        <c class="dropdown-menu">
 							        <ul>
 							          	<a class="dropdown-item" href="#">0.2</a>
 	          							<div role="separator" class="dropdown-divider"></div>
@@ -316,10 +309,10 @@
 	          							<div role="separator" class="dropdown-divider"></div>
 								        <a class="dropdown-item" href="#">1.0</a>
 							        </ul>
-						        </b>
-						    </b>
+						        </c>
+						    </c>
 						    <input type="text" class="element_size" placeholder="Clscale" id="element_size" name="element_size">
-						</b>
+						</c>
 						
 				
 						<input type="text" placeholder="Material" name="material"><br>

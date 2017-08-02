@@ -159,6 +159,7 @@ h1 {
 	color: #fff;
 	text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 	letter-spacing: 1px;
+	text-align: center;
 }
 
 h5 {
@@ -206,7 +207,6 @@ x3d {
 	overflow-y: auto;
 }
 
-<<<<<<< HEAD
 #instructions {
 	border: 1px solid #000;
 	margin: 0px;
@@ -233,18 +233,7 @@ x3d {
 	#x3d_element {
 		width: 840px;
 	}
+	h1 {
+		text-align: left;
+	}
 }
-=======
-.container, .row {
-	height:100%;
-}
-
-/*#clscale {
-	padding: 15px 32px;
-	font-size: 100px;
-<<<<<<< HEAD
-}*/
->>>>>>> 9a3b12df67e33b0ae06ea1fc3955888c2a02c615
-=======
-}*/
->>>>>>> 9a3b12df67e33b0ae06ea1fc3955888c2a02c615
