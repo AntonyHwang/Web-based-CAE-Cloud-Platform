@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<?php
-	require ("includes/config.php");
-    include_once "includes/header.php";
-?>
 <html>
 	<head>
 		<script type='text/javascript' src='http://www.x3dom.org/download/x3dom.js'> </script> 
 		<link rel='stylesheet' type='text/css' href='http://www.x3dom.org/download/x3dom.css'></link>
 	  	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.0.min.js" ></script>
+		<?php
+			require ("includes/config.php");
+			include_once "includes/header.php";
+		?>
 
 
 
@@ -210,7 +210,15 @@
 				<div class="col-md-9">
 					<h1>3D Display of Uploaded File (<?php echo $_GET["step_file"];?>)</h1>
 					<!-- <h5 id=jobid>Job ID: <?php echo $_GET["job_id"];?> </h5> -->
-					<x3d id='x3d_element' width='850px' height='500px' align='center' > 
+					<x3d id='x3d_element' align='center' > 
+						<div id="instructions">
+							<button type="button" onclick="changeCameraAngle(event)" class="btn btn-secondary">Change Camera Angle</button>
+							<button type="button" onclick="center(event)" class="btn btn-secondary">Center</button>
+							<h5><?php echo $_GET["max_faces"];?></h5>
+							<h5 style="color: #FF6666">Left Click for Anchor Selection</h5>
+							<h5 style="color: #66FFAA">Right Click for Pressure Selection</h5>
+						</div>
+
 						<scene>
 						<viewpoint id = "angle1" position='45 0 200' orientation="0 0 1 0" description = "Cam Angle 1"></viewpoint>
 						<viewpoint id = "angle3" position='300 0 0' orientation="0 1 0 1.57079632679" description = "Cam Angle 3"></viewpoint>
@@ -242,13 +250,6 @@
 
 						</scene> 
 					</x3d>   
-					
-						<button type="button" onclick="changeCameraAngle(event)" class="btn btn-secondary">Change Camera Angle</button>
-						<button type="button" onclick="center(event)" class="btn btn-secondary">Center</button>
-						<h5><?php echo $_GET["max_faces"];?></h5>
-						<h5 style="color: #FF6666">Left Click for Anchor Selection</h5>
-						<h5 style="color: #66FFAA">Right Click for Pressure Selection</h5>
-					
 				</div>
 				<div class="col-md-3" id="stuff">
 					<h1>Properties</h1>
