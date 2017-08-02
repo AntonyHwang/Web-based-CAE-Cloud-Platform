@@ -2,6 +2,9 @@
 
 <?php
     require ("includes/config.php");
+    if ($_SESSION["logged_in"] != "YES") {
+        header("Location: login.php");
+    }
 ?>
 
 <html>

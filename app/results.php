@@ -3,21 +3,26 @@
 <?php
 	require ("includes/config.php");
     include_once "includes/header.php";
+    if ($_SESSION["logged_in"] != "YES") {
+        header("Location: login.php");
+    }
 ?>
 
 <html>
 	<head>
 		<script type='text/javascript' src='http://www.x3dom.org/download/x3dom.js'> </script> 
 		<link rel='stylesheet' type='text/css' href='http://www.x3dom.org/download/x3dom.css'></link>
-		<h1>Results</h1><br><br>
+		<div class="results">
+			<h1>Results</h1><br><br>
+		</div>
 
 	</head>
 
 	<body>
 		<div align="middle">
-		    <img src="jobs/<?php echo $_GET['job_id'];?>/disp.png" alt="disp" style="width:700px; height:600px;">
-		    <img src="jobs/<?php echo $_GET['job_id'];?>/se.png" alt="se" style="width:700px; height:600px;">
-		    <img src="jobs/<?php echo $_GET['job_id'];?>/sets.png" alt="sets" style="width:700px; height:600px;">
+		    <img src="jobs/<?php echo $_GET['job_id'];?>/disp.png" alt="disp" style="width:auto; height:auto; max-width: 80%;"><br><br>
+		    <img src="jobs/<?php echo $_GET['job_id'];?>/se.png" alt="se" style="width:auto; height:auto; max-width: 80%;"><br><br>
+		    <img src="jobs/<?php echo $_GET['job_id'];?>/sets.png" alt="sets" style="width:auto; height:auto; max-width: 80%;"><br><br>
 		</div>
 
 		<x3d id='x3d_element' width='850px' height='500px' align='center' > 

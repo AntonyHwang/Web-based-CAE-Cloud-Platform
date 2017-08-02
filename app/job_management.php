@@ -1,6 +1,9 @@
 <?php 
     require "includes/config.php"; 
     include_once "includes/header.php";
+    if ($_SESSION["logged_in"] != "YES") {
+        header("Location: login.php");
+    }
 ?>
 <html>
     <head>
@@ -19,7 +22,6 @@
                     
                 }
             }
-
         </script>
 
     </head>
@@ -37,7 +39,6 @@
                     <th>Density</th>
                     <th>Status</th>
                     <th>Date</th>
-                    <th>sxymn</th>
                     <th>Del</th>
                 </tr>
             </thead>
@@ -52,7 +53,9 @@
                 $count++;
                 echo '<tr style="color:white;">
                         <td>'.$count.'</td>
-                        <td>' . $row["job_id"] .'</td>
+                        <td>
+                            <a href="/results.php?job_id='.$row["job_id"].'">' . $row["job_id"] .' </a>
+                        </td>
                         <td>
                             <a href="stp_uploads/'.$row["job_id"].'.step" download>
                                 '. $row["stp_filename"] .'
@@ -65,7 +68,6 @@
                         <td> '.$row["density"] .'</td>
                         <td> '.$row["finished"] .'</td>
                         <td> '.$row["date"] .'</td>
-                        <td> '.$row["sxymn"].'</td>
                         <td>
                             <button class="btn btn-default" type="reset" id="'.$row["job_id"].'" onclick="deleteJob(this.id)" style="vertical-align:left; float: center">
                                 <span aria-hidden="true" class="glyphicon glyphicon-log-in"></span>

@@ -2,6 +2,9 @@
 
 <?php
     require ("includes/config.php");
+    if ($_SESSION["logged_in"] != "YES") {
+        header("Location: login.php");
+    }
     //include("computing_server.php");
 ?>
 
@@ -86,7 +89,9 @@
 	     	$allPressures = substr($allPressures, 0, -1);
 	     	$allAnchors = substr($allAnchors, 0, -1);
 
-
+	     	// sometimes the computation takes too long with smaller cs-scale sizes, so you have to make sure that
+	     	// you adjust the timeout limit for PHP
+	     	set_time_limit(60);
 
 		    //echo $id." ".$allAnchors." ".$allPressures." ".$youngs_mod." ".$poissons." ".$material;
 		    $val = "C:\Users\MD580\Desktop\Web-based-CAE-Cloud-Platform\app\scripts\create.bat $id "."\"$allAnchors\" " ."\"$allPressures\" "."$youngs_mod $poissons $material $element_size";

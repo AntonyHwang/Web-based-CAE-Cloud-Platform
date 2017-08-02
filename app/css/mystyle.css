@@ -206,6 +206,7 @@ x3d {
 	overflow-y: auto;
 }
 
+<<<<<<< HEAD
 #instructions {
 	border: 1px solid #000;
 	margin: 0px;
@@ -233,3 +234,13 @@ x3d {
 		width: 840px;
 	}
 }
+=======
+.container, .row {
+	height:100%;
+}
+
+/*#clscale {
+	padding: 15px 32px;
+	font-size: 100px;
+}*/
+>>>>>>> 9a3b12df67e33b0ae06ea1fc3955888c2a02c615
