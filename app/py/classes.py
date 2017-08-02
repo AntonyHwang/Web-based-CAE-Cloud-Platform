@@ -10,7 +10,7 @@ class Point(object):
     def getz(self): return self.z
 
     def getSurface(self): return self.s
-    def getPoints(self):  return [self.x,self.y,self.z]
+    def getPoints(self):  return [self.x, self.y, self.z]
 
     def addSurface(self, sur):
         self.s = sur
@@ -29,10 +29,10 @@ class Triangle(object):
 
     @staticmethod
     def centroid(p1, p2, p3):
-         x = (p1.x + p2.x + p3.x) / 3
-         y = (p1.y + p2.y + p3.y) / 3
-         z = (p1.z + p2.z + p3.z) / 3
-         return Point(x, y, z)
+        x = (p1.x + p2.x + p3.x) / 3
+        y = (p1.y + p2.y + p3.y) / 3
+        z = (p1.z + p2.z + p3.z) / 3
+        return Point(x, y, z)
 
     def printPoints(self):
         print('Point 1 ({}), Point 2 ({}), Point 3 ({})'.format(self.p1.getPoints(), self.p2.getPoints(), self.p3.getPoints()))
