@@ -2,6 +2,9 @@
 <?php
 	require ("includes/config.php");
     include_once "includes/header.php";
+    if ($_SESSION["logged_in"] != "YES") {
+        header("Location: login.php");
+    }
 ?>
 <html>
 	<head>
@@ -146,6 +149,21 @@
 
 		  	$(document).ready(function(){
 
+			  	$('form > input').keyup(function() {
+			        var empty = false;
+			        $('form > input').each(function() {
+			            if ($(this).val() == '') {
+			                empty = true;
+			            }
+			        });
+
+			        if (empty) {
+			            $('#submit').attr('disabled', 'disabled');
+			        } else {
+			            $('#submit').removeAttr('disabled');
+			        }
+			    });
+
 		  		$('.dropdown-item').click(function() {
 		  			var input = $(this).closest('.input-group').find('input.element_size');
     				input.val($(this).text());
@@ -257,21 +275,18 @@
 						<h5>Job Id:</h5>
 						<input type="text" value="<?php echo $_GET["job_id"];?>" name="id"><br>
 					
-						<input type="text" placeholder="Density" name="density"><br>
+						<input type="text" placeholder="Density" id="density" name="density"><br>
 				
-						<input type="text" placeholder="Young's Modulus" name="youngs_mod"><br>
+						<input type="text" placeholder="Young's Modulus" id="youngs_mod" name="youngs_mod"><br>
 					
-						<input type="text" placeholder="Poisson's Ratio" name="poissons"><br>
+						<input type="text" placeholder="Poisson's Ratio" id="poissons" name="poissons"><br>
 					
 						<!-- <input type="text" placeholder="Element Size" name="element_size"><br> -->
 
-
-
-
-						 <b class="input-group">
-						      <b class="input-group-btn">
-						        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						          Select
+						<b class="input-group">
+					      	<b class="input-group-btn">
+						        <button type="button" class="btn btn-secondary dropdown-toggle test" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-top: 8.5; padding-bottom: 8.5; margin-bottom: 7px; padding-bottom: 9px; padding-top: 9px;">
+									<span class="caret"></span>
 						        </button>
 						        <b class="dropdown-menu">
 							        <ul>
@@ -294,19 +309,10 @@
 								        <a class="dropdown-item" href="#">1.0</a>
 							        </ul>
 						        </b>
-						      </b>
-						      <input type="text" class="element_size" placeholder="Element Size" name="element_size">
 						    </b>
-						  </b>
-
-
+						    <input type="text" class="element_size" placeholder="Clscale" id="element_size" name="element_size">
+						</b>
 						
-
-
-
-
-
-
 				
 						<input type="text" placeholder="Material" name="material"><br>
 						
@@ -341,7 +347,7 @@
 							<tbody></tbody>
 						</table>
 
-						<input type="submit" value="Submit">
+						<input id="submit" type="submit" value="Submit" disabled>
 					</form>
 
 

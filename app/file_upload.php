@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 
 <?php
-	require ("includes/config.php");
+	require("includes/config.php");
     include_once "includes/header.php";
+    if ($_SESSION["logged_in"] != "YES") {
+        header("Location: login.php");
+    }
 ?>
 
 <html>
@@ -38,6 +41,8 @@
             echo "Sorry, your file was not uploaded.";
         // if everything is ok, try to upload file
         } else {
+            set_time_limit(120);
+
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
                 $filename = basename( $_FILES["fileToUpload"]["name"]);
                 $sql_insert = "INSERT INTO job (id_user, stp_filename, finished) VALUE ('".$_SESSION["id"]."','".$filename."', 0)";

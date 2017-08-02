@@ -10,6 +10,8 @@ set pressures=%3
 set anchors=%anchors:"=%
 set pressures=%pressures:"=%
 
+set cls=%4
+
 ::delete job_id.geo if exists
 ::if exist %job_id%.geo del %job_id%.geo
 
@@ -27,6 +29,7 @@ echo //Mesh.SurfaceEdges = 1; >> "%job_id%.geo"
 echo Mesh.SurfaceFaces = 1; >> "%job_id%.geo"
 echo Mesh.VolumeEdges = 0; >> "%job_id%.geo"
 echo //Mesh.VolumeFaces = 0; >> "%job_id%.geo"
+echo Mesh.CharacteristicLengthFactor = %cls%; >> "%job_id%.geo"
 echo Mesh 3; >> "%job_id%.geo"
 echo Physical Surface("support") = {%anchors%}; >> "%job_id%.geo"
 echo Physical Surface("load") = {%pressures%}; >> "%job_id%.geo"
