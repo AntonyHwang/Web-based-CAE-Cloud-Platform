@@ -12,6 +12,8 @@ set youngs_mod=%4
 set poissons=%5
 set material=%6
 
+set cls=%7
+
 echo %youngs_mod%
 
 mkdir jobs\%job_id%
@@ -28,4 +30,4 @@ call C:\Users\MD580\Desktop\Web-based-CAE-Cloud-Platform\app\scripts\create_inp.
 set path = "C:\Program Files (x86)\bConverged\CalculiX\bin";%PATH%
 
 ::run analysisW
-cgx.bat -b %job_id%.fbd
+cgx.bat -clscale %cls% -b %job_id%.fbd
