@@ -1,4 +1,5 @@
 import math
+import sys
 
 # parameters: all.msh file name, file name of msh you'll write to
 # returns: number of nodes as a string (needed for NodeData sections)
@@ -128,7 +129,5 @@ def make_result_mesh(frd_name, all_msh_name, write_msh_name):
     num_nodes = read_all_msh(all_msh_name, write_msh_name)
     frdToMsh(frd_name, write_msh_name, num_nodes)
 
-# if __name__ == '__main__':
-#     make_result_mesh('C:/Users/MD580/Desktop/Web-based-CAE-Cloud-Platform/app/jobs/202/solve.frd',
-#                      'C:/Users/MD580/Desktop/Web-based-CAE-Cloud-Platform/app/jobs/202/all.msh',
-#                      'C:/myfile.msh')
+if __name__ == '__main__':
+    make_result_mesh('jobs/{}/solve.frd'.format(sys.argv[1]), 'jobs/{}/all.msh'.format(sys.argv[1]), 'final_x3d/{}.msh'.format(sys.argv[1]))

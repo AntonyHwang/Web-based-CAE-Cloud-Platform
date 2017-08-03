@@ -14,7 +14,7 @@
         <form action="file_upload.php" method="post" enctype="multipart/form-data"> 
             <h1>File Upload</h1>
             <input type="file" name="fileToUpload" id="fileToUpload"> 
-            <input type="submit" class="btn btn-primary btn-block btn-large" value="Upload STP" name="submit">
+            <input type="submit" class="btn btn-block btn-large" value="Upload STP" name="submit">
 
         </form>
       </div>  

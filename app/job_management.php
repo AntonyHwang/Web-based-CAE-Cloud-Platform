@@ -8,15 +8,16 @@
 <html>
     <head>
         <script type="text/javascript">
-            function deleteJob(id) {
+            function deleteJob(name, id) {
 
                 if (confirm("Are you sure you want to delete this job?")) {
                     $.ajax({
                         type: 'POST',
                         url:'delete.php',
-                        data: {job_id: id},
+                        data: {job_id: name},
                         success: function (data){
                             window.location.reload();
+                            //$("#" + id).remove();
                         }
                     });
                     
@@ -51,15 +52,13 @@
             // output data of each row
             while($row = $get_jobs->fetch()) {
                 $count++;
-                echo '<tr style="color:white;">
+                echo '<tr style="color:white;" id="'.$count.'">
                         <td>'.$count.'</td>
-                        <td>
-                            <a href="/results.php?job_id='.$row["job_id"].'">' . $row["job_id"] .' </a>
+                        <td> 
+                            <a href="/results.php?job_id='.$row["job_id"].'"><font color="white">' . $row["job_id"] .' </font></a>
                         </td>
                         <td>
-                            <a href="stp_uploads/'.$row["job_id"].'.step" download>
-                                '. $row["stp_filename"] .'
-                            </a>
+                            <a href="stp_uploads/'.$row["job_id"].'.step" download><font color="white">'. $row["stp_filename"] .'</font></a>
                         </td>
                         <td> '.$row["material_name"] .'</td>
                         <td> '.$row["element_size"] .'</td>
@@ -69,7 +68,7 @@
                         <td> '.$row["finished"] .'</td>
                         <td> '.$row["date"] .'</td>
                         <td>
-                            <button class="btn btn-default" type="reset" id="'.$row["job_id"].'" onclick="deleteJob(this.id)" style="vertical-align:left; float: center">
+                            <button class="btn btn-default" type="reset" id="'.$count.'" name="'.$row["job_id"].'" onclick="deleteJob(this.name, this.id);" style="vertical-align:left; float: center">
                                 <span aria-hidden="true" class="glyphicon glyphicon-log-in"></span>
                                 Cancel
                             </button>

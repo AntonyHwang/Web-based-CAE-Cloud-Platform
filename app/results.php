@@ -36,7 +36,7 @@
 			<viewpoint id = "angle7" position='-200 0 200' orientation="0 -1 0 0.7" description = "Cam Angle 6"></viewpoint>
 
 			<!-- <inline onload="center()" nameSpaceName="Object" mapDEFToID="true" url="final_x3d/<?php echo $_GET['job_id'];?>.x3d" ></inline>  -->
-			<inline onload="center()" nameSpaceName="Object" url="final_x3d/209" ></inline> 
+			<inline onload="center()" nameSpaceName="Object" url="final_x3d/248" ></inline> 
 
 			</scene> 
 		</x3d>   
