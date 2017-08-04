@@ -17,6 +17,13 @@ if ($_SESSION["logged_in"] != "YES") {
 			<h1>Results</h1><br><br>
 		</div>
 
+		<script>
+		function center(event)
+		  	{
+		  		document.getElementById('x3d_element').runtime.fitAll();
+		  	}
+		</script>
+
 	</head>
 
 	<body>
@@ -26,7 +33,7 @@ if ($_SESSION["logged_in"] != "YES") {
 		    <img src="jobs/<?php echo $_GET['job_id'];?>/sets.png" alt="sets" style="width:auto; height:auto; max-width: 80%;"><br><br>
 		</div>
 
-		<!-- <x3d id='x3d_element' width='850px' height='500px' align='center' > 
+		<x3d id='x3d_element' width='850px' height='500px' align='center' > 
 			<scene>
 			<viewpoint id = "angle1" position='45 0 200' orientation="0 0 1 0" description = "Cam Angle 1"></viewpoint>
 			<viewpoint id = "angle3" position='300 0 0' orientation="0 1 0 1.57079632679" description = "Cam Angle 3"></viewpoint>
@@ -37,10 +44,9 @@ if ($_SESSION["logged_in"] != "YES") {
 			<viewpoint id = "angle7" position='-200 0 200' orientation="0 -1 0 0.7" description = "Cam Angle 6"></viewpoint>
 
 			<inline onload="center()" nameSpaceName="Object" mapDEFToID="true" url="final_x3d/<?php echo $_GET['job_id'];?>.x3d" ></inline> 
-			<inline onload="center()" nameSpaceName="Object" url="final_x3d/248" ></inline> 
-
+			
 			</scene> 
-		</x3d>    -->
+		</x3d>
 
 	</body>
 </html>
