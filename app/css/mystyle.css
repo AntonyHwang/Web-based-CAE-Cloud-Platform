@@ -263,3 +263,11 @@ x3d {
 		overflow-y: auto;
 	}
 }
+
+#temp {
+	width: 100%;
+}
+
+#bbox.open {
+	margin-bottom: 160px;
+}

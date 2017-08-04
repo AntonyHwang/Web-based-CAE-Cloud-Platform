@@ -55,7 +55,6 @@
 		  	{
 		  		var coordinates = event.hitPnt;
 
-
 		  		//alert(Object.keys(event.target._x3domNode));
 		  		// alert(event.target._x3domNode._objectID);
 
@@ -138,8 +137,8 @@
 		  	function changeCameraAngle(event)
 		  	{
 		  		document.getElementById('x3d_element').runtime.nextView();
-		  	}
-
+		  	
+}
 		  	function center(event)
 		  	{
 		  		document.getElementById('x3d_element').runtime.fitAll();
@@ -178,14 +177,67 @@
 
 		        if (empty || empty2 || empty3 || empty4) {
 		            $('#submit').attr('disabled', 'disabled');
+		            $('#check').attr('disabled', 'disabled');
 		        } else {
 		            $('#submit').removeAttr('disabled');
+		            $('#check').attr('disabled', 'disabled');
 		        }
+		  	}
+
+		  	function getDimensions() {
+		  		var boxDOMNode = document.getElementById("x3d_object");        
+			    var boxVol = boxDOMNode._x3domNode.getVolume();
+			    var min = new x3dom.fields.SFVec3f();
+			    var max = new x3dom.fields.SFVec3f();
+			    boxVol.getBounds(min, max);
+			    var extent = max.subtract(min);
+			    $('#min_x').append(min.x);
+			    $('#max_x').append(max.x);
+			    $('#min_y').append(min.y);
+			    $('#max_y').append(max.y);
+			    $('#min_z').append(min.z);
+			    $('#max_z').append(max.z);
+		  	}
+
+		  	function checkModel() {
+		  		$.ajax({
+                    type: 'POST',
+                    url:'mesh_check.php',
+                    data: {
+                    	job_id: $('#id').val(), 
+	                    youngs_mod: $('#youngs_mod').val(), 
+	                    poissons: $('#poissons').val(), 
+	                    element_size: $('#element_size').val(), 
+	                    material: $('#material').val(),
+	                    anchorTotal: $('#anchorTotal').val(),
+	                    removedAnchor: $('removedAnchor').val(),
+	                    pressureTotal: $('#totalAnchor').val(),
+	                    removedPressure: $('removedPressure').val()
+	                },
+                    success: function (data){
+                    	alert(data);
+                        //window.location.reload();
+                        //$("#" + id).remove();
+                        
+                    }
+                });
+
+		  		
+		  		$('#check').attr("hidden", "hidden");
+
+		  		$('#submit').removeAttr("hidden");
+
 		  	}
 
 		  	
 
 		  	$(document).ready(function(){
+
+		  		
+		  		//console.log($('x3d_object').length);
+		  		// var mybboxsize = $('x3d_object')
+		  		// var size = mybboxsize.length();
+		  		// console.log(size);
 
 		  		$('#submit').click(function(){
 		  			this.hidden = true;
@@ -193,6 +245,16 @@
 		  			$('#animation').removeAttr("hidden");
 		  			$('container').setAttr("disabled", "disabled");
 		  		});
+
+		  		$('#bbox').on({
+		  			"shown.bs.dropdown": function() { this.closable = false; },
+				    "click":             function() { this.closable = true; },
+				    "hide.bs.dropdown":  function() { return this.closable; }
+		  		});
+
+		  		// $('#bbox').click(function() {
+		  		// 	$('#bbox').toggleClass("open");
+		  		// });
 
 			  	$('form > input').keyup(function() {
 			       allowSubmit();
@@ -321,7 +383,7 @@
 						<viewpoint id = "angle6" position='0 -300 0' orientation="1 0 0 1.57079632679" description = "Cam Angle 6"></viewpoint>
 						<viewpoint id = "angle7" position='-200 0 200' orientation="0 -1 0 0.7" description = "Cam Angle 6"></viewpoint>
 
-						<inline onload="center()" nameSpaceName="Object" mapDEFToID="true" url="x3d_output/<?php echo $_GET["job_id"];?>.x3d" onmouseover="mouse_highlight(event)" onmouseout="mouse_unhighlight(event)" onclick="displayCoordinates(event)"></inline> 
+						<inline id="x3d_object" onload="center(); getDimensions();" nameSpaceName="Object" mapDEFToID="true" url="x3d_output/<?php echo $_GET["job_id"];?>.x3d" onmouseover="mouse_highlight(event)" onmouseout="mouse_unhighlight(event)" onclick="displayCoordinates(event)"></inline> 
 						
 						<Transform id="marker" scale="0 0 0" translation="0 0 0">
 							<Shape>
@@ -344,6 +406,7 @@
 						</scene> 
 					</x3d>   
 				</div>
+
 				<div class="col-md-3" id="properties">
 					<h1>Properties</h1>
 						<form id="selection_data" method="post" action="calls_converter.php">
@@ -384,13 +447,25 @@
 	          							<div role="separator" class="dropdown-divider"></div>
 								        <a class="dropdown-item" href="#">1.0</a>
 							        </ul>
+
 						        </c>
 						    </c>
-						    <input type="text" class="element_size" placeholder="Clscale" id="element_size" name="element_size">
+						    <input type="text" class="element_size" placeholder="Granularity" id="element_size" name="element_size" readonly>
 						</c>
-						
 				
 						<input type="text" placeholder="Material" id="material" name="material"><br>
+
+						<div id="bbox" class="dropdown">
+							<input type="text" class="dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="Bounding Box" readonly></input>
+							<div id="temp" style="text-align:center" class="dropdown-menu" aria-labelledby="dropdownMenu2">
+								<b id="min_x" class="dropdown-item bbox">x_min: </b><br>
+								<b id="max_x" class="dropdown-item bbox">x-max: </b><br>
+								<b id="min_y" class="dropdown-item bbox">y_min: </b><br>
+								<b id="max_y" class="dropdown-item bbox">y_max: </b><br>
+								<b id="min_z" class="dropdown-item bbox">z_min: </b><br>
+								<b id="max_z" class="dropdown-item bbox">z_max: </b><br>
+							</div>
+						</div>
 						
 						<font color = "white"><h3>Anchor</h3></font>
 						<h5>Face Number:</h5>
@@ -422,7 +497,8 @@
 							</thead>
 							<tbody></tbody>
 						</table>
-
+						<!-- <input id="check" type="button" value="Check Model" onclick="checkModel();"> -->
+						<!-- <input id="submit" type="submit" value="Submit" disabled hidden> -->
 						<input id="submit" type="submit" value="Submit" disabled>
 						</form>
 
