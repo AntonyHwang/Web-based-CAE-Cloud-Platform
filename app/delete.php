@@ -20,5 +20,5 @@
 	$sql_delete = "DELETE FROM faces WHERE job_id = $id";
 	$result = $dbh->query($sql_delete);
 
-	
+	exec("scripts\delete_job.bat $id")
 ?>
