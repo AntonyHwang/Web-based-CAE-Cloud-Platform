@@ -145,24 +145,98 @@
 		  		document.getElementById('x3d_element').runtime.fitAll();
 		  	}
 
+		  	function attachListener() {
+		    	var delay = 100; // 1/10 a second
+		    	setTimeout(function(){
+		    		allowSubmit();
+		    	}, delay);
+		  	}
+
+		  	function allowSubmit() 
+		  	{
+		  		var empty = false;
+		  		var empty2 = false;
+		  		var empty3 = false;
+		  		var empty4 = false;
+		        $('form > input').each(function() {
+		            if ($(this).val() == '') {
+		                empty = true;
+		            }
+		        });
+
+		        if ($('#pressureTotal').val() < $('#removedPressure').val().split(",").length - 1) {
+		        	empty2 = true;
+		        }
+
+		        if ($('#anchorTotal').val() < $('#removedAnchor').val().split(",").length - 1) {
+		        	empty3 = true;
+		        }
+
+		        if ($('#element_size').val() == '') {
+		        	empty4= true;
+		        }
+
+		        if (empty || empty2 || empty3 || empty4) {
+		            $('#submit').attr('disabled', 'disabled');
+		        } else {
+		            $('#submit').removeAttr('disabled');
+		        }
+		  	}
+
 		  	
 
 		  	$(document).ready(function(){
 
-			  	$('form > input').keyup(function() {
-			        var empty = false;
-			        $('form > input').each(function() {
-			            if ($(this).val() == '') {
-			                empty = true;
-			            }
-			        });
+		  		$('#submit').click(function(){
+		  			this.hidden = true;
+		  			$('.row').css("filter","blur(5px)");
+		  			$('#animation').removeAttr("hidden");
+		  			$('container').setAttr("disabled", "disabled");
+		  		});
 
-			        if (empty) {
-			            $('#submit').attr('disabled', 'disabled');
-			        } else {
-			            $('#submit').removeAttr('disabled');
-			        }
+			  	$('form > input').keyup(function() {
+			       allowSubmit();
 			    });
+
+			  	// need this delay because you need to make sure that the hidden input values
+			  	// are updated before you check them. otherwise, the allowSubmit() function will
+			  	// run before the new value is added
+			    $('.addBtn').mousedown(function() {
+			    	var delay = 100; // 1/10 a second
+			    	setTimeout(function(){
+			    		allowSubmit();
+			    	}, delay);
+			    });
+
+			    $('#dropdown_menu').click(function() {
+			    	var delay = 100; // 1/10 a second
+			    	setTimeout(function(){
+			    		allowSubmit();
+			    	}, delay);
+			    });
+
+			    $("#material").on("keydown", function(event) {
+			    	// based on ASCII values, allows space, backspace, and delete
+			    	var arr = [8,9,16,17,20,32,35,36,37,38,39,40,45,46]; 
+					// Allow letters
+					for(var i = 65; i <= 90; i++){
+						arr.push(i);
+					}
+					// Prevent default if not in array
+					if(jQuery.inArray(event.which, arr) === -1){
+						event.preventDefault();
+					}
+			    });
+
+			    // prevents user from copying and pasting in invalid values
+			    $("#material").on("input", function(){
+			    	// allow spaces by adding a " " after the Z
+					var allowedChars = /[^a-zA-Z]/g;
+					if($(this).val().match(allowedChars)){
+						$(this).val( $(this).val().replace(allowedChars,'') );
+					}
+				});
+
 
 		  		$('.dropdown-item').click(function() {
 		  			var input = $(this).closest('.input-group').find('input.element_size');
@@ -173,7 +247,7 @@
 				countA = 0;
 				$('#pressureT').on('click', '.addBtn', function() {
 					if ($.trim($('#pface').val()) === "" || $.trim($('#pvalue').val()) === "") {	return false; }
-					$('#pressureT tbody').append('<tr><td><input type="hidden" name="pface'+ countP +'"value=' +$('#pface').val()+'><input type="hidden" name="pvalue'+ countP +'"value=' +$('#pvalue').val()+'><h5> Face:'+$('#pface').val()+', Pressure:'+$('#pvalue').val()+'</h5></td><td><button type="button" class="btn delBtn"> X </button></td></tr>');
+					$('#pressureT tbody').append('<tr><td><input type="hidden" name="pface'+ countP +'"value=' +$('#pface').val()+'><input type="hidden" name="pvalue'+ countP +'"value=' +$('#pvalue').val()+'><h5> Face:'+$('#pface').val()+', Pressure:'+$('#pvalue').val()+'</h5></td><td><button type="button" class="btn delBtn" onclick="attachListener()"> X </button></td></tr>');
 
 					$('#pressureTotal').val(countP++);
 
@@ -185,7 +259,7 @@
 
 				$('#anchorT').on('click', '.addBtn', function() {
 					if ($.trim($('#aface').val()) === "") { return false; }
-					$('#anchorT tbody').append('<tr><td><input type="hidden" name="aface'+ countA +'"value=' +$('#aface').val()+'><h5> Face:'+$('#aface').val()+'</h5></input></td><td><button type="button" class="btn delBtn"> X </button></td></tr>');
+					$('#anchorT tbody').append('<tr><td><input type="hidden" name="aface'+ countA +'"value=' +$('#aface').val()+'><h5> Face:'+$('#aface').val()+'</h5></input></td><td><button type="button" class="btn delBtn" onclick="attachListener()"> X </button></td></tr>');
 
 					$('#anchorTotal').val(countA++);
 
@@ -223,6 +297,7 @@
 
 
     <body> 
+		<div id="animation" hidden></div>
 		<div class="container">
 			<div class="row">
 				<div class="col-md-9">
@@ -269,12 +344,12 @@
 						</scene> 
 					</x3d>   
 				</div>
-				<div class="col-md-3" id="stuff">
+				<div class="col-md-3" id="properties">
 					<h1>Properties</h1>
 						<form id="selection_data" method="post" action="calls_converter.php">
 
 						<h5>Job Id:</h5>
-						<input type="text" value="<?php echo $_GET["job_id"];?>" name="id"><br>
+						<input type="text" value="<?php echo $_GET["job_id"];?>" name="id" readonly><br>
 					
 						<input type="text" placeholder="Density" id="density" name="density"><br>
 				
@@ -287,9 +362,13 @@
 						<c class="input-group">
 					      	<c class="input-group-btn">
 						        <button type="button" class="btn btn-secondary dropdown-toggle test" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-top: 8.5; padding-bottom: 8.5; margin-bottom: 7px; padding-bottom: 9px; padding-top: 9px;">
-									<span class="caret"></span>
+									Select <span class="caret"></span>
 						        </button>
+<<<<<<< HEAD
 						        <c class="dropdown-menu">
+=======
+						        <b class="dropdown-menu" id="dropdown_menu">
+>>>>>>> 2d9b92a50be6014a6862265cb433c14ff16ab960
 							        <ul>
 							          	<a class="dropdown-item" href="#">0.2</a>
 	          							<div role="separator" class="dropdown-divider"></div>
@@ -309,13 +388,20 @@
 	          							<div role="separator" class="dropdown-divider"></div>
 								        <a class="dropdown-item" href="#">1.0</a>
 							        </ul>
+<<<<<<< HEAD
 						        </c>
 						    </c>
 						    <input type="text" class="element_size" placeholder="Clscale" id="element_size" name="element_size">
 						</c>
+=======
+						        </b>
+						    </b>
+						    <input type="text" class="element_size" placeholder="Granularity" id="element_size" name="element_size" readonly>
+						</b>
+>>>>>>> 2d9b92a50be6014a6862265cb433c14ff16ab960
 						
 				
-						<input type="text" placeholder="Material" name="material"><br>
+						<input type="text" placeholder="Material" id="material" name="material"><br>
 						
 						<font color = "white"><h3>Anchor</h3></font>
 						<h5>Face Number:</h5>
@@ -324,7 +410,7 @@
 								<tr>
 									<th><input type="text" placeholder="Anchor Face" id="aface" name="aface"><br></th>
 									<th><button type="button" class="btn addBtn">add</button></th>
-									<th><input type="hidden" id="anchorTotal" name="anchorTotal" value="0"></input></th>
+									<th><input type="hidden" id="anchorTotal" name="anchorTotal" value="-1"></input></th>
 									<th><input type="hidden" id="removedAnchor" name="removedAnchor"></input></th>
 								</tr>
 							</thead>
@@ -341,7 +427,7 @@
 										<input type="text" placeholder="Pressure value" id="pvalue" name="pvalue"><br>
 									</th>
 									<th><button type="button" class="btn addBtn">add</button></th>
-									<th><input type="hidden" id ="pressureTotal" name="pressureTotal" value="0"></input></th>
+									<th><input type="hidden" id ="pressureTotal" name="pressureTotal" value="-1"></input></th>
 									<th><input type="hidden" id="removedPressure" name="removedPressure"></input></th>
 								</tr>
 							</thead>
@@ -349,7 +435,7 @@
 						</table>
 
 						<input id="submit" type="submit" value="Submit" disabled>
-					</form>
+						</form>
 
 
 				</div>

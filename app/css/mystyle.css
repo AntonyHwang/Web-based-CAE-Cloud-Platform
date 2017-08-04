@@ -116,20 +116,24 @@
 html {
 	width: 100%;
 	height: 100%;
-	overflow: auto;
+	overflow-x: hidden;
 }
 
 body {
 	height: 100%;
 	padding-top: 65px;
 	font-family: 'Open Sans', sans-serif;
-	background: #092756;
+	/*background: #092756;
 	background: -moz-radial-gradient(0% 100%, ellipse cover, rgba(104, 128, 138, .4) 10%, rgba(138, 114, 76, 0) 40%), -moz-linear-gradient(top, rgba(57, 173, 219, .25) 0%, rgba(42, 60, 87, .4) 100%), -moz-linear-gradient(-45deg, #670d10 0%, #092756 100%);
 	background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104, 128, 138, .4) 10%, rgba(138, 114, 76, 0) 40%), -webkit-linear-gradient(top, rgba(57, 173, 219, .25) 0%, rgba(42, 60, 87, .4) 100%), -webkit-linear-gradient(-45deg, #670d10 0%, #092756 100%);
 	background: -o-radial-gradient(0% 100%, ellipse cover, rgba(104, 128, 138, .4) 10%, rgba(138, 114, 76, 0) 40%), -o-linear-gradient(top, rgba(57, 173, 219, .25) 0%, rgba(42, 60, 87, .4) 100%), -o-linear-gradient(-45deg, #670d10 0%, #092756 100%);
 	background: -ms-radial-gradient(0% 100%, ellipse cover, rgba(104, 128, 138, .4) 10%, rgba(138, 114, 76, 0) 40%), -ms-linear-gradient(top, rgba(57, 173, 219, .25) 0%, rgba(42, 60, 87, .4) 100%), -ms-linear-gradient(-45deg, #670d10 0%, #092756 100%);
 	background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104, 128, 138, .4) 10%, rgba(138, 114, 76, 0) 40%), linear-gradient(to bottom, rgba(57, 173, 219, .25) 0%, rgba(42, 60, 87, .4) 100%), linear-gradient(135deg, #670d10 0%, #092756 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756', GradientType=1);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756', GradientType=1);*/
+	background-image: url("tims_mesh.png");
+	background-repeat: repeat;
+	/*background-image: url("supergood.jpg");
+	background-repeat: repeat;*/
 }
 
 .login {
@@ -190,6 +194,8 @@ input {
 	-o-transition: box-shadow .5s ease;
 	-ms-transition: box-shadow .5s ease;
 	transition: box-shadow .5s ease;
+	/*background-image: url("bestbackground.png");
+	background-repeat: repeat;*/
 }
 
 input:focus {
@@ -199,6 +205,8 @@ input:focus {
 .navbar-default {
 	background-color: #F8F8F8;
 	border-color: #E7E7E7;
+	/*background-image: url("交大.jpg");
+	background-repeat: repeat;*/
 }
 
 x3d {
@@ -206,17 +214,28 @@ x3d {
 	background: rgba(128, 128, 128, 0.4);
 }
 
-#stuff {
-	height: 100%;
-	overflow-y: auto;
+
+#animation {
+	z-index: 1;
+	position: absolute;
+    top: 30%;
+	width: 500%;
+    height: 207px;
+    background:url(bestbackground2.png);
+	left:0px;
+	margin: 7em -244px;
+	animation: slide 100s infinite linear;
+}
+
+@keyframes slide {
+	from {background-position: 0 0;}  
+	to {background-position: -100% 0;} 
 }
 
 #instructions {
-	border: 1px solid #000;
 	margin: 0px;
 	padding: 0px;
 	width: auto;
-	background: rgba(128, 128, 128, 0.6);
 }
 
 #x3d_element {
@@ -237,7 +256,10 @@ x3d {
 	#x3d_element {
 		width: 840px;
 	}
-	h1 {
-		text-align: left;
+	#properties {
+		display: inline-block;
+		position: relative;
+		height: 90vh;
+		overflow-y: auto;
 	}
 }

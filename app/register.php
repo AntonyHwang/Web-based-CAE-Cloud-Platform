@@ -18,8 +18,14 @@
                 <input type="text" name="email" id="email" placeholder="Email" required="required" />
                 <input type="password" name="password" id="password" placeholder="Password" required="required" />
                 <input type="password" name="confirmation" id="confirmation" placeholder="Confirm Password" required="required" />
-                <button type="submit" class="btn btn-primary btn-block btn-large">Register</button>
-                <button type="reset" class="btn btn-primary btn-block btn-large">Clear</button>
+                <div class="row">
+                    <div class="col-xs-7" style="padding-right: 5px;">
+                    <button type="submit" class="btn btn-block btn-large">Register</button>
+                    </div>
+                    <div class="col-xs-5" style="padding-left: 5px;">
+                    <button type="reset" class="btn btn-block btn-large">Clear</button>
+                    </div>
+                </div>
             </form>
             <br>
         </div>

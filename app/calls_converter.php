@@ -106,7 +106,7 @@
 			$sql_update = "UPDATE job SET finished = '1' WHERE job_id = '".$id."'";
 	    	$result = $dbh->query($sql_update);
 
-	    	$call_python = $py_path." py/frdToMsh.py 2>&1".$id;
+	    	$call_python = $py_path." py/make_result_mesh.py 2>&1".$id;
             $result = shell_exec($call_python);
 
 		?>
