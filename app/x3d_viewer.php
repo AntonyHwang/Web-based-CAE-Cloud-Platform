@@ -364,11 +364,7 @@
 						        <button type="button" class="btn btn-secondary dropdown-toggle test" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-top: 8.5; padding-bottom: 8.5; margin-bottom: 7px; padding-bottom: 9px; padding-top: 9px;">
 									Select <span class="caret"></span>
 						        </button>
-<<<<<<< HEAD
 						        <c class="dropdown-menu">
-=======
-						        <b class="dropdown-menu" id="dropdown_menu">
->>>>>>> 2d9b92a50be6014a6862265cb433c14ff16ab960
 							        <ul>
 							          	<a class="dropdown-item" href="#">0.2</a>
 	          							<div role="separator" class="dropdown-divider"></div>
@@ -388,17 +384,10 @@
 	          							<div role="separator" class="dropdown-divider"></div>
 								        <a class="dropdown-item" href="#">1.0</a>
 							        </ul>
-<<<<<<< HEAD
 						        </c>
 						    </c>
 						    <input type="text" class="element_size" placeholder="Clscale" id="element_size" name="element_size">
 						</c>
-=======
-						        </b>
-						    </b>
-						    <input type="text" class="element_size" placeholder="Granularity" id="element_size" name="element_size" readonly>
-						</b>
->>>>>>> 2d9b92a50be6014a6862265cb433c14ff16ab960
 						
 				
 						<input type="text" placeholder="Material" id="material" name="material"><br>
