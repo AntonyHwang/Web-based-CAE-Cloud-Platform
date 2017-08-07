@@ -7,12 +7,6 @@
     }
 ?>
 
-<html>
-	<head>
-	</head>
-	
-</html>
-
 <?php
 	$id = $_POST['job_id'];
 	$sql_delete = "DELETE FROM job WHERE job_id = $id";

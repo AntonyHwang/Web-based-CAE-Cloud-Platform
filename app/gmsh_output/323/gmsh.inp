@@ -1,0 +1,8 @@
+*Heading
+ gmsh.inp
+*NODE
+******* E L E M E N T S *************
+*ELSET,ELSET=part
+
+*NSET,NSET=part
+

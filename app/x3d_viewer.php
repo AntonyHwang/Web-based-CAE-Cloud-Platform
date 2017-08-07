@@ -138,7 +138,8 @@
 		  	{
 		  		document.getElementById('x3d_element').runtime.nextView();
 		  	
-}
+			}
+			
 		  	function center(event)
 		  	{
 		  		document.getElementById('x3d_element').runtime.fitAll();
@@ -180,7 +181,7 @@
 		            $('#check').attr('disabled', 'disabled');
 		        } else {
 		            $('#submit').removeAttr('disabled');
-		            $('#check').attr('disabled', 'disabled');
+		            $('#check').removeAttr('disabled', 'disabled');
 		        }
 		  	}
 
@@ -199,34 +200,34 @@
 			    $('#max_z').append(max.z);
 		  	}
 
+		  	function displayMesh() {
+		  		var meshButton = "<form target='_blank' action='view_mesh.php' method='post'><input id='id' name='id' type='hidden' value='<?php echo $_GET['job_id'];?>'><button style='width=auto; height=auto;' type='submit'>View Mesh</button></form>";
+		  		$('#x3d_elements').append(meshButton);
+		  	}
+
 		  	function checkModel() {
+		  		$('#check').attr("hidden", "hidden");
+		  		$('#animation').removeAttr("hidden", "hidden");
 		  		$.ajax({
                     type: 'POST',
                     url:'mesh_check.php',
+                    dataType: 'json',
                     data: {
                     	job_id: $('#id').val(), 
-	                    youngs_mod: $('#youngs_mod').val(), 
-	                    poissons: $('#poissons').val(), 
-	                    element_size: $('#element_size').val(), 
-	                    material: $('#material').val(),
-	                    anchorTotal: $('#anchorTotal').val(),
-	                    removedAnchor: $('removedAnchor').val(),
-	                    pressureTotal: $('#totalAnchor').val(),
-	                    removedPressure: $('removedPressure').val()
+	                    element_size: $('#element_size').val()
 	                },
                     success: function (data){
-                    	alert(data);
-                        //window.location.reload();
-                        //$("#" + id).remove();
-                        
+                    	$('#animation').attr("hidden", "hidden");
+                    	if (data.conversion === "success") {
+                    		$('#submit').removeAttr("hidden");
+                    		alert("Succesfully meshed your model.");
+                    		displayMesh();
+
+                    	} else {
+                    		alert("Sorry, this file cannot be meshed due to unconnected nodes. Please upload another file.")
+                    	}
                     }
                 });
-
-		  		
-		  		$('#check').attr("hidden", "hidden");
-
-		  		$('#submit').removeAttr("hidden");
-
 		  	}
 
 		  	
@@ -362,7 +363,7 @@
 		<div id="animation" hidden></div>
 		<div class="container">
 			<div class="row">
-				<div class="col-md-9">
+				<div class="col-md-9" id="x3d_elements">
 					<h1>3D Display of Uploaded File (<?php echo $_GET["step_file"];?>)</h1>
 					<!-- <h5 id=jobid>Job ID: <?php echo $_GET["job_id"];?> </h5> -->
 					<x3d id='x3d_element' align='center' > 
@@ -384,6 +385,7 @@
 						<viewpoint id = "angle7" position='-200 0 200' orientation="0 -1 0 0.7" description = "Cam Angle 6"></viewpoint>
 
 						<inline id="x3d_object" onload="center(); getDimensions();" nameSpaceName="Object" mapDEFToID="true" url="x3d_output/<?php echo $_GET["job_id"];?>.x3d" onmouseover="mouse_highlight(event)" onmouseout="mouse_unhighlight(event)" onclick="displayCoordinates(event)"></inline> 
+						<!-- <inline id="x3d_object" onload="center(); getDimensions();" nameSpaceName="Object" mapDEFToID="true" url="gmsh_output/305/temp.x3d" onmouseover="mouse_highlight(event)" onmouseout="mouse_unhighlight(event)" onclick="displayCoordinates(event)"></inline> -->
 						
 						<Transform id="marker" scale="0 0 0" translation="0 0 0">
 							<Shape>
@@ -412,7 +414,7 @@
 						<form id="selection_data" method="post" action="calls_converter.php">
 
 						<h5>Job Id:</h5>
-						<input type="text" value="<?php echo $_GET["job_id"];?>" name="id" readonly><br>
+						<input type="text" value="<?php echo $_GET["job_id"];?>" name="id" id="id" readonly><br>
 					
 						<input type="text" placeholder="Density" id="density" name="density"><br>
 				
@@ -497,9 +499,9 @@
 							</thead>
 							<tbody></tbody>
 						</table>
-						<!-- <input id="check" type="button" value="Check Model" onclick="checkModel();"> -->
-						<!-- <input id="submit" type="submit" value="Submit" disabled hidden> -->
-						<input id="submit" type="submit" value="Submit" disabled>
+						<input id="check" type="button" value="Check Model" onclick="checkModel();" disabled>
+						<input id="submit" type="submit" value="Submit" disabled hidden>
+						<!-- <input id="submit" type="submit" value="Submit" disabled> -->
 						</form>
 
 
