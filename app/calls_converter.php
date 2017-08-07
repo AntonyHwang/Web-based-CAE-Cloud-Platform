@@ -66,7 +66,7 @@
 		// $call_python = $py_path." py/read_gmsh.py ".$pressureX." ".$pressureY." ".$pressureZ." ".$id;
 		// $p_face = exec($call_python);
 
-	    $sql_update = "UPDATE job SET density = '$density', element_size = '$element_size', youngs_mod = '$youngs_mod', poissons_ratio = '$poissons', material_name = '$material' WHERE job_id = '".$id."'";
+	    $sql_update = "UPDATE job SET density = '$density', element_size = '$element_size', youngs_mod = '$youngs_mod', poissons_ratio = '$poissons', material_name = '$material', hidden='0' WHERE job_id = '".$id."'";
 	    $result = $dbh->query($sql_update);
 
 	    $sql_select = "SELECT * FROM faces WHERE job_id = '".$id."'";

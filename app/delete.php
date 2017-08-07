@@ -15,10 +15,6 @@
 
 <?php
 	$id = $_POST['job_id'];
-	$sql_delete = "DELETE FROM job WHERE job_id = $id";
-	$result = $dbh->query($sql_delete);
-	$sql_delete = "DELETE FROM faces WHERE job_id = $id";
-	$result = $dbh->query($sql_delete);
-
-	exec("scripts\delete_job.bat $id")
+	$sql_hide = "UPDATE job SET hidden='1' WHERE job.job_id = $id";
+	$result = $dbh->query($sql_hide);
 ?>

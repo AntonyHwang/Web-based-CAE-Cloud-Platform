@@ -1,13 +1,21 @@
-<?php 
-    require "includes/config.php"; 
-    include_once "includes/header.php";
-    if ($_SESSION["logged_in"] != "YES") {
-        header("Location: login.php");
-    }
-?>
 <html>
     <head>
+        <?php 
+            require "includes/config.php"; 
+            include_once "includes/header.php";
+            if ($_SESSION["logged_in"] != "YES") {
+                header("Location: login.php");
+            }
+        ?>
+        <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/table.css">
+
         <script type="text/javascript">
+
+            $(document).ready(function(){
+                $('#jobs_id').DataTable();
+            });
+
             function deleteJob(name, id) {
 
                 if (confirm("Are you sure you want to delete this job?")) {
@@ -25,9 +33,10 @@
             }
         </script>
 
+
     </head>
     <body>
-        <table class="table">                     
+        <table id="jobs_id" class="table hover">                     
             <thead>
                 <tr style="color:white;">
                     <th>#</th>
@@ -46,7 +55,7 @@
             <tbody>
 
         <?php 
-            $select_jobs_sql = "SELECT * FROM job WHERE id_user = ".$_SESSION["id"];
+            $select_jobs_sql = "SELECT * FROM job WHERE id_user = ".$_SESSION["id"]." AND hidden=0";
             $get_jobs = $dbh->query($select_jobs_sql); 
             $count = 0;
             // output data of each row
@@ -55,7 +64,7 @@
                 echo '<tr style="color:white;" id="'.$count.'">
                         <td>'.$count.'</td>
                         <td> 
-                            <a href="/results.php?job_id='.$row["job_id"].'"><font color="white">' . $row["job_id"] .' </font></a>
+                            <a href="/results.php?job_id='.$row["job_id"].'"><font color="white">' . $row["job_id"] .'</font></a>
                         </td>
                         <td>
                             <a href="stp_uploads/'.$row["job_id"].'.step" download><font color="white">'. $row["stp_filename"] .'</font></a>
@@ -74,6 +83,7 @@
                             </button>
                         </td>
                     </tr>';
+                
             } 
         ?>
             </tbody>
