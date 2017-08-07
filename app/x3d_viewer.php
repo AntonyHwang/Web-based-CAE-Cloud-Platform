@@ -144,45 +144,45 @@
 		  		document.getElementById('x3d_element').runtime.fitAll();
 		  	}
 
-		  	function attachListener() {
-		    	var delay = 100; // 1/10 a second
-		    	setTimeout(function(){
-		    		allowSubmit();
-		    	}, delay);
-		  	}
+		  	// function attachListener() {
+		    // 	var delay = 100; // 1/10 a second
+		    // 	setTimeout(function(){
+		    // 		allowSubmit();
+		    // 	}, delay);
+		  	// }
 
-		  	function allowSubmit() 
-		  	{
-		  		var empty = false;
-		  		var empty2 = false;
-		  		var empty3 = false;
-		  		var empty4 = false;
-		        $('form > input').each(function() {
-		            if ($(this).val() == '') {
-		                empty = true;
-		            }
-		        });
+		  	// function allowSubmit() 
+		  	// {
+		  	// 	var empty = false;
+		  	// 	var empty2 = false;
+		  	// 	var empty3 = false;
+		  	// 	var empty4 = false;
+		    //     $('form > input').each(function() {
+		    //         if ($(this).val() == '') {
+		    //             empty = true;
+		    //         }
+		    //     });
 
-		        if ($('#pressureTotal').val() < $('#removedPressure').val().split(",").length - 1) {
-		        	empty2 = true;
-		        }
+		    //     if ($('#pressureTotal').val() < $('#removedPressure').val().split(",").length - 1) {
+		    //     	empty2 = true;
+		    //     }
 
-		        if ($('#anchorTotal').val() < $('#removedAnchor').val().split(",").length - 1) {
-		        	empty3 = true;
-		        }
+		    //     if ($('#anchorTotal').val() < $('#removedAnchor').val().split(",").length - 1) {
+		    //     	empty3 = true;
+		    //     }
 
-		        if ($('#element_size').val() == '') {
-		        	empty4= true;
-		        }
+		    //     if ($('#element_size').val() == '') {
+		    //     	empty4= true;
+		    //     }
 
-		        if (empty || empty2 || empty3 || empty4) {
-		            $('#submit').attr('disabled', 'disabled');
-		            $('#check').attr('disabled', 'disabled');
-		        } else {
-		            $('#submit').removeAttr('disabled');
-		            $('#check').attr('disabled', 'disabled');
-		        }
-		  	}
+		    //     if (empty || empty2 || empty3 || empty4) {
+		    //         $('#submit').attr('disabled', 'disabled');
+		    //         $('#check').attr('disabled', 'disabled');
+		    //     } else {
+		    //         $('#submit').removeAttr('disabled');
+		    //         $('#check').attr('disabled', 'disabled');
+		    //     }
+		  	// }
 
 		  	function getDimensions() {
 		  		var boxDOMNode = document.getElementById("x3d_object");        
@@ -239,12 +239,12 @@
 		  		// var size = mybboxsize.length();
 		  		// console.log(size);
 
-		  		$('#submit').click(function(){
-		  			this.hidden = true;
-		  			$('.row').css("filter","blur(5px)");
-		  			$('#animation').removeAttr("hidden");
-		  			$('container').setAttr("disabled", "disabled");
-		  		});
+		  		// $('#submit').click(function(){
+		  		// 	this.hidden = true;
+		  		// 	$('.row').css("filter","blur(5px)");
+		  		// 	$('#animation').removeAttr("hidden");
+		  		// 	$('container').setAttr("disabled", "disabled");
+		  		// });
 
 		  		$('#bbox').on({
 		  			"shown.bs.dropdown": function() { this.closable = false; },
@@ -256,26 +256,26 @@
 		  		// 	$('#bbox').toggleClass("open");
 		  		// });
 
-			  	$('form > input').keyup(function() {
-			       allowSubmit();
-			    });
+			  	// $('form > input').keyup(function() {
+			    //    allowSubmit();
+			    // });
 
 			  	// need this delay because you need to make sure that the hidden input values
 			  	// are updated before you check them. otherwise, the allowSubmit() function will
 			  	// run before the new value is added
-			    $('.addBtn').mousedown(function() {
-			    	var delay = 100; // 1/10 a second
-			    	setTimeout(function(){
-			    		allowSubmit();
-			    	}, delay);
-			    });
+			    // $('.addBtn').mousedown(function() {
+			    // 	var delay = 100; // 1/10 a second
+			    // 	setTimeout(function(){
+			    // 		allowSubmit();
+			    // 	}, delay);
+			    // });
 
-			    $('#dropdown_menu').click(function() {
-			    	var delay = 100; // 1/10 a second
-			    	setTimeout(function(){
-			    		allowSubmit();
-			    	}, delay);
-			    });
+			    // $('#dropdown_menu').click(function() {
+			    // 	var delay = 100; // 1/10 a second
+			    // 	setTimeout(function(){
+			    // 		allowSubmit();
+			    // 	}, delay);
+			    // });
 
 			    $("#material").on("keydown", function(event) {
 			    	// based on ASCII values, allows space, backspace, and delete
@@ -309,7 +309,7 @@
 				countA = 0;
 				$('#pressureT').on('click', '.addBtn', function() {
 					if ($.trim($('#pface').val()) === "" || $.trim($('#pvalue').val()) === "") {	return false; }
-					$('#pressureT tbody').append('<tr><td><input type="hidden" name="pface'+ countP +'"value=' +$('#pface').val()+'><input type="hidden" name="pvalue'+ countP +'"value=' +$('#pvalue').val()+'><h5> Face:'+$('#pface').val()+', Pressure:'+$('#pvalue').val()+'</h5></td><td><button type="button" class="btn delBtn" onclick="attachListener()"> X </button></td></tr>');
+					$('#pressureT tbody').append('<tr><td><input type="hidden" name="pface'+ countP +'"value=' +$('#pface').val()+'><input type="hidden" name="pvalue'+ countP +'"value=' +$('#pvalue').val()+'><h5> Face:'+$('#pface').val()+', Pressure:'+$('#pvalue').val()+'</h5></td><td><input type="button" value="X" class="delBtn" onclick="attachListener()"></td></tr>');
 
 					$('#pressureTotal').val(countP++);
 
@@ -321,7 +321,7 @@
 
 				$('#anchorT').on('click', '.addBtn', function() {
 					if ($.trim($('#aface').val()) === "") { return false; }
-					$('#anchorT tbody').append('<tr><td><input type="hidden" name="aface'+ countA +'"value=' +$('#aface').val()+'><h5> Face:'+$('#aface').val()+'</h5></input></td><td><button type="button" class="btn delBtn" onclick="attachListener()"> X </button></td></tr>');
+					$('#anchorT tbody').append('<tr><td><input type="hidden" name="aface'+ countA +'"value=' +$('#aface').val()+'><h5> Face:'+$('#aface').val()+'</h5></input></td><td><input type="button" value="X" class="delBtn" onclick="attachListener()"></td></tr>');
 
 					$('#anchorTotal').val(countA++);
 
@@ -375,6 +375,7 @@
 						</div>
 
 						<scene>
+
 						<viewpoint id = "angle1" position='45 0 200' orientation="0 0 1 0" description = "Cam Angle 1"></viewpoint>
 						<viewpoint id = "angle3" position='300 0 0' orientation="0 1 0 1.57079632679" description = "Cam Angle 3"></viewpoint>
 						<viewpoint id = "angle2" position='45 0 -200' orientation="0 1 0 3.1415" description = "Cam Angle 2"></viewpoint>
@@ -414,20 +415,34 @@
 						<h5>Job Id:</h5>
 						<input type="text" value="<?php echo $_GET["job_id"];?>" name="id" readonly><br>
 					
-						<input type="text" placeholder="Density" id="density" name="density"><br>
+						<input type="text" placeholder="Density" id="density" name="density" require><br>
 				
-						<input type="text" placeholder="Young's Modulus" id="youngs_mod" name="youngs_mod"><br>
+						<input type="text" placeholder="Young's Modulus" id="youngs_mod" name="youngs_mod" required><br>
 					
-						<input type="text" placeholder="Poisson's Ratio" id="poissons" name="poissons"><br>
+						<input type="text" placeholder="Poisson's Ratio" id="poissons" name="poissons" required><br>
 					
 						<!-- <input type="text" placeholder="Element Size" name="element_size"><br> -->
 
-						<c class="input-group" id="dropdown_menu">
-					      	<c class="input-group-btn">
+
+						<select name="element_size" class="form-control" id="sel1" required>
+							<option value="" selected disabled hidden>Granularity</option>
+							<option value="1.0">1.0</option>
+							<option value="0.9">0.9</option>
+							<option value="0.8">0.8</option>
+							<option value="0.7">0.7</option>
+							<option value="0.6">0.6</option>
+							<option value="0.5">0.5</option>
+							<option value="0.4">0.4</option>
+							<option value="0.3">0.3</option>
+							<option value="0.2">0.2</option>
+						</select>
+
+						<!-- <span class="input-group" id="dropdown_menu">
+					      	<span class="input-group-btn">
 						        <button type="button" class="btn btn-secondary dropdown-toggle test" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-top: 8.5; padding-bottom: 8.5; margin-bottom: 7px; padding-bottom: 9px; padding-top: 9px;">
 									Select <span class="caret"></span>
 						        </button>
-						        <c class="dropdown-menu">
+						        <span class="dropdown-menu">
 							        <ul>
 							          	<a class="dropdown-item" href="#">0.2</a>
 	          							<div role="separator" class="dropdown-divider"></div>
@@ -448,12 +463,12 @@
 								        <a class="dropdown-item" href="#">1.0</a>
 							        </ul>
 
-						        </c>
-						    </c>
-						    <input type="text" class="element_size" placeholder="Granularity" id="element_size" name="element_size" readonly>
-						</c>
+						        </span>
+						    </span>
+						    <input type="text" class="element_size" placeholder="Granularity" id="element_size" name="element_size" readonly required>
+						</span> -->
 				
-						<input type="text" placeholder="Material" id="material" name="material"><br>
+						<input type="text" placeholder="Material" id="material" name="material" required><br>
 
 						<div id="bbox" class="dropdown">
 							<input type="text" class="dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="Bounding Box" readonly></input>
@@ -472,10 +487,12 @@
 						<table class="table" id="anchorT">
 							<thead>
 								<tr>
-									<th><input type="text" placeholder="Anchor Face" id="aface" name="aface"><br></th>
-									<th><button type="button" class="btn addBtn">add</button></th>
-									<th><input type="hidden" id="anchorTotal" name="anchorTotal" value="-1"></input></th>
-									<th><input type="hidden" id="removedAnchor" name="removedAnchor"></input></th>
+									<th style="width:83%">
+										<input type="text" placeholder="Anchor Face" id="aface" name="aface">
+										<input type="hidden" id="anchorTotal" name="anchorTotal" value="-1">
+										<input type="hidden" id="removedAnchor" name="removedAnchor"><br>
+									</th>
+									<th style="width: 17%"><input type="button" value="+" class="addBtn"></th>
 								</tr>
 							</thead>
 							<tbody></tbody>
@@ -486,20 +503,20 @@
 						<table class="table" id="pressureT">
 							<thead>
 								<tr>
-									<th>
+									<th style="width:83%">
 										<input type="text" placeholder="Pressure Face" id="pface" name="pface">
-										<input type="text" placeholder="Pressure value" id="pvalue" name="pvalue"><br>
+										<input type="text" placeholder="Pressure value" id="pvalue" name="pvalue">
+										<input type="hidden" id ="pressureTotal" name="pressureTotal" value="-1">
+										<input type="hidden" id="removedPressure" name="removedPressure"><br>
 									</th>
-									<th><button type="button" class="btn addBtn">add</button></th>
-									<th><input type="hidden" id ="pressureTotal" name="pressureTotal" value="-1"></input></th>
-									<th><input type="hidden" id="removedPressure" name="removedPressure"></input></th>
+									<th style="width:17%"><input type="button" value="+" class="addBtn"></th>
 								</tr>
 							</thead>
 							<tbody></tbody>
 						</table>
 						<!-- <input id="check" type="button" value="Check Model" onclick="checkModel();"> -->
 						<!-- <input id="submit" type="submit" value="Submit" disabled hidden> -->
-						<input id="submit" type="submit" value="Submit" disabled>
+						<input id="submit" type="submit" value="Submit">
 						</form>
 
 

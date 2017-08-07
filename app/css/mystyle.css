@@ -130,9 +130,9 @@ body {
 	background: -ms-radial-gradient(0% 100%, ellipse cover, rgba(104, 128, 138, .4) 10%, rgba(138, 114, 76, 0) 40%), -ms-linear-gradient(top, rgba(57, 173, 219, .25) 0%, rgba(42, 60, 87, .4) 100%), -ms-linear-gradient(-45deg, #670d10 0%, #092756 100%);
 	background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104, 128, 138, .4) 10%, rgba(138, 114, 76, 0) 40%), linear-gradient(to bottom, rgba(57, 173, 219, .25) 0%, rgba(42, 60, 87, .4) 100%), linear-gradient(135deg, #670d10 0%, #092756 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756', GradientType=1);*/
-	background-image: url("tims_mesh.png");
+	background-image: url("backgrounds/tims_mesh.png");
 	background-repeat: repeat;
-	/*background-image: url("supergood.jpg");
+	/*background-image: url("backgrounds/supergood.jpg");
 	background-repeat: repeat;*/
 }
 
@@ -160,7 +160,7 @@ body {
 }
 
 .picture_display {
-	height:500px;
+	height: 500px;
 }
 
 h1 {
@@ -176,7 +176,8 @@ h5 {
 	letter-spacing: 1px;
 }
 
-input {
+input,
+#sel1 {
 	width: 100%;
 	margin-bottom: 10px;
 	background: rgba(0, 0, 0, 0.3);
@@ -194,18 +195,36 @@ input {
 	-o-transition: box-shadow .5s ease;
 	-ms-transition: box-shadow .5s ease;
 	transition: box-shadow .5s ease;
-	/*background-image: url("bestbackground.png");
+	/*background-image: url("backgrounds/bestbackground.png");
 	background-repeat: repeat;*/
 }
 
-input:focus {
+#sel1 {
+	height: 40px;
+}
+
+#sel1:hover,
+input:hover {
+	box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.3), 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+input:focus,
+#sel1:focus {
 	box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.4), 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+#sel1:invalid {
+	color: gray;
+}
+
+option {
+	background-color: #282b32;
 }
 
 .navbar-default {
 	background-color: #F8F8F8;
 	border-color: #E7E7E7;
-	/*background-image: url("交大.jpg");
+	/*background-image: url("backgrounds/交大.jpg");
 	background-repeat: repeat;*/
 }
 
@@ -214,22 +233,25 @@ x3d {
 	background: rgba(128, 128, 128, 0.4);
 }
 
-
 #animation {
 	z-index: 1;
 	position: absolute;
-    top: 30%;
+	top: 30%;
 	width: 500%;
-    height: 207px;
-    background:url(bestbackground2.png);
-	left:0px;
+	height: 207px;
+	background: url(bestbackground2.png);
+	left: 0px;
 	margin: 7em -244px;
 	animation: slide 100s infinite linear;
 }
 
 @keyframes slide {
-	from {background-position: 0 0;}  
-	to {background-position: -100% 0;} 
+	from {
+		background-position: 0 0;
+	}
+	to {
+		background-position: -100% 0;
+	}
 }
 
 #instructions {
@@ -239,14 +261,23 @@ x3d {
 }
 
 #x3d_element {
+	z-index: 1;
 	height: 500px;
 	width: 100%;
+	overflow: hidden;
 }
+
+/* #x3dom-x3d_element-canvas {
+	height: 410px;
+} */
 
 @media (min-width: 400px) {
 	#instructions {
 		position: absolute;
 	}
+	/* #x3dom-x3d_element-canvas {
+		height: 100%;
+	} */
 }
 
 @media (min-width: 1200px) {
@@ -270,4 +301,8 @@ x3d {
 
 #bbox.open {
 	margin-bottom: 160px;
+}
+
+label {
+	color: white;
 }
