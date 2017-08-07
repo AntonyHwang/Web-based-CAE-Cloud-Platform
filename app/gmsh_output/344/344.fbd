@@ -1,0 +1,7 @@
+## PRE-PROCESSING  
+sys gmsh 344.geo
+read gmsh.inp
+# remove surface elements
+zap +CPS6
+send all abq
+quit

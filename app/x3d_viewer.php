@@ -145,46 +145,6 @@
 		  		document.getElementById('x3d_element').runtime.fitAll();
 		  	}
 
-		  	// function attachListener() {
-		    // 	var delay = 100; // 1/10 a second
-		    // 	setTimeout(function(){
-		    // 		allowSubmit();
-		    // 	}, delay);
-		  	// }
-
-		  	// function allowSubmit() 
-		  	// {
-		  	// 	var empty = false;
-		  	// 	var empty2 = false;
-		  	// 	var empty3 = false;
-		  	// 	var empty4 = false;
-		    //     $('form > input').each(function() {
-		    //         if ($(this).val() == '') {
-		    //             empty = true;
-		    //         }
-		    //     });
-
-		    //     if ($('#pressureTotal').val() < $('#removedPressure').val().split(",").length - 1) {
-		    //     	empty2 = true;
-		    //     }
-
-		    //     if ($('#anchorTotal').val() < $('#removedAnchor').val().split(",").length - 1) {
-		    //     	empty3 = true;
-		    //     }
-
-		    //     if ($('#element_size').val() == '') {
-		    //     	empty4= true;
-		    //     }
-
-		    //     if (empty || empty2 || empty3 || empty4) {
-		    //         $('#submit').attr('disabled', 'disabled');
-		    //         $('#check').attr('disabled', 'disabled');
-		    //     } else {
-		    //         $('#submit').removeAttr('disabled');
-		    //         $('#check').attr('disabled', 'disabled');
-		    //     }
-		  	// }
-
 		  	function getDimensions() {
 		  		var boxDOMNode = document.getElementById("x3d_object");        
 			    var boxVol = boxDOMNode._x3domNode.getVolume();
@@ -206,46 +166,41 @@
 		  	}
 
 		  	function checkModel() {
-		  		$('#check').attr("hidden", "hidden");
-		  		$('#animation').removeAttr("hidden", "hidden");
-		  		$.ajax({
-                    type: 'POST',
-                    url:'mesh_check.php',
-                    dataType: 'json',
-                    data: {
-                    	job_id: $('#id').val(), 
-	                    element_size: $('#element_size').val()
-	                },
-                    success: function (data){
-                    	$('#animation').attr("hidden", "hidden");
-                    	if (data.conversion === "success") {
-                    		$('#submit').removeAttr("hidden");
-                    		alert("Succesfully meshed your model.");
-                    		displayMesh();
+		  		if ($('#sel1').val() === "") {
+		  			alert("Granularity must be filled to submit!")
+		  			return false;
+		  		} else {
 
-                    	} else {
-                    		alert("Sorry, this file cannot be meshed due to unconnected nodes. Please upload another file.")
-                    	}
-                    }
-                });
+			  		$('#check').attr("hidden", "hidden");
+			  		$('#animation').removeAttr("hidden", "hidden");
+			  		
+
+			  		$.ajax({
+	                    type: 'POST',
+	                    url:'mesh_check.php',
+	                    dataType: 'json',
+	                    data: {
+	                    	job_id: $('#id').val(), 
+		                    element_size: $('#element_size').val()
+		                },
+	                    success: function (data){
+	                    	$('#animation').attr("hidden", "hidden");
+	                    	if (data.conversion === "success") {
+	                    		$('#submit').removeAttr("hidden");
+	                    		alert("Succesfully meshed your model.");
+	                    		displayMesh();
+
+	                    	} else {
+	                    		alert("Sorry, this file cannot be meshed due to unconnected nodes. Please upload another file.")
+	                    	}
+	                    }
+	                });
+			  	}
 		  	}
 
 		  	
 
 		  	$(document).ready(function(){
-
-		  		
-		  		//console.log($('x3d_object').length);
-		  		// var mybboxsize = $('x3d_object')
-		  		// var size = mybboxsize.length();
-		  		// console.log(size);
-
-		  		// $('#submit').click(function(){
-		  		// 	this.hidden = true;
-		  		// 	$('.row').css("filter","blur(5px)");
-		  		// 	$('#animation').removeAttr("hidden");
-		  		// 	$('container').setAttr("disabled", "disabled");
-		  		// });
 
 		  		$('#bbox').on({
 		  			"shown.bs.dropdown": function() { this.closable = false; },
@@ -253,30 +208,7 @@
 				    "hide.bs.dropdown":  function() { return this.closable; }
 		  		});
 
-		  		// $('#bbox').click(function() {
-		  		// 	$('#bbox').toggleClass("open");
-		  		// });
 
-			  	// $('form > input').keyup(function() {
-			    //    allowSubmit();
-			    // });
-
-			  	// need this delay because you need to make sure that the hidden input values
-			  	// are updated before you check them. otherwise, the allowSubmit() function will
-			  	// run before the new value is added
-			    // $('.addBtn').mousedown(function() {
-			    // 	var delay = 100; // 1/10 a second
-			    // 	setTimeout(function(){
-			    // 		allowSubmit();
-			    // 	}, delay);
-			    // });
-
-			    // $('#dropdown_menu').click(function() {
-			    // 	var delay = 100; // 1/10 a second
-			    // 	setTimeout(function(){
-			    // 		allowSubmit();
-			    // 	}, delay);
-			    // });
 
 			    $("#material").on("keydown", function(event) {
 			    	// based on ASCII values, allows space, backspace, and delete
@@ -417,7 +349,7 @@
 						<h5>Job Id:</h5>
 						<input type="text" value="<?php echo $_GET["job_id"];?>" name="id" id="id" readonly><br>
 					
-						<input type="text" placeholder="Density" id="density" name="density" require><br>
+						<input type="text" placeholder="Density" id="density" name="density" required><br>
 				
 						<input type="text" placeholder="Young's Modulus" id="youngs_mod" name="youngs_mod" required><br>
 					
@@ -427,7 +359,7 @@
 
 
 						<select name="element_size" class="form-control" id="sel1" required>
-							<option value="" selected disabled hidden>Granularity</option>
+							<option value="" selected hidden>Granularity</option>
 							<option value="1.0">1.0</option>
 							<option value="0.9">0.9</option>
 							<option value="0.8">0.8</option>
@@ -438,37 +370,6 @@
 							<option value="0.3">0.3</option>
 							<option value="0.2">0.2</option>
 						</select>
-
-						<!-- <span class="input-group" id="dropdown_menu">
-					      	<span class="input-group-btn">
-						        <button type="button" class="btn btn-secondary dropdown-toggle test" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-top: 8.5; padding-bottom: 8.5; margin-bottom: 7px; padding-bottom: 9px; padding-top: 9px;">
-									Select <span class="caret"></span>
-						        </button>
-						        <span class="dropdown-menu">
-							        <ul>
-							          	<a class="dropdown-item" href="#">0.2</a>
-	          							<div role="separator" class="dropdown-divider"></div>
-								        <a class="dropdown-item" href="#">0.3</a>
-	          							<div role="separator" class="dropdown-divider"></div>
-								        <a class="dropdown-item" href="#">0.4</a>
-	          							<div role="separator" class="dropdown-divider"></div>
-								        <a class="dropdown-item" href="#">0.5</a>
-	          							<div role="separator" class="dropdown-divider"></div>
-								        <a class="dropdown-item" href="#">0.6</a>
-	          							<div role="separator" class="dropdown-divider"></div>
-								        <a class="dropdown-item" href="#">0.7</a>
-	          							<div role="separator" class="dropdown-divider"></div>
-								       	<a class="dropdown-item" href="#">0.8</a>
-	          							<div role="separator" class="dropdown-divider"></div>
-								        <a class="dropdown-item" href="#">0.9</a>
-	          							<div role="separator" class="dropdown-divider"></div>
-								        <a class="dropdown-item" href="#">1.0</a>
-							        </ul>
-
-						        </span>
-						    </span>
-						    <input type="text" class="element_size" placeholder="Granularity" id="element_size" name="element_size" readonly required>
-						</span> -->
 				
 						<input type="text" placeholder="Material" id="material" name="material" required><br>
 
@@ -516,8 +417,10 @@
 							</thead>
 							<tbody></tbody>
 						</table>
-						<input id="check" type="button" value="Check Model" onclick="checkModel();" disabled>
-						<input id="submit" type="submit" value="Submit" disabled hidden>
+
+						<input id="check" title="Granularity field must be filled to submit." type="button" value="Check Model" onclick="checkModel();">
+						<input id="submit" type="submit" value="Submit" hidden>
+
 						<!-- <input id="submit" type="submit" value="Submit" disabled> -->
 						</form>
 
