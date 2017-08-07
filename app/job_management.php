@@ -8,12 +8,20 @@
             }
         ?>
         <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/rowreorder/1.2.0/js/dataTables.rowReorder.min.js"></script>
+        <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/rowreorder/1.2.0/css/rowReorder.dataTables.min.css">
         <link rel="stylesheet" type="text/css" href="css/table.css">
 
         <script type="text/javascript">
 
             $(document).ready(function(){
-                $('#jobs_id').DataTable();
+                var table=$('#jobs_id').DataTable( {
+                    rowReorder: {
+                        selector: 'td:nth-child(2)'
+                    },
+                    responsive: true
+                });
             });
 
             function deleteJob(name, id) {
