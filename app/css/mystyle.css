@@ -245,6 +245,18 @@ x3d {
 	animation: slide 100s infinite linear;
 }
 
+#animation2 {
+	z-index: 1;
+	position: relative;
+    bottom: 40%;
+	width: 500%;
+    height: 50px;
+    background:url(bestbackground2.png);
+	left:0px;
+	margin: 7em -244px;
+	animation: slide 100s infinite linear;
+}
+
 @keyframes slide {
 	from {
 		background-position: 0 0;

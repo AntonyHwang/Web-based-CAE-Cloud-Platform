@@ -7,12 +7,6 @@
     }
 ?>
 
-<html>
-	<head>
-	</head>
-	
-</html>
-
 <?php
 	$id = $_POST['job_id'];
 	$sql_hide = "UPDATE job SET hidden='1' WHERE job.job_id = $id";
