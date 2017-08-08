@@ -239,7 +239,7 @@ x3d {
 	top: 30%;
 	width: 500%;
 	height: 207px;
-	background: url(bestbackground2.png);
+	background: url(backgrounds/bestbackground2.png);
 	left: 0px;
 	margin: 7em -244px;
 	animation: slide 100s infinite linear;
@@ -251,7 +251,7 @@ x3d {
     bottom: 40%;
 	width: 500%;
     height: 50px;
-    background:url(bestbackground2.png);
+    background:url(backgrounds/bestbackground2.png);
 	left:0px;
 	margin: 7em -244px;
 	animation: slide 100s infinite linear;

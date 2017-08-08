@@ -172,19 +172,19 @@
 		  		} else {
 
 			  		$('#check').attr("hidden", "hidden");
-			  		$('#animation').removeAttr("hidden", "hidden");
+			  		$('#animation').removeAttr("hidden");
 			  		
-
 			  		$.ajax({
 	                    type: 'POST',
 	                    url:'mesh_check.php',
 	                    dataType: 'json',
 	                    data: {
 	                    	job_id: $('#id').val(), 
-		                    element_size: $('#element_size').val()
+		                    element_size: $('#sel1').val()
 		                },
 	                    success: function (data){
 	                    	$('#animation').attr("hidden", "hidden");
+
 	                    	if (data.conversion === "success") {
 	                    		$('#submit').removeAttr("hidden");
 	                    		alert("Succesfully meshed your model.");
@@ -196,6 +196,19 @@
 	                    }
 	                });
 			  	}
+		  	}
+
+		  	function validateForm() {
+		  		if (parseInt($('#anchorTotal').val()) < $('#removedAnchor').val().split(",").length -1 && parseInt($('#pressureTotal').val()) < $('#removedPressure').val().split(",").length -1){
+		  			alert("Please select an anchor and a pressure face.");
+		  		} else if (parseInt($('#anchorTotal').val()) < $('#removedAnchor').val().split(",").length -1) {
+		  			alert("Please select an anchor face.");
+		  		} else if (parseInt($('#pressureTotal').val()) < $('#removedPressure').val().split(",").length -1) {
+		  			alert("Please select a pressure face.");
+		  		} else {
+		  			return true;
+		  		}
+		  		return false;
 		  	}
 
 		  	
@@ -344,7 +357,7 @@
 
 				<div class="col-md-3" id="properties">
 					<h1>Properties</h1>
-						<form id="selection_data" method="post" action="calls_converter.php">
+						<form id="selection_data" onsubmit="return validateForm();" method="post" action="calls_converter.php" >
 
 						<h5>Job Id:</h5>
 						<input type="text" value="<?php echo $_GET["job_id"];?>" name="id" id="id" readonly><br>
