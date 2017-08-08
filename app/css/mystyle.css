@@ -235,25 +235,13 @@ x3d {
 }
 
 #animation {
-	z-index: 1;
+	z-index: 3;
 	position: absolute;
 	top: 30%;
 	width: 500%;
 	height: 207px;
 	background: url(backgrounds/bestbackground2.png);
 	left: 0px;
-	margin: 7em -244px;
-	animation: slide 100s infinite linear;
-}
-
-#animation2 {
-	z-index: 1;
-	position: relative;
-    bottom: 40%;
-	width: 500%;
-    height: 50px;
-    background:url(backgrounds/bestbackground2.png);
-	left:0px;
 	margin: 7em -244px;
 	animation: slide 100s infinite linear;
 }

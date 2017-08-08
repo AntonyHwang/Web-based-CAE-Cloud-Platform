@@ -161,7 +161,7 @@
 		  	}
 
 		  	function displayMesh() {
-		  		var meshButton = "<form target='_blank' action='view_mesh.php' method='post'><input id='id' name='id' type='hidden' value='<?php echo $_GET['job_id'];?>'><button style='width=auto; height=auto;' type='submit'>View Mesh</button></form>";
+		  		var meshButton = "<form target='_blank' action='view_mesh.php' method='post'><input id='id' name='id' type='hidden' value='<?php echo $_GET['job_id'];?>'><button style='width=auto; height=auto;color:black;' type='submit'>View Mesh</button></form>";
 		  		$('#x3d_elements').append(meshButton);
 		  	}
 
@@ -206,6 +206,8 @@
 		  		} else if (parseInt($('#pressureTotal').val()) < $('#removedPressure').val().split(",").length -1) {
 		  			alert("Please select a pressure face.");
 		  		} else {
+		  			$('.row').css("filter","blur(5px)");
+		  			$('#animation').removeAttr("hidden");
 		  			return true;
 		  		}
 		  		return false;
