@@ -301,9 +301,13 @@ x3d {
 }
 
 #bbox.open {
-	margin-bottom: 160px;
+	margin-bottom: 100px;
 }
 
 label {
 	color: white;
+}
+
+.dropdown:hover #material_props {
+	display: block;
 }

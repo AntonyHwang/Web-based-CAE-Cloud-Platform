@@ -33,7 +33,7 @@
 				<scene>
 					<viewpoint id = "angle1" position='45 0 200' orientation="0 0 1 0" description = "Cam Angle 1"></viewpoint>
 
-					<inline id="x3d_object" url="gmsh_output/<?php echo $_POST['id'];?>/mesh.x3d" onload="center();"></inline> 
+					<inline id="x3d_object" url="gmsh_output/<?php echo $_POST['job_id'];?>/mesh.x3d" onload="center();"></inline> 
 
 				</scene> 
 			</x3d>   

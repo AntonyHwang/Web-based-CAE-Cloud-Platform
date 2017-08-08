@@ -146,18 +146,21 @@
 		  	}
 
 		  	function getDimensions() {
-		  		var boxDOMNode = document.getElementById("x3d_object");        
-			    var boxVol = boxDOMNode._x3domNode.getVolume();
+		  		var x3dnode = document.getElementById("x3d_object");        
+			    var totalVol = x3dnode._x3domNode.getVolume();
 			    var min = new x3dom.fields.SFVec3f();
 			    var max = new x3dom.fields.SFVec3f();
-			    boxVol.getBounds(min, max);
-			    var extent = max.subtract(min);
-			    $('#min_x').append(min.x);
-			    $('#max_x').append(max.x);
-			    $('#min_y').append(min.y);
-			    $('#max_y').append(max.y);
-			    $('#min_z').append(min.z);
-			    $('#max_z').append(max.z);
+			    totalVol.getBounds(min, max);
+			    var vol = max.subtract(min);
+			    $('#x_size').append(Math.round(vol.x * 100)/100);
+			    $('#y_size').append(Math.round(vol.y*100)/100);
+			    $('#z_size').append(Math.round(vol.z*100)/100);
+
+			    var minValue = Math.min.apply(Math, [vol.x, vol.y, vol.z]);
+			    var maxElementSize = minValue / 5;
+			    var minElementSize = maxElementSize / 4;
+			    $('#maxElementSize').attr('value', Math.round(maxElementSize * 100) /100);
+			    $('#minElementSize').attr('value', Math.round(minElementSize* 100) / 100);
 		  	}
 
 		  	function displayMesh() {
@@ -180,14 +183,16 @@
 	                    dataType: 'json',
 	                    data: {
 	                    	job_id: $('#id').val(), 
-		                    element_size: $('#sel1').val()
+		                    element_size: $('#sel1').val(),
+		                    max_element_size: $('#maxElementSize').val(),
+		                    min_element_size: $('#minElementSize').val()
 		                },
 	                    success: function (data){
 	                    	$('#animation').attr("hidden", "hidden");
 
 	                    	if (data.conversion === "success") {
 	                    		$('#submit').removeAttr("hidden");
-	                    		alert("Succesfully meshed your model.");
+	                    		//alert("Succesfully meshed your model.");
 	                    		displayMesh();
 
 	                    	} else {
@@ -371,36 +376,19 @@
 						<input type="text" placeholder="Poisson's Ratio" id="poissons" name="poissons" required><br>
 					
 						<!-- <input type="text" placeholder="Element Size" name="element_size"><br> -->
-
-
-						<select name="element_size" class="form-control" id="sel1" required>
-							<option value="" selected hidden>Granularity</option>
-							<option value="1.0">1.0</option>
-							<option value="0.9">0.9</option>
-							<option value="0.8">0.8</option>
-							<option value="0.7">0.7</option>
-							<option value="0.6">0.6</option>
-							<option value="0.5">0.5</option>
-							<option value="0.4">0.4</option>
-							<option value="0.3">0.3</option>
-							<option value="0.2">0.2</option>
-						</select>
 				
-						<input type="text" placeholder="Material" id="material" name="material" required><br>
+						<input type="text" placeholder="Material Name" id="material" name="material" required><br>
 
 						<div id="bbox" class="dropdown">
-							<input type="text" class="dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="Bounding Box" readonly></input>
-							<div id="temp" style="text-align:center" class="dropdown-menu" aria-labelledby="dropdownMenu2">
-								<b id="min_x" class="dropdown-item bbox">x_min: </b><br>
-								<b id="max_x" class="dropdown-item bbox">x-max: </b><br>
-								<b id="min_y" class="dropdown-item bbox">y_min: </b><br>
-								<b id="max_y" class="dropdown-item bbox">y_max: </b><br>
-								<b id="min_z" class="dropdown-item bbox">z_min: </b><br>
-								<b id="max_z" class="dropdown-item bbox">z_max: </b><br>
+							<input type="text" class="dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="Size of Object" readonly></input>
+							<div id="temp" style="text-align:left; color:black; padding-left: 5px;" class="dropdown-menu" aria-labelledby="dropdownMenu2">
+								<b id="x_size" class="dropdown-item bbox">x: </b><br>
+								<b id="y_size" class="dropdown-item bbox">y: </b><br>
+								<b id="z_size" class="dropdown-item bbox">z: </b><br>
 							</div>
 						</div>
 						
-						<font color = "white"><h3>Anchor</h3></font>
+						<h3>Anchor</h3>
 						<h5>Face Number:</h5>
 						<table class="table" id="anchorT">
 							<thead>
@@ -416,7 +404,7 @@
 							<tbody></tbody>
 						</table>
 
-						<font color = "white"><h3>Pressure</h3></font>
+						<h3>Pressure</h3>
 						<h5>Face Number:</h5>
 						<table class="table" id="pressureT">
 							<thead>
@@ -432,6 +420,25 @@
 							</thead>
 							<tbody></tbody>
 						</table>
+						<h3>Mesh Properties</h3>
+						<h7>Mesh Scaling Factor:</h7>
+						<select name="element_size" class="form-control" id="sel1" required>
+							<option value="" hidden>Mesh Scaling Factor</option>
+							<option value="1.0" selected>1.0</option>
+							<option value="0.9">0.9</option>
+							<option value="0.8">0.8</option>
+							<option value="0.7">0.7</option>
+							<option value="0.6">0.6</option>
+							<option value="0.5">0.5</option>
+							<option value="0.4">0.4</option>
+							<option value="0.3">0.3</option>
+							<option value="0.2">0.2</option>
+						</select>
+						<h7>Maximum Element Size:</h7>
+						<input type="text" placeholder="Max Element Size" name="maxElementSize" id="maxElementSize"><br>
+						<h7>Minimum Element Size:</h7>
+						<input type="text" placeholder="Min Element Size" name="minElementSize" id="minElementSize"><br>
+						
 
 						<input id="check" title="Granularity field must be filled to submit." type="button" value="Check Model" onclick="checkModel();">
 						<input id="submit" type="submit" value="Submit" hidden>

@@ -17,9 +17,6 @@
 
             $(document).ready(function(){
                 var table=$('#jobs_id').DataTable( {
-                    rowReorder: {
-                        selector: 'td:nth-child(2)'
-                    },
                     responsive: true
                 });
             });
@@ -44,17 +41,15 @@
 
     </head>
     <body>
-        <table id="jobs_id" class="table hover">                     
+        <table id="jobs_id" class="table ">                     
             <thead>
                 <tr style="color:white;">
                     <th>#</th>
                     <th>Job ID</th>
                     <th>File</th>
                     <th>Material</th>
-                    <th>Element size</th>
-                    <th>Youngs mod</th>
-                    <th>Poisson ratio</th>
-                    <th>Density</th>
+                    <th>Mesh Scaling Factor</th>
+                    <th>Max Element Size</th>
                     <th>Status</th>
                     <th>Date</th>
                     <th>Del</th>
@@ -69,20 +64,41 @@
             // output data of each row
             while($row = $get_jobs->fetch()) {
                 $count++;
+                $picture;
+                $text;
+                if ($row["finished"] == 0) {
+                    $picture = "css/buttons/red.png";
+                    $text = "   運算中";
+                } else {
+                    $picture = "css/buttons/green.png";
+                    $text = "   已完成";
+                }
                 echo '<tr style="color:white;" id="'.$count.'">
                         <td>'.$count.'</td>
                         <td> 
-                            <a href="/results.php?job_id='.$row["job_id"].'"><font color="white">' . $row["job_id"] .'</font></a>
+                            <a href="results.php?job_id='.$row["job_id"].'"><font color="white">' . $row["job_id"] .'</font></a>
                         </td>
                         <td>
-                            <a href="stp_uploads/'.$row["job_id"].'.step" download><font color="white">'. $row["stp_filename"] .'</font></a>
+                                <a href="view_x3d.php?job_id='.$row["job_id"].'"><font color="white">'. $row["stp_filename"] .'</font></a>
                         </td>
-                        <td> '.$row["material_name"] .'</td>
+                        <td> 
+                            <div id="bbox" class="dropdown">
+                                <span>'.$row["material_name"].'</span>
+                                <div id="material_props" style="text-align:left; color:black; padding-left: 5px;" class="dropdown-menu properties" aria-labelledby="dropdownMenu2">
+                                    <b class="dropdown-item">Poissons: '.$row["poissons_ratio"].'</b><br>
+                                    <b class="dropdown-item">Density: '.$row["density"].'</b><br>
+                                    <b class="dropdown-item">Youngs Mod: '.$row["youngs_mod"].'</b><br>
+                                </div>
+                            </div>
+
+
+                            
+                        </td>
                         <td> '.$row["element_size"] .'</td>
-                        <td> '.$row["youngs_mod"] .'</td>
-                        <td> '.$row["poissons_ratio"] .'</td>
-                        <td> '.$row["density"] .'</td>
-                        <td> '.$row["finished"] .'</td>
+                        <td> '.$row["max_element_size"] .'</td>
+                        <td> 
+                            <h5><img src="'.$picture.'" style="width:10px; height:10px;">'.$text.'</h5>
+                        </td>
                         <td> '.$row["date"] .'</td>
                         <td>
                             <button class="btn btn-default" type="reset" id="'.$count.'" name="'.$row["job_id"].'" onclick="deleteJob(this.name, this.id);" style="vertical-align:left; float: center">

@@ -31,3 +31,6 @@ set path = "C:\Program Files (x86)\bConverged\CalculiX\bin";%PATH%
 
 ::run analysisW
 cgx.bat -b %job_id%.fbd
+
+::"C:\Program Files\PHP\v7.1\php.exe" C:\Users\MD580\Desktop\Web-based-CAE-Cloud-Platform\app\set_finished.php %job_id%
+

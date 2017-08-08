@@ -29,6 +29,9 @@
 	    $totalPressure = $_POST["pressureTotal"];
 	    $removedPressure = $_POST["removedPressure"];
 
+	    $max_element_size = $_POST["maxElementSize"];
+	    $min_element_size = $_POST["minElementSize"];
+
 	    if (count($removedAnchor) != 0) {
 	    	$removedAnchor = substr($removedAnchor, 0, -1);
 	    }
@@ -66,7 +69,7 @@
 		// $call_python = $py_path." py/read_gmsh.py ".$pressureX." ".$pressureY." ".$pressureZ." ".$id;
 		// $p_face = exec($call_python);
 
-	    $sql_update = "UPDATE job SET density = '$density', element_size = '$element_size', youngs_mod = '$youngs_mod', poissons_ratio = '$poissons', material_name = '$material', hidden='0' WHERE job_id = '".$id."'";
+	    $sql_update = "UPDATE job SET density = '$density', element_size = '$element_size', youngs_mod = '$youngs_mod', poissons_ratio = '$poissons', material_name = '$material', hidden='0', max_element_size='$max_element_size' WHERE job_id = '".$id."'";
 	    $result = $dbh->query($sql_update);
 
 	    $sql_select = "SELECT * FROM faces WHERE job_id = '".$id."'";
@@ -94,23 +97,28 @@
 	     	set_time_limit(60);
 
 		    //echo $id." ".$allAnchors." ".$allPressures." ".$youngs_mod." ".$poissons." ".$material;
-		    $val = "C:\Users\MD580\Desktop\Web-based-CAE-Cloud-Platform\app\scripts\create.bat $id "."\"$allAnchors\" " ."\"$allPressures\" "."$youngs_mod $poissons $material $element_size";
-		    $output = exec($val);
+		    $val = "C:\Users\MD580\Desktop\Web-based-CAE-Cloud-Platform\app\scripts\create.bat $id "."\"$allAnchors\" " ."\"$allPressures\" "."$youngs_mod $poissons $material $element_size >nul 2&1";
+		    // $output = exec($val);
+		    $output = popen('start /B '.$val, 'r');
 	     	//$output = exec("C:\Users\MD580\Desktop\Web-based-CAE-Cloud-Platform\app\scripts\create.bat $id $allAnchors $allPressures $youngs_mod $poissons $material");
 	     	// $output = exec("C:\Users\MD580\Desktop\Web-based-CAE-Cloud-Platform\app\scripts\create.bat 160 12 5 120000 0.3 Steel");
 	     	// exec("C:\Users\MD580\Desktop\Web-based-CAE-Cloud-Platform\app\jobs\clean.bat $id");
 
 	     	echo $output;
-	     	header("Location: results.php?job_id=".$id);
+	     	// header("Location: results.php?job_id=".$id);
+	     	header("Location: job_management.php");
 
-			$sql_update = "UPDATE job SET finished = '1' WHERE job_id = '".$id."'";
-	    	$result = $dbh->query($sql_update);
+
+			
 
 	    	$call_python = $py_path." py/make_result_mesh.py 2>&1".$id;
             $result = shell_exec($call_python);
 
             $call_batch = "echo. | C:\Users\MD580\Desktop\Web-based-CAE-Cloud-Platform\app\scripts\create_x3d.bat $id";
             $result = exec($call_batch);
+
+            $sql_update = "UPDATE job SET finished = '1' WHERE job_id = '".$id."'";
+	    	$result = $dbh->query($sql_update);
 
 		?>
 	</body>

@@ -1,8 +1,9 @@
 @echo off
 
 set job_id=%1
-
 set cls=%2
+set clmax=%3
+set clmin=%4
 
 echo // Geometry.Tolerance=0.1; > "%job_id%.geo"
 echo //Geometry.OCCFixSmallEdges=1; >> "%job_id%.geo"
@@ -17,6 +18,8 @@ echo Mesh.SurfaceFaces = 1; >> "%job_id%.geo"
 echo Mesh.VolumeEdges = 0; >> "%job_id%.geo"
 echo //Mesh.VolumeFaces = 0; >> "%job_id%.geo"
 echo Mesh.CharacteristicLengthFactor = %cls%; >> "%job_id%.geo"
+echo Mesh.CharacteristicLengthMin = %clmin%; >> "%job_id%.geo"
+echo Mesh.CharacteristicLengthMax = %clmax%; >> "%job_id%.geo"
 echo Mesh 3; >> "%job_id%.geo"
 echo Physical Volume("part") = {1}; >> "%job_id%.geo"
 echo Mesh.SaveGroupsOfNodes = 1; >> "%job_id%.geo"
