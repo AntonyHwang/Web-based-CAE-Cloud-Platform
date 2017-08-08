@@ -369,10 +369,21 @@ select{
 	transition: box-shadow .5s ease;
 }
 
- input {
-    width: auto;
-	height: 20px ;
-    margin-bottom: auto;
-    padding: 5px;
+input {
+  width: auto;
+  height: 20px ;
+  margin-bottom: auto;
+  padding: 5px;
 
+}
+
+table.dataTable>tbody>tr.child span {
+  color: white !important;
+  display: inline-block;
+  min-width: 75px;
+  font-weight: bold
+}
+
+body {
+  color: white !important;
 }
