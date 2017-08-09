@@ -66,17 +66,20 @@
                 $count++;
                 $picture;
                 $text;
+                $pointer_event;
                 if ($row["finished"] == 0) {
                     $picture = "css/buttons/red.png";
-                    $text = "   運算中";
+                    $text = "   Still Computing";
+                    $pointer_event = "none";
                 } else {
                     $picture = "css/buttons/green.png";
-                    $text = "   已完成";
+                    $text = "   Finished";
+                    $pointer_event = "auto";
                 }
                 echo '<tr style="color:white;" id="'.$count.'">
                         <td>'.$count.'</td>
                         <td> 
-                            <a href="results.php?job_id='.$row["job_id"].'"><font color="white">' . $row["job_id"] .'</font></a>
+                            <a href="results.php?job_id='.$row["job_id"].'" style="pointer-events:'.$pointer_event.'"><font color="white">' . $row["job_id"] .'</font></a>
                         </td>
                         <td>
                                 <a href="view_x3d.php?job_id='.$row["job_id"].'"><font color="white">'. $row["stp_filename"] .'</font></a>

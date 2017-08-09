@@ -176,6 +176,7 @@
 
 			  		$('#check').attr("hidden", "hidden");
 			  		$('#animation').removeAttr("hidden");
+			  		$('.row').css("filter","blur(5px)");
 			  		
 			  		$.ajax({
 	                    type: 'POST',
@@ -189,12 +190,12 @@
 		                },
 	                    success: function (data){
 	                    	$('#animation').attr("hidden", "hidden");
+	                    	$('.row').css("filter","blur(0px)");
 
 	                    	if (data.conversion === "success") {
 	                    		$('#submit').removeAttr("hidden");
-	                    		//alert("Succesfully meshed your model.");
+	                    		alert("Succesfully meshed your model.");
 	                    		displayMesh();
-
 	                    	} else {
 	                    		alert("Sorry, this file cannot be meshed due to unconnected nodes. Please upload another file.")
 	                    	}

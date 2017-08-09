@@ -16,7 +16,7 @@
 	<body>
 		<h1>Watch Funny Videos Here!</h1>
 		<div align="center">
-			<h3><font color="white">Charlie Videos</font>></h3>
+			<h3><font color="white">Charlie Videos</font></h3>
 			<table class="table">
 				<tr>
 					<td>

@@ -12,6 +12,7 @@ echo Merge "C:\Users\MD580\Desktop\Web-based-CAE-Cloud-Platform\app\stp_uploads\
 echo // Mesh control >> "%job_id%.geo"
 echo Mesh.ElementOrder=2; >> "%job_id%.geo"
 echo Mesh.Optimize=1; >> "%job_id%.geo"
+echo Mesh.Algorithm=1; >> "%job_id%.geo"
 echo // Display control >> "%job_id%.geo"
 echo //Mesh.SurfaceEdges = 1; >> "%job_id%.geo"
 echo Mesh.SurfaceFaces = 1; >> "%job_id%.geo"
