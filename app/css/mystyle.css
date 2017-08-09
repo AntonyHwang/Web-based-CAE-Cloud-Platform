@@ -261,7 +261,7 @@ x3d {
 	width: auto;
 }
 
-#x3d_element {
+.x3d_element {
 	z-index: 1;
 	height: 500px;
 	width: 100%;

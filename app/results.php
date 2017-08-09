@@ -36,7 +36,7 @@ if ($_SESSION["logged_in"] != "YES") {
 		<div align="middle">
 		<div>
 			<h3>Displacement</h3>
-		<x3d id='x3d_element' width='850px' height='500px' > 
+		<x3d class='x3d_element' width='850px' height='500px' > 
 			<scene>
 			<inline onload="center()" nameSpaceName="Object" mapDEFToID="true" url="final_x3d/<?php echo $_GET['job_id'];?>_disp.x3d" ></inline>
 			
@@ -46,7 +46,7 @@ if ($_SESSION["logged_in"] != "YES") {
 
 		<div>
 			<h3>Stress</h3>
-		<x3d id='x3d_element' width='850px' height='500px'> 
+		<x3d class='x3d_element' width='850px' height='500px'> 
 			<scene>
 			<inline onload="center()" nameSpaceName="Object" mapDEFToID="true" url="final_x3d/<?php echo $_GET['job_id'];?>_stress.x3d" ></inline>  
 			
