@@ -94,7 +94,7 @@
 
 	     	// sometimes the computation takes too long with smaller cs-scale sizes, so you have to make sure that
 	     	// you adjust the timeout limit for PHP
-	     	set_time_limit(60);
+	     	set_time_limit(0);
 
 		    //echo $id." ".$allAnchors." ".$allPressures." ".$youngs_mod." ".$poissons." ".$material;
 		    $val = "C:\Users\MD580\Desktop\Web-based-CAE-Cloud-Platform\app\scripts\create.bat $id "."\"$allAnchors\" " ."\"$allPressures\" "."$youngs_mod $poissons $material $element_size >nul 2&1";
@@ -114,8 +114,8 @@
 	    	// $call_python = $py_path." py/make_result_mesh.py 2>&1".$id;
       //       $result = shell_exec($call_python);
 
-             $call_batch = "echo. | C:\Users\MD580\Desktop\Web-based-CAE-Cloud-Platform\app\scripts\create_x3d.bat $id";
-             $result = exec($call_batch);
+             // $call_batch = "echo. | C:\Users\MD580\Desktop\Web-based-CAE-Cloud-Platform\app\scripts\create_x3d.bat $id";
+             // $result = exec($call_batch);
 
       //       $sql_update = "UPDATE job SET finished = '1' WHERE job_id = '".$id."'";
 	    	// $result = $dbh->query($sql_update);

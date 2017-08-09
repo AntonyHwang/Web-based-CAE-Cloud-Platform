@@ -24,7 +24,7 @@
 	<body>
 		<div id="display">
 			<h1>3D Display of Mesh</h1>
-			<x3d id='x3d_element' align='center' style="left:30%;">
+			<x3d id='x3d_element' class="x3d_element" align='center' style="left:30%;">
 				<div id="instructions">
 					<button type="button" onclick="center(event)" class="btn btn-secondary">Center</button>
 				</div>

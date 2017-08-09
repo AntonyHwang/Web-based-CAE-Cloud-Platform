@@ -36,7 +36,7 @@ if ($_SESSION["logged_in"] != "YES") {
 		<div class="row">
 			<div class="col-md-6" align="center">
 				<h3>Displacement</h3>
-				<x3d class='x3d_element'> 
+				<x3d id='x3d_element' class='x3d_element'> 
 					<scene>
 						<Shape>
 							<Appearance>
@@ -52,7 +52,7 @@ if ($_SESSION["logged_in"] != "YES") {
 
 			<div class="col-md-6" align="center">
 				<h3>Stress</h3>
-				<x3d class='x3d_element'> 
+				<x3d id='x3d_element' class='x3d_element'> 
 					<scene>
 						<Shape>
 							<Appearance>

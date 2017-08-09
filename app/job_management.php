@@ -17,8 +17,12 @@
 
             $(document).ready(function(){
                 var table=$('#jobs_id').DataTable( {
+                    "order": [[ 1, "desc" ]],
+                    "lengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]],
+                    stateSave: true,
                     responsive: true
                 });
+
             });
 
             function deleteJob(name, id) {

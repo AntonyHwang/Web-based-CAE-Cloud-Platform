@@ -26,7 +26,7 @@
 			
 			<h1>3D Display of Model and Mesh</h1><br>
 			<div style="padding-left: 5%; padding-right: 5%">	
-				<x3d id='x3d_element'>
+				<x3d id='x3d_element' class='x3d_element'>
 					<div id="instructions">
 						<button type="button" onclick="center(event)" class="btn btn-secondary">Center</button>
 						<a href="x3d_output/<?php echo $_GET['job_id'];?>.x3d" download><button type="button" onclick="center(event)" class="btn btn-secondary">Download</button></a>
@@ -42,7 +42,7 @@
 				</x3d>
 
 				
-				<x3d id='x3d_element'>
+				<x3d id='x3d_element' clas='x3d_element'>
 					<div id="instructions">
 						<button type="button" onclick="center(event)" class="btn btn-secondary">Center</button>
 						<a href="gmsh_output/<?php echo $_GET['job_id'];?>/mesh.x3d" download><button type="button" onclick="center(event)" class="btn btn-secondary">Download</button></a>

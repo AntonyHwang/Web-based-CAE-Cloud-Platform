@@ -170,7 +170,7 @@
 
 		  	function checkModel() {
 		  		if ($('#sel1').val() === "") {
-		  			alert("Granularity must be filled to submit!")
+		  			alert("Granularity must be filled to submit!");
 		  			return false;
 		  		} else {
 
@@ -319,7 +319,7 @@
 				<div class="col-md-9" id="x3d_elements">
 					<h1>3D Display of Uploaded File (<?php echo $_GET["step_file"];?>)</h1>
 					<!-- <h5 id=jobid>Job ID: <?php echo $_GET["job_id"];?> </h5> -->
-					<x3d id='x3d_element' align='center' > 
+					<x3d id='x3d_element' class="x3d_element" align='center' > 
 						<div id="instructions">
 							<button type="button" onclick="changeCameraAngle(event)" class="btn btn-secondary">Change Camera Angle</button>
 							<button type="button" onclick="center(event)" class="btn btn-secondary">Center</button>
@@ -340,7 +340,7 @@
 
 						<inline id="x3d_object" onload="center(); getDimensions();" nameSpaceName="Object" mapDEFToID="true" url="x3d_output/<?php echo $_GET["job_id"];?>.x3d" onmouseover="mouse_highlight(event)" onmouseout="mouse_unhighlight(event)" onclick="displayCoordinates(event)"></inline> 
 						<!-- <inline id="x3d_object" onload="center(); getDimensions();" nameSpaceName="Object" mapDEFToID="true" url="gmsh_output/305/temp.x3d" onmouseover="mouse_highlight(event)" onmouseout="mouse_unhighlight(event)" onclick="displayCoordinates(event)"></inline> -->
-						
+
 						<Transform id="marker" scale="0 0 0" translation="0 0 0">
 							<Shape>
 								<Appearance>
