@@ -268,6 +268,8 @@ x3d {
 	overflow: hidden;
 }
 
+
+
 /* #x3dom-x3d_element-canvas {
 	height: 410px;
 } */
@@ -285,8 +287,11 @@ x3d {
 	.container {
 		width: 1170px;
 	}
-	#x3d_element {
+	.x3d_element {
 		width: 840px;
+	}
+	h3 + .x3d_element {
+		width:100%
 	}
 	#properties {
 		display: inline-block;

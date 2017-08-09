@@ -33,26 +33,38 @@ if ($_SESSION["logged_in"] != "YES") {
 		    <img src="jobs/<?php echo $_GET['job_id'];?>/sets.png" alt="sets" style="width:auto; height:auto; max-width: 80%;"><br><br>
 		</div>
 
-		<div align="middle">
-		<div>
-			<h3>Displacement</h3>
-		<x3d class='x3d_element' width='850px' height='500px' > 
-			<scene>
-			<inline onload="center()" nameSpaceName="Object" mapDEFToID="true" url="final_x3d/<?php echo $_GET['job_id'];?>_disp.x3d" ></inline>
-			
-			</scene> 
-		</x3d>
-		</div>
+		<div class="row">
+			<div class="col-md-6" align="center">
+				<h3>Displacement</h3>
+				<x3d class='x3d_element'> 
+					<scene>
+						<Shape>
+							<Appearance>
+								<Material diffuseColor="#FF6666"></Material>
+							</Appearance>
+							<Box></Box>
+						</Shape>
+					<inline onload="center()" nameSpaceName="Object" mapDEFToID="true" url="final_x3d/<?php echo $_GET['job_id'];?>_disp.x3d" ></inline>
+					
+					</scene> 
+				</x3d>
+			</div>
 
-		<div>
-			<h3>Stress</h3>
-		<x3d class='x3d_element' width='850px' height='500px'> 
-			<scene>
-			<inline onload="center()" nameSpaceName="Object" mapDEFToID="true" url="final_x3d/<?php echo $_GET['job_id'];?>_stress.x3d" ></inline>  
-			
-			</scene> 
-		</x3d>
-		</div>
+			<div class="col-md-6" align="center">
+				<h3>Stress</h3>
+				<x3d class='x3d_element'> 
+					<scene>
+						<Shape>
+							<Appearance>
+								<Material diffuseColor="#FF6666"></Material>
+							</Appearance>
+							<Box></Box>
+						</Shape>
+					<inline onload="center()" nameSpaceName="Object" mapDEFToID="true" url="final_x3d/<?php echo $_GET['job_id'];?>_stress.x3d" ></inline>  
+					
+					</scene> 
+				</x3d>
+			</div>
 		</div>
 
 	</body>
