@@ -1,16 +1,3 @@
-<?php
-    ob_start();
-    if (!isset($_SESSION)) { session_start(); }
-    $host = '127.0.0.1';
-    $user = 'root';
-    $pass = 'root';
-    $db_name = 'test_db';
-
-    $dbh = new PDO('mysql:host='.$host.';dbname='.$db_name, $user, $pass);
-    $py_path = "C:/Users/MD580/Miniconda3/python.exe";
-    //$py_path = "C:/ProgramData/Miniconda2/python.exe";
-?>
-
 <html>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
