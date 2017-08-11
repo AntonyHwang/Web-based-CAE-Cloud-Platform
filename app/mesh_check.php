@@ -4,7 +4,7 @@
     // being passed back
     ob_start();
     if (!isset($_SESSION)) { session_start(); }
-    $py_path = "C:/Users/MD580/Miniconda3/python.exe";
+    $py_path = "C:/Miniconda3/python.exe";
 
     if ($_SESSION["logged_in"] != "YES") {
         header("Location: login.php");
@@ -18,7 +18,7 @@
     $min_element_size = $_POST["min_element_size"];
 
     set_time_limit(240);
-	$val = "C:\Users\MD580\Desktop\Web-based-CAE-Cloud-Platform\app\scripts\check_msh\checkmesh.bat $id $element_size $max_element_size $min_element_size";
+	$val = "scripts\check_msh\checkmesh.bat $id $element_size $max_element_size $min_element_size";
 	$output = exec($val);
 
 	$val1 = $py_path." py/allTomsh.py ".$id;

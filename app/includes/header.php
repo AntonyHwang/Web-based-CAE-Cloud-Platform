@@ -34,7 +34,6 @@
                     ?>
                         <li><a href="file_upload.php">New Job</a></li>
                         <li><a href="job_management.php">Job Management</a></li>
-                        <li><a href="preferences.php">Preferences</a></li>
                         <li><a href="login.php">Log out</a></li>
                     <?php
                         }

@@ -10,7 +10,8 @@
         <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/rowreorder/1.2.0/js/dataTables.rowReorder.min.js"></script>
         <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js"></script>
-        <link rel="stylesheet" href="https://cdn.datatables.net/rowreorder/1.2.0/css/rowReorder.dataTables.min.css">
+        <script src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>
+		<link rel="stylesheet" href="https://cdn.datatables.net/rowreorder/1.2.0/css/rowReorder.dataTables.min.css">
         <link rel="stylesheet" type="text/css" href="css/table.css">
 
         <script type="text/javascript">
@@ -20,9 +21,18 @@
                     "order": [[ 1, "desc" ]],
                     "lengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]],
                     stateSave: true,
-                    responsive: true
+                    responsive: true,
+					dom: '<"wrapper"Blfrtip>',
+					buttons: [
+						{
+							text: '<font color="black">Refresh</font>',
+							action: function ( e, dt, node, config ) {
+								location.reload();
+							},
+							className: "btn btn-secondary"
+						}
+					]
                 });
-
             });
 
             function deleteJob(name, id) {

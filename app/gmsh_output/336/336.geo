@@ -1,7 +1,7 @@
 // Geometry.Tolerance=0.1; 
 //Geometry.OCCFixSmallEdges=1; 
 //Geometry.OCCFixSmallFaces=1; 
-Merge "C:\Users\MD580\Desktop\Web-based-CAE-Cloud-Platform\app\stp_uploads\336.step"; 
+Merge "C:\www\ttt\stp_uploads\336.step"; 
 // Mesh control 
 Mesh.ElementOrder=2; 
 Mesh.Optimize=1; 
@@ -10,7 +10,7 @@ Mesh.Optimize=1;
 Mesh.SurfaceFaces = 1; 
 Mesh.VolumeEdges = 0; 
 //Mesh.VolumeFaces = 0; 
-Mesh.CharacteristicLengthFactor = ; 
+Mesh.CharacteristicLengthFactor = 1.0; 
 Mesh 3; 
 Physical Volume("part") = {1}; 
 Mesh.SaveGroupsOfNodes = 1; 
