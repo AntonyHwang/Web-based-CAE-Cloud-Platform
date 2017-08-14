@@ -1,0 +1,1 @@
+del *.msh *.png *.inp *.dlo *.fbd *.cvg *.dat *.frd *.sta *.out *.nam *.geo
