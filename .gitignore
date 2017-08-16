@@ -1,3 +1,9 @@
 .vscode
 *.pyc
-ignore
+*.x3d
+*.msh
+*.st*
+*.txt
+jobs
+gmsh_output
+.pos
