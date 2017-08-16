@@ -1,23 +1,9 @@
 @echo off
 
-::job_id is the first parameter
 set job_id=%1
-
-::support and load parameters
-set anchors=%2
-set pressures=%3
-
-set anchors=%anchors:"=%
-set pressures=%pressures:"=%
-
-set cls=%4
-set clmax=%5
-set clmin=%6
-
-::delete job_id.geo if exists
-::if exist %job_id%.geo del %job_id%.geo
-
-::set GMSH pre-processing script
+set cls=%2
+set clmax=%3
+set clmin=%4
 
 echo // Geometry.Tolerance=0.1; > "%job_id%.geo"
 echo //Geometry.OCCFixSmallEdges=1; >> "%job_id%.geo"
@@ -36,8 +22,6 @@ echo Mesh.CharacteristicLengthFactor = %cls%; >> "%job_id%.geo"
 echo Mesh.CharacteristicLengthMin = %clmin%; >> "%job_id%.geo"
 echo Mesh.CharacteristicLengthMax = %clmax%; >> "%job_id%.geo"
 echo Mesh 3; >> "%job_id%.geo"
-echo Physical Surface("support") = {%anchors%}; >> "%job_id%.geo"
-echo Physical Surface("load") = {%pressures%}; >> "%job_id%.geo"
 echo Physical Volume("part") = {1}; >> "%job_id%.geo"
 echo Mesh.SaveGroupsOfNodes = 1; >> "%job_id%.geo"
 echo Save "gmsh.inp"; >> "%job_id%.geo"

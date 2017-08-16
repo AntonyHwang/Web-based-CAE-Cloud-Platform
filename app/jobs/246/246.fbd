@@ -1,0 +1,32 @@
+## PRE-PROCESSING  
+sys gmsh 246.geo
+read gmsh.inp
+# remove surface elements
+zap +CPS6
+send all abq
+send support abq nam
+comp load do
+send load abq pres 1
+plot f load
+plus n support
+hcpy png
+sys ren hcpy_1.png sets.png
+sys ccx solve
+ ## POST-PROCESSING
+read solve.frd
+rot y
+rot c 30
+rot r 30
+view disp
+scal d 1000
+view elem
+ds -0 e 7
+plot fv all
+hcpy png
+sys ren hcpy_2.png se.png
+rot y
+rot u 30
+plot f all n
+hcpy png
+sys ren hcpy_3.png disp.png
+quit
