@@ -76,12 +76,18 @@
 	    $result = $dbh->query($sql_select);
 	    $allAnchors = "";
 	    $allPressures = "";
+		$pressureValues = "";
 	    //echo $sql_select;
 	    $counter = 0;
 	     	while ($row = $result->fetch()) {
 
 	     		if ($row["face_type"] == "pressure") {
 	     			$allPressures = $allPressures.$row["face_number"].",";
+					if ($counter == 0) {
+						$pressureValues = $row["pressure"];
+						$counter++;
+					}
+					$allPressureValues = $allPressureValues.$row["pressure"].",";
 	     		} else if ($row["face_type"] == "anchor") {
 	     			$allAnchors = $allAnchors.$row["face_number"].",";
 	     		}
@@ -97,7 +103,7 @@
 	     	set_time_limit(0);
 
 		    //echo $id." ".$allAnchors." ".$allPressures." ".$youngs_mod." ".$poissons." ".$material;
-		    $val = "scripts\create.bat $id "."\"$allAnchors\" " ."\"$allPressures\" "."$youngs_mod $poissons $material $element_size $max_element_size $min_element_size >nul 2&1";
+		    $val = "scripts\create.bat $id "."\"$allAnchors\" " ."\"$allPressures\" "."$youngs_mod $poissons $material $element_size $max_element_size $min_element_size $allPressureValues >nul 2&1";
 		    // $output = exec($val);
 		    $output = popen('start /B '.$val, 'r');
 	     	//$output = exec("C:\Users\MD580\Desktop\Web-based-CAE-Cloud-Platform\app\scripts\create.bat $id $allAnchors $allPressures $youngs_mod $poissons $material");
